@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227457564706",
+    "project_id": "bookbookmarket-f6266",
+    "storage_bucket": "bookbookmarket-f6266.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227457564706:android:fd434001571ce695ae8a7b",
+        "android_client_info": {
+          "package_name": "com.example.bookcrowded"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCfNtw9u3aRbOeeTUg9WBKncSRAM3sYUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

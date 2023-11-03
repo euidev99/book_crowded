@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">bookcrowded</string>
+
+
+    <!-- COMMON STRING STR -->
+    <string name="common_confirm">확인</string>
+    <string name="common_cancel">취소</string>
+    <string name="common_exit">종료</string>
+    <string name="common_save">저장</string>
+
+
+    <!-- COMMON STRING END -->
+
+    <!-- LOGIN ACTIVITY STR -->
+    <string name="login_email">이메일</string>
+    <string name="login_email_hint">이메일을 입력해주세요.</string>
+    <string name="login_passwd">비밀번호</string>
+    <string name="login_passwd_hint">비밀번호를 입력해주세요.</string>
+    <string name="login_login">로그인</string>
+    <!-- LOGIN ACTIVITY END -->
+
+    <!-- MAIN NAV STR -->
+    <string name="main_title">메인</string>
+    <string name="main_search">검색</string>
+    <string name="main_my">마이 페이지</string>
+    <!-- MAIN NAV END -->
 </resources>
