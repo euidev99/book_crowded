@@ -11,9 +11,12 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.lifecycleScope
+import androidx.viewbinding.ViewBinding
 import com.example.bookcrowded.ui.common.listener.ProgressUIInterface
-import com.example.bookcrowded.common.GlobalValues
+import com.example.bookcrowded.util.GlobalValues
 import kotlinx.coroutines.launch
 
 /**

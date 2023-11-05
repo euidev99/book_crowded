@@ -1,7 +1,5 @@
 package com.example.bookcrowded
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.navigation.findNavController
@@ -75,13 +73,5 @@ class MainActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         this._binding = null
-    }
-
-    companion object {
-        // 액티비티를 시작하는 함수 정의
-        fun startActivity(context: Context) {
-            val intent = Intent(context, MainActivity::class.java)
-            context.startActivity(intent)
-        }
     }
 }

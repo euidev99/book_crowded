@@ -1,5 +1,6 @@
 package com.example.bookcrowded.ui.home
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,10 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.common.BaseViewModel
 import com.example.bookcrowded.ui.common.RepoResult
+import com.example.bookcrowded.ui.dto.ItemsByCategory
 import com.example.bookcrowded.ui.dto.UserInfo
 import com.example.bookcrowded.ui.home.viewdata.HomeItemCategory
 import com.example.bookcrowded.ui.home.viewdata.HomeViewData
-import com.example.bookcrowded.ui.home.viewdata.SellItemViewData
+import com.example.bookcrowded.ui.home.viewdata.SellItem
 import kotlinx.coroutines.launch
 
 class HomeViewModel : BaseViewModel() {
@@ -22,6 +24,8 @@ class HomeViewModel : BaseViewModel() {
 
     // 뷰에서 접근할 때 사용되는 LiveData
     val publicData: LiveData<RepoResult<Any>> get() = _dataResult
+
+//    private val repository: BaseRepository<String> = BaseRepository()
 
     //그냥 연동해서 사용할 뷰모델 관련 샘플
     val textSample = MutableLiveData<String>(TAG)
@@ -40,48 +44,19 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
+    data class Category (
+        val category: String
+    )
+
     fun getAllUsers() {
-        val userRepository = BaseRepository("UserInfo", UserInfo::class.java)
+        val userRepository = BaseRepository("test", ItemsByCategory::class.java)
         viewModelScope.launch {
-//            val sellItem = com.example.bookcrowded.ui.dto.SellItem("id", 99, "name", false, title = "히히 판매")
-//            val sampleArrayList: ArrayList<com.example.bookcrowded.ui.dto.SellItem> = ArrayList()
-//            sampleArrayList.add(sellItem)
-//            sampleArrayList.add(sellItem)
-//            sampleArrayList.add(sellItem)
-//            sampleArrayList.add(sellItem)
-
-            when (val result = userRepository.getDocumentsByField("birth",999999)) {
-                is RepoResult.Success -> {
-                    val dataList = result.data
-                    Log.d("asdasd", "dataList : " + dataList.size)
-                }
-                is RepoResult.Error -> {
-
-                }
-            }
-
-            when (val result = userRepository.getAllDocuments()) {
-                is RepoResult.Success -> {
-                    val dataList = result.data
-                    Log.d("asdasd", "dataList : " + dataList.size)
-                    for (item in dataList) {
-                        Log.d("asdasd", "email : " + item.email)
-                    }
-                }
-                is RepoResult.Error -> {
-
-                }
-            }
-
-            when (val result = userRepository.getDocumentById("userInfo")) {
-                is RepoResult.Success -> {
-                    val dataList = result.data
-                    Log.d("asdasd", "Field " + dataList.name)
-                }
-                is RepoResult.Error -> {
-
-                }
-            }
+            val sellItem = com.example.bookcrowded.ui.dto.SellItem("id", 99, "name", false)
+            val sampleArrayList: ArrayList<com.example.bookcrowded.ui.dto.SellItem> = ArrayList()
+            sampleArrayList.add(sellItem)
+            sampleArrayList.add(sellItem)
+            sampleArrayList.add(sellItem)
+            sampleArrayList.add(sellItem)
 
 //            userRepository.addDocument(
 //                ItemsByCategory("aa",
@@ -109,9 +84,9 @@ class HomeViewModel : BaseViewModel() {
 
     //set Sample Data
     fun setSampleData() {
-        val sellItem = SellItemViewData("ID","Title","10,000","SellerName","Description","",false)
+        val sellItem = SellItem("ID","Title","10,000","SellerName","Description","",false)
 
-        val sellItemArrayList = ArrayList<SellItemViewData>(10)
+        val sellItemArrayList = ArrayList<SellItem>(10)
 
         for (i: Int in 1..10) {
             sellItemArrayList.add(sellItem)
@@ -125,5 +100,7 @@ class HomeViewModel : BaseViewModel() {
         viewData.itemData.add(horizontalCategoryData)
 
         this._homeViewData.postValue(viewData)
+
     }
+
 }

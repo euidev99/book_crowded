@@ -31,7 +31,7 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
     }
 
     //메인 데이터 셋
-    private lateinit var dataList: ArrayList<HomeItemCategory>
+    lateinit var dataList: ArrayList<HomeItemCategory>
 
     //데이터 셋
     fun build(i: ArrayList<HomeItemCategory>): HomeMainAdapter {

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.bookcrowded.ui.common.listener.ProgressUIInterface
 import kotlinx.coroutines.launch
 
 
@@ -20,7 +19,6 @@ interface ViewModelBase {
 
 abstract class BaseViewModel() : ViewModel() {
 
-    var progressListener: ProgressUIInterface? = null
     /**
      * 추상 메서드로 데이터 가져올 때, 사용
      */

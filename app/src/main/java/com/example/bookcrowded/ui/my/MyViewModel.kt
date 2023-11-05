@@ -29,7 +29,7 @@ class MyViewModel(): BaseViewModel() {
     val textSample = MutableLiveData<String>(TAG)
 
     init {
-//        refreshData()
+        refreshData()
     }
 
     //Context 를 뷰모델이 들고 있는건 안좋으니 보류
