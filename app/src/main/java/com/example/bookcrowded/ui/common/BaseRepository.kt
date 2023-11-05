@@ -11,6 +11,7 @@ import kotlinx.coroutines.withContext
 /**
  * 베이스로 혹시나 레포지토리가 다른 내용을 쓸 수도 있으니,
  * 서비스의 분기 / api, db 를 분기하고자 BaseRepository 로 작업
+ * 한 콜렉션을 가져오는 레포지토리
  */
 class BaseRepository<T: Any>(
     private val collectionName: String,

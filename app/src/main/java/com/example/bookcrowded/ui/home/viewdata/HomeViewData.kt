@@ -16,11 +16,11 @@ data class HomeViewData(
 sealed class HomeItemCategory {
     data class PagingCategoryData(
         val title: String,
-        val itemArrayList: ArrayList<SellItem>) : HomeItemCategory() //AbstractHomeData(HomeMainAdapter.COMMON_PAGING_SECTION)
+        val itemArrayList: ArrayList<SellItemViewData>) : HomeItemCategory() //AbstractHomeData(HomeMainAdapter.COMMON_PAGING_SECTION)
 
     data class HorizontalCategoryData(
         val title: String,
-        val itemArrayList: ArrayList<SellItem>
+        val itemArrayList: ArrayList<SellItemViewData>
     ) : HomeItemCategory()
 }
 
@@ -36,12 +36,12 @@ abstract class AbstractHomeData(
 
 data class PagingCategoryData(
     val title: String,
-    val itemArrayList: ArrayList<SellItem>
+    val itemArrayList: ArrayList<SellItemViewData>
 ) : AbstractHomeData(HomeMainAdapter.COMMON_PAGING_SECTION)
 
 data class HorizontalCategoryData(
     val title: String,
-    val itemArrayList: ArrayList<SellItem>
+    val itemArrayList: ArrayList<SellItemViewData>
 ) : AbstractHomeData(HomeMainAdapter.COMMON_ITEM_SECTION)
 
 
@@ -50,7 +50,7 @@ data class HorizontalCategoryData(
 /**
  * 메인 홈 판매 아이템 화면용 데이터
  */
-data class SellItem(
+data class SellItemViewData(
     val id: String,
     val title: String,
     val price: String,

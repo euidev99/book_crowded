@@ -1,13 +1,15 @@
 package com.example.bookcrowded.ui.login
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
+import android.widget.Toast
+import androidx.activity.viewModels
+import com.example.bookcrowded.MainActivity
+import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityLoginBinding
-import com.example.bookcrowded.databinding.ActivityMainBinding
 import com.example.bookcrowded.ui.common.BaseActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.bookcrowded.ui.regist.RegisterActivity
 
 /**
  * Login 화면
@@ -18,17 +20,45 @@ class LoginActivity : BaseActivity() {
     private var _binding: ActivityLoginBinding? = null
     private val binding get() = _binding!!
 
+    private val loginViewModel: LoginViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        setNavigationView()
-//        setSampleFireBaseStore("test")
+        loginViewModel.progressListener = this
+        loginViewModel.loginResult.observe(this) { success ->
+            if (success) {
+                // 로그인 성공 시의 처리
+                Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+                AuthManager.userId = binding.emailEditText.text.toString()
+                MainActivity.startActivity(this)
+            } else {
+                // 로그인 실패 시의 처리
+                Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.loginButton.setOnClickListener {
+            //test aa, aa
+            val email: String = binding.emailEditText.text.toString()
+            val passwd: String = binding.passwdEditText.text.toString()
+
+            loginViewModel.logIn(email, passwd)
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         this._binding = null
+    }
+
+    companion object {
+        // 액티비티를 시작하는 함수 정의
+        fun startActivity(context: Context) {
+            val intent = Intent(context, LoginActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 }
