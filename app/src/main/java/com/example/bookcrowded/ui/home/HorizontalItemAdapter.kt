@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookcrowded.databinding.ItemHorizontalBinding
-import com.example.bookcrowded.ui.home.viewdata.SellItem
+import com.example.bookcrowded.ui.home.viewdata.SellItemViewData
 
 /**
  * Home 메인 탭에서의
@@ -13,7 +13,7 @@ import com.example.bookcrowded.ui.home.viewdata.SellItem
  */
 
 class HorizontalItemAdapter (
-    private val items: ArrayList<SellItem> = arrayListOf(),
+    private val items: ArrayList<SellItemViewData> = arrayListOf(),
     private val itemClickListener: HorizontalItemAdapter.OnItemClickListener
     ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -22,7 +22,7 @@ class HorizontalItemAdapter (
     }
 
     class HorizontalItemViewHolder(val binding: ItemHorizontalBinding, private val listener: OnItemClickListener?) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: SellItem) {
+        fun bind(item: SellItemViewData) {
             binding.root.tag = "HorizontalItem"
             binding.titleText.text = item.title
             binding.root.setOnClickListener { listener?.onClick(binding.root, adapterPosition) }

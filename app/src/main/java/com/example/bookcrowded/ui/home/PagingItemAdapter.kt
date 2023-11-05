@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookcrowded.databinding.ItemPagingBinding
-import com.example.bookcrowded.ui.home.viewdata.SellItem
+import com.example.bookcrowded.ui.home.viewdata.SellItemViewData
 
 /**
  * 생성자로 리스트 받고 리스터 주입,
  * 리스너 미 주입시에 대한 처리는 하지 않음 필수 동작
  */
 class PagingItemAdapter(
-    private var items: ArrayList<SellItem> = arrayListOf(),
+    private var items: ArrayList<SellItemViewData> = arrayListOf(),
     private val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -38,7 +38,7 @@ class PagingItemAdapter(
         val binding: ItemPagingBinding,
         private val listener: OnItemClickListener?
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: SellItem) {
+        fun bind(item: SellItemViewData) {
             binding.root.tag = "PagingItem"
             binding.mainText.text = item.title
             binding.root.setOnClickListener { listener?.onClick(binding.root, adapterPosition) }

@@ -1,4 +1,4 @@
-package com.example.bookcrowded.util
+package com.example.bookcrowded.common
 
 import androidx.collection.SparseArrayCompat
 import androidx.collection.set
