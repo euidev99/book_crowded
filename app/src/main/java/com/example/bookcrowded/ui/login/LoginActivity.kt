@@ -40,12 +40,23 @@ class LoginActivity : BaseActivity() {
             }
         }
 
+        setView()
+    }
+
+    //버튼 이벤트나 초기 이벤트 처리
+    private fun setView() {
+        //로그인 버튼
         binding.loginButton.setOnClickListener {
             //test aa, aa
             val email: String = binding.emailEditText.text.toString()
             val passwd: String = binding.passwdEditText.text.toString()
 
             loginViewModel.logIn(email, passwd)
+        }
+        //회원가입 버튼
+        binding.registerButton.setOnClickListener {
+            //회원가입 화면으로 이동
+            RegisterActivity.startActivity(this)
         }
     }
 

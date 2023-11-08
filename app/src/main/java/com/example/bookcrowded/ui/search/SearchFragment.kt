@@ -29,7 +29,6 @@ class SearchFragment : BaseFragment() {
     ): View? {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-
         return binding.root
     }
 

@@ -28,17 +28,6 @@ class HomeViewModel : BaseViewModel() {
 
     private val _homeViewData = MutableLiveData<HomeViewData>()
     val publicHomeData: LiveData<HomeViewData> get() = _homeViewData
-    override fun refreshData() {
-        Log.d(TAG, ">> refreshData")
-
-        viewModelScope.launch {
-            try {
-//                _dataResult.value = repository.refreshData()
-            } catch (e: Exception) {
-                Log.e("ViewModel","Failed to load Data!")
-            }
-        }
-    }
 
     fun getAllUsers() {
         val userRepository = BaseRepository("UserInfo", UserInfo::class.java)

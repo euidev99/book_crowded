@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.example.bookcrowded"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -56,6 +56,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -63,6 +64,4 @@ dependencies {
 
     // Kotlin
     implementation("androidx.collection:collection-ktx:$1.1.0")
-
-
 }

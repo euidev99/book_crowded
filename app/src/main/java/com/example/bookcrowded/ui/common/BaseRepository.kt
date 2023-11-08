@@ -20,8 +20,14 @@ class BaseRepository<T: Any>(
     private val db = FirebaseFirestore.getInstance()
     private val collectionReference: CollectionReference = db.collection(collectionName)
 
-    suspend fun addDocument(documentData: T) {
-        collectionReference.add(documentData).await()
+    suspend fun addDocument(documentData: T) : RepoResult<Boolean> = withContext(Dispatchers.IO) {
+        try {
+            //응답 처리 보류..
+            collectionReference.add(documentData).await()
+            RepoResult.Success(true)
+        } catch (e: Exception) {
+            RepoResult.Error(e)
+        }
     }
 
     suspend fun getAllDocuments(): RepoResult<List<T>> = withContext(Dispatchers.IO) {

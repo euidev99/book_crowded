@@ -43,16 +43,16 @@ class MyViewModel(): BaseViewModel() {
 //        }
 //    }
 
-    override fun refreshData() {
-        Log.d(TAG, ">> refreshData")
-
-        viewModelScope.launch {
-            try {
-                textSample.postValue(TAG)
-//                _dataResult.value = repository.refreshData()
-            } catch (e: Exception) {
-                Log.e("ViewModel","Failed to load Data!")
-            }
-        }
-    }
+//    override fun refreshData() {
+//        Log.d(TAG, ">> refreshData")
+//
+//        viewModelScope.launch {
+//            try {
+//                textSample.postValue(TAG)
+////                _dataResult.value = repository.refreshData()
+//            } catch (e: Exception) {
+//                Log.e("ViewModel","Failed to load Data!")
+//            }
+//        }
+//    }
 }

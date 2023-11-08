@@ -3,15 +3,11 @@ package com.example.bookcrowded
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bookcrowded.databinding.ActivityMainBinding
 import com.example.bookcrowded.ui.common.BaseActivity
-import com.example.bookcrowded.ui.home.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
 
 /**
  * Main 홈 화면

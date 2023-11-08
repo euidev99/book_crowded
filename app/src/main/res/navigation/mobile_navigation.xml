@@ -23,12 +23,6 @@
         android:label="@string/main_my"
         tools:layout="@layout/fragment_my" >
 
-<!--        <action-->
-<!--            android:id="@+id/action_navigation_on_demand_to_navigation_on_demand_detail"-->
-<!--            app:destination="@id/navigation_on_demand_detail" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_navigation_on_demand_to_navigation_watch_later"-->
-<!--            app:destination="@id/navigation_watch_later" />-->
     </fragment>
 
 </navigation>

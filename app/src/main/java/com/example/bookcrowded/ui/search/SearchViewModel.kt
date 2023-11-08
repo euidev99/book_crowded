@@ -26,15 +26,15 @@ class SearchViewModel : BaseViewModel() {
     //그냥 연동해서 사용할 뷰모델 관련 샘플
     val textSample = MutableLiveData<String>(TAG)
 
-    override fun refreshData() {
-        Log.d(TAG, ">> refreshData")
-
-        viewModelScope.launch {
-            try {
-//                _dataResult.value = repository.refreshData()
-            } catch (e: Exception) {
-                Log.e("ViewModel","Failed to load Data!")
-            }
-        }
-    }
+//    override fun refreshData() {
+//        Log.d(TAG, ">> refreshData")
+//
+//        viewModelScope.launch {
+//            try {
+////                _dataResult.value = repository.refreshData()
+//            } catch (e: Exception) {
+//                Log.e("ViewModel","Failed to load Data!")
+//            }
+//        }
+//    }
 }

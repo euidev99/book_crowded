@@ -22,15 +22,15 @@ class MainViewModel(): BaseViewModel() {
 
 //    private val repository: BaseRepository<String> = BaseRepository()
 
-    override fun refreshData() {
-        Log.d(TAG, ">> refreshData")
-
-        viewModelScope.launch {
-            try {
-//                _dataResult.value = repository.refreshData()
-            } catch (e: Exception) {
-                Log.e("ViewModel","Failed to load Data!")
-            }
-        }
-    }
+//    override fun refreshData() {
+//        Log.d(TAG, ">> refreshData")
+//
+//        viewModelScope.launch {
+//            try {
+////                _dataResult.value = repository.refreshData()
+//            } catch (e: Exception) {
+//                Log.e("ViewModel","Failed to load Data!")
+//            }
+//        }
+//    }
 }

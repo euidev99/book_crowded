@@ -21,19 +21,6 @@ class LoginViewModel : BaseViewModel() {
     private val _loginResult = MutableLiveData<Boolean>()
     val loginResult: LiveData<Boolean> get() = _loginResult
 
-    override fun refreshData() {
-        Log.d(TAG, ">> refreshData")
-
-//        viewModelScope.launch {
-//            try {
-//
-//            } catch (e: Exception) {
-//                Log.e("ViewModel","Failed to load Data!")
-//            }
-//        }
-    }
-
-
     fun logIn(email: String, passwd: String) {
         progressListener?.showProgressUI()
 

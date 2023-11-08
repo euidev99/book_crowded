@@ -24,7 +24,7 @@ abstract class BaseViewModel() : ViewModel() {
     /**
      * 추상 메서드로 데이터 가져올 때, 사용
      */
-    abstract fun refreshData()
+//    abstract fun refreshData()
 
     //공통화는 나중에 고민좀...
     // LiveData를 사용하여 Result<Data>를 감싼다.
