@@ -40,6 +40,16 @@ class BaseRepository<T: Any>(
         }
     }
 
+    suspend fun getAllDocumentIds(): RepoResult<List<String>> = withContext(Dispatchers.IO) {
+        try {
+            val querySnapshot = db.collection(collectionName).get().await()
+            val documentIds = querySnapshot.documents.map { it.id }
+            RepoResult.Success(documentIds)
+        } catch (e: Exception) {
+            RepoResult.Error(e)
+        }
+    }
+
     suspend fun getDocumentById(documentId: String): RepoResult<T> = withContext(Dispatchers.IO) {
         try {
             val documentSnapshot = collectionReference.document(documentId).get().await()

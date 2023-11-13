@@ -12,6 +12,7 @@ import com.example.bookcrowded.ui.common.BaseFragment
 import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.common.listener.OnRecyclerViewItemClickListener
 import com.example.bookcrowded.ui.home.viewdata.HomeViewData
+import com.example.bookcrowded.ui.test.TestActivity
 import kotlinx.coroutines.coroutineScope
 
 class HomeFragment : BaseFragment() {
@@ -23,7 +24,7 @@ class HomeFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -40,8 +41,6 @@ class HomeFragment : BaseFragment() {
         homeViewModel.getAllUsers()
     }
 
-
-
     private fun setAdapter(data: HomeViewData) {
         binding.recycler.apply {
             adapter = HomeMainAdapter(object: OnRecyclerViewItemClickListener {
@@ -54,6 +53,7 @@ class HomeFragment : BaseFragment() {
 
                 override fun onSubItemClick(v: View, position: Int) {
                     Log.d("Seki", "SubListClick $position View: ${v.tag}")
+                    TestActivity.startActivity(context)
                 }
 
             }).build(data.itemData)

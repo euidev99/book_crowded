@@ -1,11 +1,13 @@
 package com.example.bookcrowded.ui.dto
 
 data class SellItem(
-    val id: String,
-    val title: String,
-    val price: String,
-    val sellerName: String,
-    val description: String,
+    val id: String = "", //아이템 아이디
+    val title: String = "",
+    val price: String = "",
+    val sellerEmail: String = "",
+    val description: String = "",
     val image: String = "", //URL or BitmapImage
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
+    val upLoadDate: String = "", // 뭐 나중에 쓰면 쓰고..
+    val isSold: Boolean = false
 )

@@ -6,5 +6,6 @@ package com.example.bookcrowded.common
  */
 object AuthManager {
     var userId: String = ""
+    var userEmail: String = ""
 }
 

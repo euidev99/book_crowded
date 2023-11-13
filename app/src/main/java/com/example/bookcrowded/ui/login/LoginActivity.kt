@@ -33,6 +33,7 @@ class LoginActivity : BaseActivity() {
                 // 로그인 성공 시의 처리
                 Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
                 AuthManager.userId = binding.emailEditText.text.toString()
+                AuthManager.userEmail = binding.emailEditText.text.toString()
                 MainActivity.startActivity(this)
             } else {
                 // 로그인 실패 시의 처리

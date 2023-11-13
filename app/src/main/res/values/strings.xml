@@ -12,6 +12,9 @@
     <string name="common_passwd">비밀번호</string>
     <string name="common_birth">생년월일</string>
     <string name="common_id">아이디</string>
+    <string name="common_item_name">상품명</string>
+    <string name="common_seller">판매자</string>
+    <string name="common_price">가격</string>
     <!-- COMMON STRING END -->
 
     <!-- SPLASH ACTIVITY STR -->
@@ -29,7 +32,6 @@
     <string name="register_birth_hint">생년월일 예시 : 001122</string>
     <string name="register_execute">회원 가입 하기</string>
     <string name="register_confirm_description">회원가입 하시겠습니까?</string>
-
     <!-- REGISTER ACTIVITY END -->
 
     <!-- LOGIN ACTIVITY STR -->
@@ -40,6 +42,23 @@
     <string name="login_login">로그인</string>
     <string name="login_to_register">회원가입 하기</string>
     <!-- LOGIN ACTIVITY END -->
+
+    <!-- DETAIL ACTIVITY STR -->
+    <string name="detail_title">아이템 상세보기</string>
+    <string name="detail_main_image">메인 이미지</string>
+    <string name="detail_chat">채팅하기</string>
+    <string name="detail_edit">수정하기</string>
+    <string name="detail_send_message">메세지 보내기</string>
+    <string name="detail_item_description">아이템 설명</string>
+    <!-- DETAIL ACTIVITY END -->
+
+    <!-- SEARCH ACTIVITY STR -->
+    <string name="search_title">아이템 목록</string>
+    <string name="search_sold_list">판매완료 상품 보기</string>
+    <string name="search_unsold_list">판매 안된 상품 보기</string>
+    <string name="search_show_all">전체 보기</string>
+    <string name="search_add_item">글 쓰기</string>
+    <!-- SEARCH ACTIVITY END -->
 
     <!-- MAIN NAV STR -->
     <string name="main_title">메인</string>
