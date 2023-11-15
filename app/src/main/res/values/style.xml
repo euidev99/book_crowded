@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomListPopupWindowStyle" parent="Widget.AppCompat.ListPopupWindow">
+        <!-- 팝업 메뉴의 배경. -->
+        <item name="android:popupBackground">@drawable/background_white_round</item>
+    </style>
+</resources>
