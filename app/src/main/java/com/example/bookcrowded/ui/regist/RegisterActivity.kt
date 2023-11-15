@@ -47,6 +47,12 @@ class RegisterActivity : BaseActivity() {
     }
 
     private fun setView() {
+        //회원가입 버튼
+        binding.registerButton.setOnClickListener {
+        //회원가입 화면으로 이동
+        RegisterActivity.startActivity(this)
+        }
+
         //회원가입하기
         binding.registerButton.setOnClickListener {
             val id: String = binding.idEditText.text.toString()

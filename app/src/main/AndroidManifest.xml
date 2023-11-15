@@ -45,6 +45,7 @@
 
         <activity android:name=".ui.test.TestActivity"
             android:exported="true" />
+
     </application>
 
 </manifest>

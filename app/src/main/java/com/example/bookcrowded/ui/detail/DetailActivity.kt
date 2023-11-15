@@ -40,9 +40,9 @@ class DetailActivity: BaseActivity() {
     private fun setData(data: SellItem) {
         if (AuthManager.userId != "" && AuthManager.userEmail == data.sellerEmail) {
             //내가 올린 아이템일 경우
-            binding.editButton.visibility = View.VISIBLE
+            //binding.editButton.visibility = View.VISIBLE
         } else {
-            binding.editButton.visibility = View.GONE
+            //binding.editButton.visibility = View.GONE
         }
 
         binding.itemNameText.text = data.title
