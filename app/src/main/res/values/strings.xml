@@ -81,10 +81,13 @@
     <string name="mypage_cancel">탈퇴하기</string>
     <string name="mypage_cancel_email">123455@nvaer.com</string>
     <string name="mypage_logout_button">logout</string>
+    <!-- MY PAGE END -->
+
+    <!-- CHAT STR -->
     <string name="mypage_chatting">채팅</string>
     <string name="mypage_bookname">명품자바 프로그래밍</string>
     <string name="mypage_price">10000원</string>
     <string name="mypage_message">메세지 입력</string>
     <string name="mypage_send">보내기</string>
-    <!-- MY PAGE END -->
+    <!-- CHAT END -->
 </resources>

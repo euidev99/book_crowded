@@ -46,6 +46,9 @@
         <activity android:name=".ui.test.TestActivity"
             android:exported="true" />
 
+        <activity android:name=".ui.chat.ChatActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>
