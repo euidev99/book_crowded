@@ -40,10 +40,11 @@
         android:id="@+id/signup_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/profile_image"
         app:layout_constraintLeft_toLeftOf="@id/vertical_guideline1"
-        app:layout_constraintRight_toRightOf="@id/vertical_guideline2" >
+        app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
+        app:layout_constraintTop_toBottomOf="@id/profile_image">
 
         <!-- ID -->
         <LinearLayout
@@ -55,45 +56,45 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/common_id"/>
+                android:text="@string/common_id" />
 
             <EditText
                 android:id="@+id/id_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"/>
+                android:layout_weight="4" />
         </LinearLayout>
 
         <!-- name -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/common_name"/>
+                android:text="@string/common_name" />
 
             <EditText
                 android:id="@+id/name_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"/>
+                android:layout_weight="4" />
         </LinearLayout>
 
         <!-- passwd -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/common_passwd"/>
+                android:text="@string/common_passwd" />
 
             <EditText
                 android:id="@+id/passwd_edit_text"
@@ -106,7 +107,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="21dp"
@@ -122,21 +123,22 @@
 
             <Button
                 android:id="@+id/check_duplicate_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="99dp"
+                android:layout_height="35dp"
+                android:background="@drawable/check" />
         </LinearLayout>
 
         <!-- birth -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/common_birth"/>
+                android:text="@string/common_birth" />
 
             <EditText
                 android:id="@+id/birth_edit_text"

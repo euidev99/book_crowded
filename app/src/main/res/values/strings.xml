@@ -63,6 +63,7 @@
     <!-- MAIN NAV STR -->
     <string name="main_title">메인</string>
     <string name="main_search">검색</string>
+    <string name="main_love">찜</string>
     <string name="main_my">마이 페이지</string>
     <!-- MAIN NAV END -->
 

@@ -22,6 +22,11 @@ sealed class HomeItemCategory {
         val title: String,
         val itemArrayList: ArrayList<SellItemViewData>
     ) : HomeItemCategory()
+
+    data class GridCategoryData(
+        val title: String,
+        val itemArrayList: ArrayList<SellItemViewData>
+    ) : HomeItemCategory()
 }
 
 
@@ -43,6 +48,11 @@ data class HorizontalCategoryData(
     val title: String,
     val itemArrayList: ArrayList<SellItemViewData>
 ) : AbstractHomeData(HomeMainAdapter.COMMON_ITEM_SECTION)
+
+data class GridCategoryData(
+    val title: String,
+    val itemArrayList: ArrayList<SellItemViewData>
+) : AbstractHomeData(HomeMainAdapter.COMMON_GRID_SECTION)
 
 
 //-------------------Sub Item Class----------------------

@@ -99,7 +99,6 @@ class HomeViewModel : BaseViewModel() {
     //set Sample Data
     fun setSampleData() {
         val sellItem = SellItemViewData("ID","Title","10,000","SellerName","Description","",false)
-
         val sellItemArrayList = ArrayList<SellItemViewData>(10)
 
         for (i: Int in 1..10) {
@@ -108,10 +107,12 @@ class HomeViewModel : BaseViewModel() {
 
         val pagingCategoryData = HomeItemCategory.PagingCategoryData("PAGING", sellItemArrayList)
         val horizontalCategoryData = HomeItemCategory.HorizontalCategoryData("HORIZONTAL", sellItemArrayList)
+        val gridCategoryData = HomeItemCategory.GridCategoryData("Grid", sellItemArrayList)
 
         val viewData = HomeViewData(ArrayList())
         viewData.itemData.add(pagingCategoryData)
         viewData.itemData.add(horizontalCategoryData)
+        viewData.itemData.add(gridCategoryData)
 
         this._homeViewData.postValue(viewData)
     }
