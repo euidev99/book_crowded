@@ -32,7 +32,7 @@ class VerticalChatListAdapter (
             binding.root.tag = "ChatItem"
             binding.nameText.text = item.id
             binding.categoryText.text = item.category
-            binding.distanceText.text = item.distance
+            binding.distanceText.text = ""
 
             binding.root.setOnClickListener {
                 listener?.onClick(binding.root, adapterPosition)

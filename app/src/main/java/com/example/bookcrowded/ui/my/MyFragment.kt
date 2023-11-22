@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.bookcrowded.R
 import com.example.bookcrowded.databinding.FragmentHomeBinding
 import com.example.bookcrowded.databinding.FragmentMyBinding
+import com.example.bookcrowded.ui.chatlist.ChatListActivity
 import com.example.bookcrowded.ui.common.BaseFragment
 
 class MyFragment : BaseFragment() {
@@ -30,8 +31,14 @@ class MyFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //My 페이지 관련 세팅
+        setView()
     }
 
+    private fun setView() {
+        binding.chatLayout.setOnClickListener {
+            context?.let { it1 -> ChatListActivity.startActivity(it1) }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -34,6 +34,8 @@ class ChatListActivity: BaseActivity() {
             setAdapter(it)
         }
         chatListViewModel.progressListener = this
+
+        chatListViewModel.addChatList("testChat")
     }
 
     private fun setAdapter(data: List<ChatListItem>) {
@@ -44,7 +46,7 @@ class ChatListActivity: BaseActivity() {
                      * 버튼 클릭 시 이벤트
                      */
                     Log.d("Seki", "MainClick $position View: ${v.tag}")
-                    ChatActivity.startActivityWithChatId(context, chatListViewModel.getChatIdByPosition(position))
+                    ChatActivity.startActivityWithChatId(context, "testChat") //chatListViewModel.getChatIdByPosition(position))
                 }
 
             }).build(data)

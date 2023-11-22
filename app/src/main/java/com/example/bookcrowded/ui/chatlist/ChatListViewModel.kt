@@ -30,7 +30,7 @@ class ChatListViewModel : BaseViewModel() {
 
         val message = ChatMessage(text, "myName","")
         //실제로는 내 위치
-        val chatList = ChatListItem("testForChat", "1M", "Cafe", 0.0, 0.0)
+        val chatList = ChatListItem("testForChat", "관심사", "구매자", "전공책")
 
         viewModelScope.launch {
             when (val result = chatRepository.add(chatList)) {
