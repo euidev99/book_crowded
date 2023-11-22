@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewpager2.widget.ViewPager2
+import com.example.bookcrowded.databinding.ItemGridSectionHolderBinding
 import com.example.bookcrowded.databinding.ItemHorizontalSectionHolderBinding
 import com.example.bookcrowded.databinding.ItemPagingSectionHolderBinding
+import com.example.bookcrowded.databinding.ItemVerticalSectionHolderBinding
 import com.example.bookcrowded.ui.common.listener.OnRecyclerViewItemClickListener
 import com.example.bookcrowded.ui.home.viewdata.HomeItemCategory
 import com.google.android.material.tabs.TabLayoutMediator
@@ -27,7 +30,7 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
         const val INVALIDATE = -1
         const val COMMON_PAGING_SECTION = 0 // 최상단 페이징 섹션
         const val COMMON_ITEM_SECTION = 1 // 가로 아이템 리스트와 메뉴가 있는 섹션
-        const val COMMON_LIST_SECTION = 2 // 미사용
+        const val COMMON_GRID_SECTION = 2 // 미사용
     }
 
     //메인 데이터 셋
@@ -46,6 +49,7 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
         return when (dataList[position]) {
             is HomeItemCategory.PagingCategoryData -> COMMON_PAGING_SECTION
             is HomeItemCategory.HorizontalCategoryData -> COMMON_ITEM_SECTION
+            is HomeItemCategory.GridCategoryData -> COMMON_GRID_SECTION
         }
     }
 
@@ -65,6 +69,17 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
             COMMON_ITEM_SECTION -> {
                 HorizontalViewHolder(
                     ItemHorizontalSectionHolderBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    parent.context,
+                    this.itemClickListener
+                )
+            }
+            COMMON_GRID_SECTION -> {
+                GridViewHolder(
+                    ItemGridSectionHolderBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
@@ -161,6 +176,28 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
         }
     }
 
+    class GridViewHolder(
+        private val binding: ItemGridSectionHolderBinding,
+        val context: Context,
+        val listener: OnRecyclerViewItemClickListener
+    ) : ViewHolder(binding.root) {
+        fun bind(item: HomeItemCategory.GridCategoryData) {
+            with(binding) {
+                binding.root.tag = "grid"
+                recyclerGrid.apply {
+                    adapter = GridItemAdapter(
+                        items = item.itemArrayList,
+                        itemClickListener = object : GridItemAdapter.OnItemClickListener {
+                            override fun onClick(v: View, position: Int) {
+                                listener.onSubItemClick(v, position)
+                            }
+                        }
+                    )
+                    layoutManager = GridLayoutManager(context, 3) // 3개의 열을 가진 그리드 레이아웃을 사용
+                }
+            }
+        }
+    }
 
     /**
      * 첫번째 메인 리사이클러뷰에 대한 뷰홀더에 대한 인터페이스 지정,
@@ -174,6 +211,9 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
             }
             is HomeItemCategory.HorizontalCategoryData -> {
                 (holder as? HorizontalViewHolder)?.bind(item)
+            }
+            is HomeItemCategory.GridCategoryData -> {
+                (holder as? GridViewHolder)?.bind(item)
             }
         }
     }

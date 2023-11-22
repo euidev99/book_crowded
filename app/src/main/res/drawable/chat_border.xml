@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <!-- 배경색을 정의 -->
+            <solid android:color="#E1E1E1" />
+
+            <!-- 테두리의 둥근 모서리를 정의 -->
+            <corners android:radius="10dp" />
+
+            <!-- 테두리의 색상과 너비를 정의 -->
+            <stroke android:color="#E1E1E1" android:width="2dp"/>
+        </shape>
+    </item>
+</selector>

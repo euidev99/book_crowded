@@ -28,7 +28,9 @@ class ChatListActivity: BaseActivity() {
         _binding = ActivityChatListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //챗 목록 옵저빙
         chatListViewModel.chatMessages.observe(this) {
+            //완료 시 리사이클러 뷰 셋
             setAdapter(it)
         }
         chatListViewModel.progressListener = this

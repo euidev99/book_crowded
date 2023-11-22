@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/account_scr"
@@ -10,29 +11,30 @@
         <!--  양쪽 가이드 라인  -->
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/vertical_guideline1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="24dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/vertical_guideline2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="24dp" />
 
         <!--  상단바 컨데이너  -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_container"
-            android:layout_width="365dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
+            app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
             app:layout_constraintTop_toTopOf="parent">
 
-                <!--  뒤로가기 이미지 버튼  -->
+
+        <!--  뒤로가기 이미지 버튼  -->
 <!--                <ImageView-->
 <!--                    android:id="@+id/left_image"-->
 <!--                    android:layout_width="25dp"-->
@@ -50,9 +52,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/mypage_profile"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--  프로필 이미지  -->
@@ -61,7 +63,7 @@
             android:layout_width="84dp"
             android:layout_height="93dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_profile"
+            android:src="@drawable/profile"
             app:layout_constraintTop_toBottomOf="@id/header_container"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -90,12 +92,12 @@
         <!--  카드 레이아웃  -->
         <LinearLayout
             android:id="@+id/account_card"
-            android:layout_width="365dp"
-            android:layout_height="210dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
             android:background="@drawable/profile_card"
             android:orientation="vertical"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
+            app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
             app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -104,7 +106,7 @@
                     android:id="@+id/card_layout1"
                     android:layout_width="365dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="20dp">
 
                         <ImageView
                             android:id="@+id/circle_image1"
@@ -140,7 +142,7 @@
                     android:id="@+id/card_layout2"
                     android:layout_width="365dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="30dp">
+                    android:layout_marginTop="20dp">
 
                         <ImageView
                             android:id="@+id/circle_image2"
@@ -172,10 +174,10 @@
 
                 <!--  채팅 기록 레이아웃  -->
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/card_layout3"
+                    android:id="@+id/chat_layout"
                     android:layout_width="365dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="30dp">
+                    android:layout_marginTop="20dp">
 
                         <ImageView
                             android:id="@+id/circle_image3"
@@ -207,12 +209,12 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/more_card"
-            android:layout_width="365dp"
+            android:layout_width="0dp"
             android:layout_height="120dp"
             android:layout_marginTop="500dp"
             android:background="@drawable/profile_card"
             android:orientation="vertical"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
+            app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
             app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
             app:layout_constraintTop_toTopOf="parent">
 
