@@ -19,7 +19,6 @@ class DetailActivity: BaseActivity() {
 
     private var _binding: ActivityItemDetailBinding? = null
     private val binding get() = _binding!!
-
     private val mViewModel: DetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +53,7 @@ class DetailActivity: BaseActivity() {
         binding.itemNameText.text = data.title
         binding.itemUpdateDateText.text = data.upLoadDate
         binding.itemDescriptionText.text = data.description
-        binding.itemPriceText.text = data.price
+        binding.itemPriceText.text = "₩ " + data.price
     }
 
     override fun onDestroy() {
