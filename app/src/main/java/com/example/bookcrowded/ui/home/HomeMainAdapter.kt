@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bookcrowded.databinding.ItemGridSectionHolderBinding
-import com.example.bookcrowded.databinding.ItemHorizontalSectionHolderBinding
 import com.example.bookcrowded.databinding.ItemPagingSectionHolderBinding
-import com.example.bookcrowded.databinding.ItemVerticalSectionHolderBinding
 import com.example.bookcrowded.ui.common.listener.OnRecyclerViewItemClickListener
 import com.example.bookcrowded.ui.home.viewdata.HomeItemCategory
 import com.google.android.material.tabs.TabLayoutMediator
@@ -29,8 +27,7 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
     companion object {
         const val INVALIDATE = -1
         const val COMMON_PAGING_SECTION = 0 // 최상단 페이징 섹션
-        const val COMMON_ITEM_SECTION = 1 // 가로 아이템 리스트와 메뉴가 있는 섹션
-        const val COMMON_GRID_SECTION = 2 // 미사용
+        const val COMMON_GRID_SECTION = 1 // 미사용
     }
 
     //메인 데이터 셋
@@ -48,7 +45,6 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
     override fun getItemViewType(position: Int): Int {
         return when (dataList[position]) {
             is HomeItemCategory.PagingCategoryData -> COMMON_PAGING_SECTION
-            is HomeItemCategory.HorizontalCategoryData -> COMMON_ITEM_SECTION
             is HomeItemCategory.GridCategoryData -> COMMON_GRID_SECTION
         }
     }
@@ -58,17 +54,6 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
             COMMON_PAGING_SECTION -> {
                 HorizontalPagingViewHolder(
                     ItemPagingSectionHolderBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    ),
-                    parent.context,
-                    this.itemClickListener
-                )
-            }
-            COMMON_ITEM_SECTION -> {
-                HorizontalViewHolder(
-                    ItemHorizontalSectionHolderBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
@@ -145,37 +130,6 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
      * 내부 아이템 뷰홀더이며, 뷰홀더 내부에서의 리사이클러뷰 클릭 이벤트를
      * 메인 리스너로 전달하여 액티비티에서 전부 처리할 수 있도록 함
      */
-    class HorizontalViewHolder(
-        private val binding: ItemHorizontalSectionHolderBinding,
-        val context: Context,
-        val listener: OnRecyclerViewItemClickListener
-    ) :
-        ViewHolder(binding.root) {
-        fun bind(item: HomeItemCategory.HorizontalCategoryData) {
-            with(binding) {
-                binding.root.tag = "horizontal"
-                holderTitle.text = item.title
-                recycler.apply {
-                    adapter =
-                        HorizontalItemAdapter(
-                            items = item.itemArrayList,
-                            itemClickListener = (object :
-                                HorizontalItemAdapter.OnItemClickListener {
-                                /**
-                                 * 서브 리사이클러뷰의 아이템 홀더에서 받아온
-                                 * 아이템클릭 이벤트를 프래그먼트로 전달하기 위한 인터페이스
-                                 */
-                                override fun onClick(v: View, position: Int) {
-                                    listener.onSubItemClick(v, position)
-                                }
-                            })
-                        )
-                    layoutManager = LinearLayoutManager (context, LinearLayoutManager.HORIZONTAL, false)
-                }
-            }
-        }
-    }
-
     class GridViewHolder(
         private val binding: ItemGridSectionHolderBinding,
         val context: Context,
@@ -208,9 +162,6 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
         when (val item = dataList[position]) {
             is HomeItemCategory.PagingCategoryData -> {
                 (holder as? HorizontalPagingViewHolder)?.bind(item)
-            }
-            is HomeItemCategory.HorizontalCategoryData -> {
-                (holder as? HorizontalViewHolder)?.bind(item)
             }
             is HomeItemCategory.GridCategoryData -> {
                 (holder as? GridViewHolder)?.bind(item)

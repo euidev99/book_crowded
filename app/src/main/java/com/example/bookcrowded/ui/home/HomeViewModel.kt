@@ -7,10 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.common.BaseViewModel
 import com.example.bookcrowded.ui.common.RepoResult
+import com.example.bookcrowded.ui.dto.SellItem
 import com.example.bookcrowded.ui.dto.UserInfo
 import com.example.bookcrowded.ui.home.viewdata.HomeItemCategory
 import com.example.bookcrowded.ui.home.viewdata.HomeViewData
-import com.example.bookcrowded.ui.home.viewdata.SellItemViewData
 import kotlinx.coroutines.launch
 
 class HomeViewModel : BaseViewModel() {
@@ -98,20 +98,21 @@ class HomeViewModel : BaseViewModel() {
 
     //set Sample Data
     fun setSampleData() {
-        val sellItem = SellItemViewData("ID","Title","10,000","SellerName","Description","",false)
-        val sellItemArrayList = ArrayList<SellItemViewData>(10)
+        val sellItemArrayList = ArrayList<SellItem>(10)
+        val soldSellItem = SellItem("aa","not sold","1000",
+            "email","description","adad",false,"2023",false)
 
+        val aaaaaellItem = SellItem("aa","not sold","1000",
+            "email","description","adad",false,"2023",false)
         for (i: Int in 1..10) {
-            sellItemArrayList.add(sellItem)
+            sellItemArrayList.add(soldSellItem)
         }
 
-        val pagingCategoryData = HomeItemCategory.PagingCategoryData("PAGING", sellItemArrayList)
-        val horizontalCategoryData = HomeItemCategory.HorizontalCategoryData("Vertical", sellItemArrayList)
-        val gridCategoryData = HomeItemCategory.GridCategoryData("Grid", sellItemArrayList)
+        val pagingCategoryData = HomeItemCategory.PagingCategoryData("NEW", sellItemArrayList)
+        val gridCategoryData = HomeItemCategory.GridCategoryData("On Sale", sellItemArrayList)
 
         val viewData = HomeViewData(ArrayList())
         viewData.itemData.add(pagingCategoryData)
-        viewData.itemData.add(horizontalCategoryData)
         viewData.itemData.add(gridCategoryData)
 
         this._homeViewData.postValue(viewData)
