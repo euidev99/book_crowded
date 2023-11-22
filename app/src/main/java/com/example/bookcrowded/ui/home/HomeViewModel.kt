@@ -106,7 +106,7 @@ class HomeViewModel : BaseViewModel() {
         }
 
         val pagingCategoryData = HomeItemCategory.PagingCategoryData("PAGING", sellItemArrayList)
-        val horizontalCategoryData = HomeItemCategory.HorizontalCategoryData("HORIZONTAL", sellItemArrayList)
+        val horizontalCategoryData = HomeItemCategory.HorizontalCategoryData("Vertical", sellItemArrayList)
         val gridCategoryData = HomeItemCategory.GridCategoryData("Grid", sellItemArrayList)
 
         val viewData = HomeViewData(ArrayList())

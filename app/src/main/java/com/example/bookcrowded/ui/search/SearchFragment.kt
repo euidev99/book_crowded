@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListPopupWindow
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookcrowded.databinding.FragmentSearchBinding
 import com.example.bookcrowded.ui.common.BaseFragment
@@ -88,33 +89,34 @@ class SearchFragment : BaseFragment() {
         listPopupWindow.show()
     }
 
-    private fun setAdapter(itemList: List<SellItem>) {
-        if (isSet) {
-            (binding.recycler.adapter as SearchVerticalAdapter).submitChatMessages(itemList)
-            binding.recycler.smoothScrollToPosition(itemList.size - 1)
-        } else {
-            isSet = true
-            binding.recycler.apply {
-                adapter =
-                    SearchVerticalAdapter(
-                        items = itemList,
-                        itemClickListener = (object :
-                            SearchVerticalAdapter.OnItemClickListener {
-
-                            override fun onClick(v: View, position: Int) {
-                                //ItemClick
-                                DetailActivity.startActivityWithItemId(context, mViewModel.getItemIdByPosition(position))
-                            }
-                        })
-                    )
-                layoutManager = LinearLayoutManager (context, LinearLayoutManager.VERTICAL, false)
-            }
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //여기에 작업
         mViewModel.getItemList()
+    }
+
+    private fun setAdapter(itemList: List<SellItem>) {
+        if (isSet) {
+            (binding.recycler.adapter as SearchGridAdapter).submitChatMessages(itemList)
+            binding.recycler.smoothScrollToPosition(itemList.size - 1)
+        } else {
+            isSet = true
+            binding.recycler.apply {
+                adapter = SearchGridAdapter(
+                    items = itemList,
+                    itemClickListener = object : SearchGridAdapter.OnItemClickListener {
+                        override fun onClick(v: View, position: Int) {
+                            //ItemClick
+                            DetailActivity.startActivityWithItemId(
+                                context,
+                                mViewModel.getItemIdByPosition(position)
+                            )
+                        }
+                    }
+                )
+
+                layoutManager = GridLayoutManager(context, 2) // 2개의 열을 가진 그리드 레이아웃을 사용
+            }
+        }
     }
 }

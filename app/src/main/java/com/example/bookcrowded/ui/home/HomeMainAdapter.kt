@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.bookcrowded.databinding.ItemGridSectionHolderBinding
 import com.example.bookcrowded.databinding.ItemHorizontalSectionHolderBinding
 import com.example.bookcrowded.databinding.ItemPagingSectionHolderBinding
+import com.example.bookcrowded.databinding.ItemVerticalSectionHolderBinding
 import com.example.bookcrowded.ui.common.listener.OnRecyclerViewItemClickListener
 import com.example.bookcrowded.ui.home.viewdata.HomeItemCategory
 import com.google.android.material.tabs.TabLayoutMediator
