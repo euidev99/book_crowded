@@ -24,7 +24,7 @@ class HorizontalItemAdapter (
     class HorizontalItemViewHolder(val binding: ItemHorizontalBinding, private val listener: OnItemClickListener?) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SellItemViewData) {
             binding.root.tag = "HorizontalItem"
-            binding.titleText.text = item.title
+            binding.priceText.text = item.price
             binding.root.setOnClickListener { listener?.onClick(binding.root, adapterPosition) }
         }
     }

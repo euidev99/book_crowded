@@ -61,8 +61,7 @@
                 android:id="@+id/id_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:hint="@string/register_id_hint" />
+                android:layout_weight="4"/>
         </LinearLayout>
 
         <!-- name -->
@@ -81,8 +80,7 @@
                 android:id="@+id/name_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:hint="@string/register_name_hint" />
+                android:layout_weight="4"/>
         </LinearLayout>
 
         <!-- passwd -->
@@ -101,8 +99,7 @@
                 android:id="@+id/passwd_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:hint="@string/login_passwd_hint" />
+                android:layout_weight="4" />
         </LinearLayout>
 
         <!-- email -->
@@ -112,17 +109,16 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="21dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/common_email"/>
+                android:text="@string/common_email" />
 
             <EditText
                 android:id="@+id/email_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:hint="@string/register_email_hint" />
+                android:layout_weight="4" />
 
             <Button
                 android:id="@+id/check_duplicate_button"
@@ -152,7 +148,7 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/signin_button_container"
+        android:id="@+id/register_button_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

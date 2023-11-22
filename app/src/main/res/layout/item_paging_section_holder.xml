@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:text="TITLE"/>
+        tools:text="New"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/holder_pager"
