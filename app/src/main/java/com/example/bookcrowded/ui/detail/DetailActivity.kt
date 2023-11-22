@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityItemDetailBinding
+import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.dto.SellItem
 
@@ -35,6 +36,7 @@ class DetailActivity: BaseActivity() {
 
         //아이템 로드
         intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
+        setView();
     }
 
     private fun setData(data: SellItem) {
@@ -55,6 +57,13 @@ class DetailActivity: BaseActivity() {
         binding.itemUpdateDateText.text = data.upLoadDate
         binding.itemDescriptionText.text = data.description
         binding.itemPriceText.text = data.price
+    }
+
+    private fun setView() {
+        //채팅 화면으로 이동
+        binding.chatButton.setOnClickListener {
+            ChatActivity.startActivity(this)
+        }
     }
 
     override fun onDestroy() {
