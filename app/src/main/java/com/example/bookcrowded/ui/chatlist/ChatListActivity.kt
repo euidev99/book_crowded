@@ -31,7 +31,6 @@ class ChatListActivity: BaseActivity() {
         chatListViewModel.chatMessages.observe(this) {
             setAdapter(it)
         }
-
         chatListViewModel.progressListener = this
     }
 
