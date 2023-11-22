@@ -1,5 +1,6 @@
 package com.example.bookcrowded.ui.home.viewdata
 
+import com.example.bookcrowded.ui.dto.SellItem
 import com.example.bookcrowded.ui.home.HomeMainAdapter
 
 
@@ -16,16 +17,16 @@ data class HomeViewData(
 sealed class HomeItemCategory {
     data class PagingCategoryData(
         val title: String,
-        val itemArrayList: ArrayList<SellItemViewData>) : HomeItemCategory() //AbstractHomeData(HomeMainAdapter.COMMON_PAGING_SECTION)
+        val itemArrayList: ArrayList<SellItem>) : HomeItemCategory() //AbstractHomeData(HomeMainAdapter.COMMON_PAGING_SECTION)
 
-    data class HorizontalCategoryData(
-        val title: String,
-        val itemArrayList: ArrayList<SellItemViewData>
-    ) : HomeItemCategory()
+    //data class HorizontalCategoryData(
+        //val title: String,
+      //  val itemArrayList: ArrayList<SellItemViewData>
+    //) : HomeItemCategory()
 
     data class GridCategoryData(
         val title: String,
-        val itemArrayList: ArrayList<SellItemViewData>
+        val itemArrayList: ArrayList<SellItem>
     ) : HomeItemCategory()
 }
 
@@ -41,31 +42,10 @@ abstract class AbstractHomeData(
 
 data class PagingCategoryData(
     val title: String,
-    val itemArrayList: ArrayList<SellItemViewData>
+    val itemArrayList: ArrayList<SellItem>
 ) : AbstractHomeData(HomeMainAdapter.COMMON_PAGING_SECTION)
-
-data class HorizontalCategoryData(
-    val title: String,
-    val itemArrayList: ArrayList<SellItemViewData>
-) : AbstractHomeData(HomeMainAdapter.COMMON_ITEM_SECTION)
 
 data class GridCategoryData(
     val title: String,
-    val itemArrayList: ArrayList<SellItemViewData>
+    val itemArrayList: ArrayList<SellItem>
 ) : AbstractHomeData(HomeMainAdapter.COMMON_GRID_SECTION)
-
-
-//-------------------Sub Item Class----------------------
-
-/**
- * 메인 홈 판매 아이템 화면용 데이터
- */
-data class SellItemViewData(
-    val id: String,
-    val title: String,
-    val price: String,
-    val sellerName: String,
-    val description: String,
-    val image: String = "", //URL or BitmapImage
-    val isFavorite: Boolean = false
-)

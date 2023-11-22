@@ -11,7 +11,6 @@ import com.example.bookcrowded.ui.common.listener.ProgressUIInterface
 import com.example.bookcrowded.ui.dto.UserInfo
 import com.example.bookcrowded.ui.home.viewdata.HomeItemCategory
 import com.example.bookcrowded.ui.home.viewdata.HomeViewData
-import com.example.bookcrowded.ui.home.viewdata.SellItemViewData
 import kotlinx.coroutines.launch
 
 class RegisterViewModel : BaseViewModel() {

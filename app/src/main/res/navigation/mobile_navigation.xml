@@ -17,6 +17,14 @@
         android:label="@string/main_search"
         tools:layout="@layout/fragment_search" />
 
+
+
+    <fragment
+        android:id="@+id/navigation_love"
+        android:name="com.example.bookcrowded.ui.love.LoveFragment"
+        android:label="@string/main_love"
+        tools:layout="@layout/fragment_love" />
+
     <fragment
         android:id="@+id/navigation_my"
         android:name="com.example.bookcrowded.ui.my.MyFragment"

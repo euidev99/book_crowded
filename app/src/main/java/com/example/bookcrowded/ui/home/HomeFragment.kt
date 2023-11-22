@@ -16,7 +16,6 @@ import com.example.bookcrowded.ui.test.TestActivity
 import kotlinx.coroutines.coroutineScope
 
 class HomeFragment : BaseFragment() {
-
     private var _binding :FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -38,7 +37,7 @@ class HomeFragment : BaseFragment() {
         homeViewModel.publicHomeData.observe(viewLifecycleOwner) { setAdapter(it) }
         homeViewModel.setSampleData()
 //        homeViewModel.getAllCategory()
-        homeViewModel.getAllUsers()
+        //homeViewModel.getAllUsers()
     }
 
     private fun setAdapter(data: HomeViewData) {
