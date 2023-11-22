@@ -45,8 +45,16 @@ class DetailActivity: BaseActivity() {
             //binding.editButton.visibility = View.GONE
         }
 
+        if (data.isSold) {
+            binding.itemStateText.text = "판매 완료"
+        } else {
+            binding.itemStateText.text = "판매 중"
+        }
+
         binding.itemNameText.text = data.title
+        binding.itemUpdateDateText.text = data.upLoadDate
         binding.itemDescriptionText.text = data.description
+        binding.itemPriceText.text = data.price
     }
 
     override fun onDestroy() {
