@@ -8,6 +8,7 @@ interface AppConst {
             const val ACCESS_TOKEN = "AccessToken"
             const val REFRESH_TOKEN = "RefreshToken"
             const val ITEM_ID = "Item_id"
+            const val USER_ID = "User_id"
         }
     }
 }

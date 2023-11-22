@@ -63,6 +63,32 @@
     <!-- MAIN NAV STR -->
     <string name="main_title">메인</string>
     <string name="main_search">검색</string>
+    <string name="main_love">찜</string>
     <string name="main_my">마이 페이지</string>
     <!-- MAIN NAV END -->
+
+    <!-- MY PAGE STR -->
+    <string name="mypage_profile">Profile</string>
+    <string name="mypage_name">나는 감자</string>
+    <string name="mypage_email">123455@nvaer.com</string>
+    <string name="mypage_sell">판매 목록</string>
+    <string name="mypage_sell_email">123455@nvaer.com</string>
+    <string name="mypage_buy">구매 목록</string>
+    <string name="mypage_buy_email">123455@nvaer.com</string>
+    <string name="mypage_chat">채팅 목록</string>
+    <string name="mypage_chat_email">123455@nvaer.com</string>
+    <string name="mypage_information">회원정보 변경</string>
+    <string name="mypage_information_email">123455@nvaer.com</string>
+    <string name="mypage_cancel">탈퇴하기</string>
+    <string name="mypage_cancel_email">123455@nvaer.com</string>
+    <string name="mypage_logout_button">logout</string>
+    <!-- MY PAGE END -->
+
+    <!-- CHAT STR -->
+    <string name="mypage_chatting">채팅</string>
+    <string name="mypage_bookname">명품자바 프로그래밍</string>
+    <string name="mypage_price">10000원</string>
+    <string name="mypage_message">메세지 입력</string>
+    <string name="mypage_send">보내기</string>
+    <!-- CHAT END -->
 </resources>

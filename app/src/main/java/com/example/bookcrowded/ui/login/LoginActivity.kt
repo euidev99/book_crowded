@@ -54,11 +54,7 @@ class LoginActivity : BaseActivity() {
 
             loginViewModel.logIn(email, passwd)
         }
-        //회원가입 버튼
-        binding.registerButton.setOnClickListener {
-            //회원가입 화면으로 이동
-            RegisterActivity.startActivity(this)
-        }
+
     }
 
     override fun onDestroy() {

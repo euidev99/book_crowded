@@ -1,17 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/account_scr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:elevation="104dp">
 
-        <TextView
+        <!--  양쪽 가이드 라인  -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <!--  상단바 컨데이너  -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
+            app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        <!--  뒤로가기 이미지 버튼  -->
+<!--                <ImageView-->
+<!--                    android:id="@+id/left_image"-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:layout_marginVertical="12dp"-->
+<!--                    android:src="@drawable/left"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+                <!--  프로필 텍스트  -->
+                <TextView
+                    android:id="@+id/profile_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mypage_profile"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--  프로필 이미지  -->
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="84dp"
+            android:layout_height="93dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/profile"
+            app:layout_constraintTop_toBottomOf="@id/header_container"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <!--  프로필 이름  -->
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mypage_name"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <!--  프로필 이메일  -->
+        <TextView
+            android:id="@+id/email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mypage_email"
+            app:layout_constraintTop_toBottomOf="@+id/name_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <!--  카드 레이아웃  -->
+        <LinearLayout
+            android:id="@+id/account_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/profile_card"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
+            app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <!--  판매목록 레이아웃  -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card_layout1"
+                    android:layout_width="365dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp">
+
+                        <ImageView
+                            android:id="@+id/circle_image1"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/ic_circle"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/sell_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_sell"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/sellEmail_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_sell_email"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/sell_text" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--  구매 목록 레이아웃  -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card_layout2"
+                    android:layout_width="365dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp">
+
+                        <ImageView
+                            android:id="@+id/circle_image2"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/ic_circle"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/buy_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_buy"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/buyEmail_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_buy_email"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/buy_text" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--  채팅 기록 레이아웃  -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/chat_layout"
+                    android:layout_width="365dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp">
+
+                        <ImageView
+                            android:id="@+id/circle_image3"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/ic_circle"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/chat_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_chat"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/chatEmail_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_chat_email"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/chat_text" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/more_card"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="500dp"
+            android:background="@drawable/profile_card"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
+            app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card_layout4"
+                    android:layout_width="365dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp">
+
+                        <ImageView
+                            android:id="@+id/circle_image4"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/ic_circle"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/information_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_information"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/informationEmail_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_information_email"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/information_text" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card_layout5"
+                    android:layout_width="365dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/circle_image5"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/ic_circle"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/cancel_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_cancel"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/cancelEmail_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mypage_cancel_email"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cancel_text" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+        <!--    android:background="#0801E6"-->
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="157dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/mypage_logout_button"
+            android:textColor="@color/white"
+            android:background="@drawable/logout_button"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="sample Text"/>
+            app:layout_constraintTop_toBottomOf="@id/more_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

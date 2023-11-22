@@ -35,7 +35,6 @@ class SearchViewModel : BaseViewModel() {
     }
 
     fun getItemList() {
-        Log.d("aaa", "aaaaaa")
         progressListener?.showProgressUI()
 
         viewModelScope.launch {
@@ -44,17 +43,14 @@ class SearchViewModel : BaseViewModel() {
                     val dataList = result.data
                     if (dataList.isEmpty()) {
                         //데이터 없을 시 처리
-                        Log.d("aaa", "aaaaaa")
                         progressListener?.hideProgressUI()
                     } else {
-                        Log.d("aaa", "bbbbb")
                         _itemList.postValue(dataList)
+                        progressListener?.hideProgressUI()
                     }
                 }
 
                 is RepoResult.Error -> {
-
-                    Log.d("aaa", "aaa" + result.exception.toString())
                     progressListener?.hideProgressUI()
                 }
             }

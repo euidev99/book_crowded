@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.database.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -60,7 +61,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.activity:activity-ktx:1.8.0")
+    implementation("androidx.activity:activity-ktx:1.7.0")
 
     // Kotlin
     implementation("androidx.collection:collection-ktx:$1.1.0")

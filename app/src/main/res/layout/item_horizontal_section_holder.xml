@@ -10,7 +10,7 @@
         android:id="@+id/holder_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TEXT"
+        android:text="On Sale"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/more_text"/>
@@ -34,4 +34,4 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
- </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

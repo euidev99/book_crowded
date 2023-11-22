@@ -21,8 +21,6 @@
         android:id="@+id/navigation_my"
         android:name="com.example.bookcrowded.ui.my.MyFragment"
         android:label="@string/main_my"
-        tools:layout="@layout/fragment_my" >
-
-    </fragment>
+        tools:layout="@layout/fragment_my" />
 
 </navigation>
