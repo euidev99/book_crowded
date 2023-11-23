@@ -3,6 +3,7 @@ package com.example.bookcrowded.ui.regist
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.bookcrowded.databinding.ActivityRegisterBinding
@@ -43,7 +44,21 @@ class RegisterActivity : BaseActivity() {
                 Toast.makeText(this, "가입 실패", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.root.setOnTouchListener { _, _ ->
+            hideKeyboard()
+            false
+        }
+
         setView()
+    }
+
+    private fun hideKeyboard() {
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val focusedView = currentFocus
+        if (focusedView != null) {
+            inputManager.hideSoftInputFromWindow(focusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
     }
 
     private fun setView() {
