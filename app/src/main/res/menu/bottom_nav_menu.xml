@@ -16,7 +16,7 @@
 <!--    android:icon="@drawable/ic_home_black_24dp"-->
 
     <item
-        android:id="@+id/navigation_love"
+        android:id="@+id/navigation_fav"
         android:icon="@drawable/like"
         android:title="@string/main_love"
         app:showAsAction="always" />

@@ -3,13 +3,14 @@ package com.example.bookcrowded.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.bookcrowded.MainActivity
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityLoginBinding
 import com.example.bookcrowded.ui.common.BaseActivity
-import com.example.bookcrowded.ui.regist.RegisterActivity
+
 
 /**
  * Login 화면
@@ -19,7 +20,6 @@ class LoginActivity : BaseActivity() {
     //기본 공통 세팅
     private var _binding: ActivityLoginBinding? = null
     private val binding get() = _binding!!
-
     private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,20 @@ class LoginActivity : BaseActivity() {
             }
         }
 
+        binding.root.setOnTouchListener { _, _ ->
+            hideKeyboard()
+            false
+        }
+
         setView()
+    }
+
+    private fun hideKeyboard() {
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val focusedView = currentFocus
+        if (focusedView != null) {
+            inputManager.hideSoftInputFromWindow(focusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
     }
 
     //버튼 이벤트나 초기 이벤트 처리
