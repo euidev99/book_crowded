@@ -11,14 +11,11 @@ import com.example.bookcrowded.ui.dto.SellItem
 import kotlinx.coroutines.launch
 
 class DetailViewModel : BaseViewModel() {
-
     private val TAG = "DetailViewModel"
-
     private var itemId = ""
-
+    private var isFavorite = MutableLiveData<SellItem>()
     private val _itemResult = MutableLiveData<SellItem>()
     val itemResult: LiveData<SellItem> get() = _itemResult
-
     private var detailRepository: BaseRepository<SellItem> = BaseRepository("SellItem", SellItem::class.java)
 
     fun getSellItemById(itemId: String) {
