@@ -20,6 +20,12 @@
             android:text="샘플 아이템 추가하기" />
 
         <Button
+            android:id="@+id/add_sample_item_sold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="샘플 아이템 추가하기" />
+
+        <Button
             android:id="@+id/delete_all_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -21,7 +21,7 @@ class FavViewModel : BaseViewModel() {
         viewModelScope.launch {
             when (val result = itemRepository.getAllDocuments()) {
                 is RepoResult.Success -> {
-                    val dataList = result.data.filter { it.isFavorite }
+                    val dataList = result.data.filter { it.favorite }
                     if (dataList.isEmpty()) {
                         progressListener?.hideProgressUI()
                     } else {

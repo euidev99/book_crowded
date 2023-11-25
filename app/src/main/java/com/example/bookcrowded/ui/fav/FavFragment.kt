@@ -1,26 +1,15 @@
-package com.example.bookcrowded.ui.search
+package com.example.bookcrowded.ui.fav
 
-import android.R
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ListPopupWindow
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookcrowded.databinding.FragmentFavBinding
-import com.example.bookcrowded.databinding.FragmentSearchBinding
 import com.example.bookcrowded.ui.common.BaseFragment
-import com.example.bookcrowded.ui.detail.DetailActivity
 import com.example.bookcrowded.ui.dto.SellItem
-import com.example.bookcrowded.ui.fav.FavVerticalAdapter
-import com.example.bookcrowded.ui.fav.FavViewModel
-import com.laundrycrew.delivery.order.common.CustomPopupListAdapter
 
 
 class FavFragment : BaseFragment() {

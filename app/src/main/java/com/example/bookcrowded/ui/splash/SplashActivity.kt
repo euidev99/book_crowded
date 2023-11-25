@@ -10,6 +10,7 @@ import com.example.bookcrowded.databinding.ActivitySplashBinding
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.entry.EntryActivity
 import com.example.bookcrowded.ui.login.LoginActivity
+import com.example.bookcrowded.ui.test.TestActivity
 import java.util.Timer
 import java.util.TimerTask
 
@@ -22,6 +23,8 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        TestActivity.startActivity(this)
 
         setTimer()
     }

@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookcrowded.databinding.ItemGridBinding
 import com.example.bookcrowded.databinding.ItemGridSellItemBinding
 import com.example.bookcrowded.ui.dto.SellItem
-import com.example.bookcrowded.ui.search.SearchGridAdapter
 
 /**
  * Home 메인 탭에서의
@@ -34,7 +32,7 @@ class GridItemAdapter (
         fun bind(item: SellItem) {
             binding.titleText.text = item.title
             binding.priceText.text = item.price
-            if (item.isSold) {
+            if (item.sold) {
                 binding.soldoutText.text = "판매 완료"
             } else {
                 binding.soldoutText.text = "판매 중"

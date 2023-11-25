@@ -31,7 +31,7 @@ class SearchGridAdapter (
         fun bind(item: SellItem) {
             binding.titleText.text = item.title
             binding.priceText.text = item.price
-            if (item.isSold) {
+            if (item.sold) {
                 binding.soldoutText.text = "판매 완료"
             } else {
                 binding.soldoutText.text = "판매 중"

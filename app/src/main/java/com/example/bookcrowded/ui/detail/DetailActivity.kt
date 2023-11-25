@@ -2,16 +2,8 @@ package com.example.bookcrowded.ui.detail
 
 import android.content.Context
 import android.content.Intent
-import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.bookcrowded.R
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityItemDetailBinding
 import com.example.bookcrowded.ui.chat.ChatActivity
@@ -47,7 +39,7 @@ class DetailActivity: BaseActivity() {
             //binding.editButton.visibility = View.GONE
         }
 
-        if (data.isSold) {
+        if (data.sold) {
             binding.itemStateText.text = "판매 완료"
         } else {
             binding.itemStateText.text = "판매 중"
