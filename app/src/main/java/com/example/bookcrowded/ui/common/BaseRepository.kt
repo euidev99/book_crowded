@@ -13,6 +13,7 @@ import kotlinx.coroutines.withContext
  * 서비스의 분기 / api, db 를 분기하고자 BaseRepository 로 작업
  * 한 콜렉션을 가져오는 레포지토리
  */
+
 class BaseRepository<T: Any>(
     private val collectionName: String,
     private val documentClass: Class<T>) {
@@ -93,6 +94,15 @@ class BaseRepository<T: Any>(
             RepoResult.Success(dataList)
         } catch (e: Exception) {
             RepoResult.Error(Exception("Error fetching documents by field: $fieldName, ${e.message}", e))
+        }
+    }
+
+    suspend fun updateField(documentId: String, field: String, newValue: Any): RepoResult<Unit> = withContext(Dispatchers.IO) {
+        try {
+            collectionReference.document(documentId).update(field, newValue).await()
+            RepoResult.Success(Unit)
+        } catch (e: Exception) {
+            RepoResult.Error(Exception("Error updating field: $field in document: $documentId, ${e.message}", e))
         }
     }
 }

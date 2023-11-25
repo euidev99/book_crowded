@@ -4,11 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.example.bookcrowded.R
+import com.example.bookcrowded.common.AppConst.KEY.Companion.ITEM_ID
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityItemDetailBinding
 import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.dto.SellItem
+import com.example.bookcrowded.ui.home.HomeFragment
+import com.example.bookcrowded.ui.search.SearchFragment
 
 class DetailActivity: BaseActivity() {
     private var _binding: ActivityItemDetailBinding? = null
@@ -55,6 +59,25 @@ class DetailActivity: BaseActivity() {
         //채팅 화면으로 이동
         binding.chatButton.setOnClickListener {
             ChatActivity.startActivity(this)
+        }
+
+        //backButton으로 디테일 화면 종료
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+
+        //좋아요 버튼
+        val itemId = intent.getStringExtra(ITEM_ID)
+
+        binding.favButton.setOnClickListener {
+            itemId?.let { mViewModel.toggleFavorite(it) }
+
+            if (mViewModel.itemResult.value?.favorite == true) {
+                binding.favButton.setImageResource(R.drawable.favorite_selected)
+
+            } else {
+                binding.favButton.setImageResource(R.drawable.favorite)
+            }
         }
     }
 
