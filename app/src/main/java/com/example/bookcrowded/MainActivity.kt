@@ -3,6 +3,7 @@ package com.example.bookcrowded
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bookcrowded.databinding.ActivityMainBinding
@@ -25,6 +26,7 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
 
         setNavigationView()
+        setFloatingView()
 //        setSampleFireBaseStore(
 //            HomeViewModel.UserInfo(
 //            1111,
@@ -66,6 +68,13 @@ class MainActivity : BaseActivity() {
 //        }
 
         navView.setupWithNavController(navController)
+    }
+
+
+    private fun setFloatingView() {
+        binding.fab.setOnClickListener {
+            Toast.makeText(this, "히히 상상부기", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroy() {
