@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     android:elevation="104dp">
 
-    <!--  양쪽 가이드 라인  -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_guideline1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="24dp" />
+        app:layout_constraintGuide_begin="24dp"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_guideline2"
@@ -25,10 +25,11 @@
     <!--  상단바 컨데이너  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_container"
-        android:layout_width="365dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:minHeight="48dp"
+        app:layout_constraintLeft_toLeftOf="@id/vertical_guideline1"
         app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -54,15 +55,16 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!--  채팅 레이아웃  -->
     <LinearLayout
         android:id="@+id/cart_layout"
-        android:layout_width="365dp"
-        android:layout_height="100dp"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/chat_card"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
+        app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
         app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
         app:layout_constraintTop_toBottomOf="@id/header_container">
 
@@ -70,12 +72,12 @@
             android:id="@+id/bookname_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:text="@string/mypage_bookname"
-            android:textSize="15dp"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            android:layout_marginTop="19dp"
-            android:layout_marginLeft="120dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -84,14 +86,16 @@
             android:id="@+id/price_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
             android:text="@string/mypage_price"
             android:textColor="@color/white"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bookname_text" />
     </LinearLayout>
+
     <!--  채팅 공간 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
@@ -145,7 +149,7 @@
             android:scaleType="centerInside"
             android:scaleX="-1"
             android:background="@null"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             app:layout_constraintStart_toEndOf="@+id/input_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/input_edit_text"
