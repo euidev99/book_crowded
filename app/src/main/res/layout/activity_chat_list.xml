@@ -46,7 +46,7 @@
 
 
         <ImageView
-            android:id="@+id/profile_image"
+            android:id="@+id/moreButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/profile"

@@ -49,7 +49,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/profile_image"
+            android:id="@+id/moreButton"
             android:layout_width="57dp"
             android:layout_height="48dp"
             android:background="#00FFFFFF"

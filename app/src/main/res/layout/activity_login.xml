@@ -20,7 +20,7 @@
         app:layout_constraintGuide_end="24dp"/>
 
     <ImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/moreButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="468dp"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
-        app:layout_constraintTop_toBottomOf="@id/profile_image"
+        app:layout_constraintTop_toBottomOf="@id/moreButton"
         app:layout_constraintVertical_bias="0.174">
 
         <TextView
