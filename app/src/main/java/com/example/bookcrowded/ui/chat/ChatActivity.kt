@@ -71,6 +71,8 @@ class ChatActivity: BaseActivity() {
         }
     }
 
+
+
     //버튼 이벤트나 초기 이벤트 처리
     private fun setView() {
         //로그인 버튼 클릭 이벤트
@@ -79,6 +81,7 @@ class ChatActivity: BaseActivity() {
             if (text.isNotEmpty()) {
                 chatViewModel.sendChat(text)
                 binding.inputEditText.setText("") //전송 후 공백
+                //binding.inputEditText.text.clear()
             }
         }
         //뒤로가기 버튼 클릭 이벤트
