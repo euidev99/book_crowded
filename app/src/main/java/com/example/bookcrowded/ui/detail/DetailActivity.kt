@@ -96,6 +96,7 @@ class DetailActivity: BaseActivity() {
         val popupList: MutableList<String> = ArrayList()
         popupList.add("글 수정하기")
         popupList.add("글 삭제하기")
+
         val adapter = CustomPopupListAdapter(this, popupList)
         val listPopupWindow = ListPopupWindow(this, null, 0, R.style.CustomListPopupWindowStyle)
 
@@ -114,9 +115,10 @@ class DetailActivity: BaseActivity() {
                     //삭제하기
                 }
             }
-            //동작 처리
-            listPopupWindow.dismiss()
+
+            listPopupWindow.dismiss() //동작 처리
         })
+
         listPopupWindow.show()
     }
 
