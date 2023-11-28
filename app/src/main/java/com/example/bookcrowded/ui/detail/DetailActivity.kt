@@ -3,12 +3,22 @@ package com.example.bookcrowded.ui.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ListPopupWindow
 import androidx.activity.viewModels
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.example.bookcrowded.R
+import com.example.bookcrowded.common.AppConst.KEY.Companion.ITEM_ID
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityItemDetailBinding
 import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.dto.SellItem
+import com.example.bookcrowded.ui.home.HomeFragment
+import com.example.bookcrowded.ui.search.SearchFragment
+import com.laundrycrew.delivery.order.common.CustomPopupListAdapter
 
 class DetailActivity: BaseActivity() {
     private var _binding: ActivityItemDetailBinding? = null
@@ -52,10 +62,64 @@ class DetailActivity: BaseActivity() {
     }
 
     private fun setView() {
+
+        binding.moreButton.setOnClickListener {
+            showCustomPopupListView(it)
+        }
+
         //채팅 화면으로 이동
         binding.chatButton.setOnClickListener {
             ChatActivity.startActivity(this)
         }
+
+        //backButton으로 디테일 화면 종료
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+
+        //좋아요 버튼
+        val itemId = intent.getStringExtra(ITEM_ID)
+
+        binding.favButton.setOnClickListener {
+            itemId?.let { mViewModel.toggleFavorite(it) }
+
+            if (mViewModel.itemResult.value?.favorite == true) {
+                binding.favButton.setImageResource(R.drawable.favorite_selected)
+
+            } else {
+                binding.favButton.setImageResource(R.drawable.favorite)
+            }
+        }
+    }
+
+    private fun showCustomPopupListView(anchorView: View) {
+        val popupList: MutableList<String> = ArrayList()
+        popupList.add("글 수정하기")
+        popupList.add("글 삭제하기")
+
+        val adapter = CustomPopupListAdapter(this, popupList)
+        val listPopupWindow = ListPopupWindow(this, null, 0, R.style.CustomListPopupWindowStyle)
+
+        listPopupWindow.setAdapter(adapter)
+        listPopupWindow.anchorView = anchorView
+        listPopupWindow.setDropDownGravity(Gravity.END)
+        listPopupWindow.width = 400
+        listPopupWindow.height = ListPopupWindow.WRAP_CONTENT
+
+        listPopupWindow.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
+            when (position) {
+                0 -> {
+                    //수정하기
+                }
+                1 -> {
+                    //삭제하기
+                }
+            }
+
+            listPopupWindow.dismiss() //동작 처리
+        })
+
+        listPopupWindow.show()
     }
 
     override fun onDestroy() {

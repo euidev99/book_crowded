@@ -7,7 +7,7 @@ data class SellItem(
     val sellerEmail: String = "",
     val description: String = "",
     val image: String = "", //URL or BitmapImage
-    val favorite: Boolean = false,
+    var favorite: Boolean = false,
     val upLoadDate: String = "", // 뭐 나중에 쓰면 쓰고..
     val sold: Boolean = false
 )

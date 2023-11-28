@@ -12,8 +12,6 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel : BaseViewModel() {
     private val TAG = "DetailViewModel"
-    private var itemId = ""
-    private var isFavorite = MutableLiveData<SellItem>()
     private val _itemResult = MutableLiveData<SellItem>()
     val itemResult: LiveData<SellItem> get() = _itemResult
     private var detailRepository: BaseRepository<SellItem> = BaseRepository("SellItem", SellItem::class.java)
@@ -33,5 +31,22 @@ class DetailViewModel : BaseViewModel() {
                 }
             }
         }
+    }
+
+    fun updateFavorite(itemId: String, isFavorite: Boolean) {
+        viewModelScope.launch {
+            val result = detailRepository.updateField(itemId, "favorite", isFavorite)
+            if (result is RepoResult.Success) {
+                // 업데이트 성공
+            } else if (result is RepoResult.Error) {
+                // 업데이트 실패
+            }
+        }
+    }
+
+    fun toggleFavorite(itemId: String) {
+        val newFavorite = !_itemResult.value?.favorite!!
+        _itemResult.value?.favorite = newFavorite
+        updateFavorite(itemId, newFavorite)
     }
 }

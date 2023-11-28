@@ -26,7 +26,7 @@
         app:layout_constraintGuide_end="24dp"/>
 
     <ImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/moreButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="468dp"
@@ -44,7 +44,7 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="@id/vertical_guideline1"
         app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
-        app:layout_constraintTop_toBottomOf="@id/profile_image">
+        app:layout_constraintTop_toBottomOf="@id/moreButton">
 
         <!-- ID -->
         <LinearLayout

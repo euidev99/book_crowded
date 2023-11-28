@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
     <!-- 메인 아이템 홀더 뷰 -->
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -12,15 +13,17 @@
         android:id="@+id/title_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginRight="10dp"
         android:text=""
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:text="New"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="New" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/holder_pager"
@@ -48,6 +51,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     <LinearLayout
         android:id="@+id/indicator_container"

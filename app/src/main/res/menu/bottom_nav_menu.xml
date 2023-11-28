@@ -11,8 +11,9 @@
 
     <item
         android:id="@+id/navigation_search"
+        android:icon="@drawable/search"
         android:title="@string/main_search"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 <!--    android:icon="@drawable/ic_home_black_24dp"-->
 
     <item

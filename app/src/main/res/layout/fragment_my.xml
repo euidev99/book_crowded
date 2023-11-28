@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/account_scr"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="104dp">
@@ -73,10 +73,10 @@
 
                         <!--  프로필 이미지  -->
                         <ImageView
-                            android:id="@+id/profile_image"
+                            android:id="@+id/moreButton"
                             android:layout_width="84dp"
                             android:layout_height="93dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="40dp"
                             android:src="@drawable/profile"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
@@ -90,7 +90,7 @@
                             android:text="@string/mypage_name"
                             android:textStyle="bold"
                             android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/profile_image"
+                            app:layout_constraintTop_toBottomOf="@+id/moreButton"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"/>
 
@@ -109,7 +109,7 @@
                             android:id="@+id/account_card"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="40dp"
                             android:background="@drawable/profile_card"
                             android:orientation="vertical"
                             app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
@@ -189,7 +189,7 @@
 
                                 <!--  채팅 기록 레이아웃  -->
                                 <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:id="@+id/chat_layout"
+                                    android:id="@+id/ChatLayout"
                                     android:layout_width="365dp"
                                     android:layout_height="40dp"
                                     android:layout_marginTop="20dp">
@@ -228,7 +228,7 @@
                             android:id="@+id/more_card"
                             android:layout_width="0dp"
                             android:layout_height="120dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="30dp"
                             android:background="@drawable/profile_card"
                             android:orientation="vertical"
                             app:layout_constraintEnd_toEndOf="@id/vertical_guideline2"
@@ -316,9 +316,10 @@
         <!--    android:background="#0801E6"-->
         <Button
             android:id="@+id/logout_button"
-            android:layout_width="157dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
+            android:minHeight="40dp"
+            android:layout_marginBottom="40dp"
             android:text="@string/mypage_logout_button"
             android:textColor="@color/white"
             android:background="@drawable/logout_button"
