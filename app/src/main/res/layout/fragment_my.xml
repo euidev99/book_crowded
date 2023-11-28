@@ -189,7 +189,7 @@
 
                                 <!--  채팅 기록 레이아웃  -->
                                 <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:id="@+id/chat_layout"
+                                    android:id="@+id/ChatLayout"
                                     android:layout_width="365dp"
                                     android:layout_height="40dp"
                                     android:layout_marginTop="20dp">
