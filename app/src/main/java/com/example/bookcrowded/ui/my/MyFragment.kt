@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.FragmentMyBinding
+import com.example.bookcrowded.ui.chatlist.ChatListActivity
 import com.example.bookcrowded.ui.common.BaseFragment
 import com.example.bookcrowded.ui.entry.EntryActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -49,6 +50,13 @@ class MyFragment : BaseFragment() {
             // 로그아웃 후 EntryActivity로 이동
             navigateToEntryActivity()
         }
+
+        binding.ChatLayout.setOnClickListener {
+            // 현재 Context를 가져와서 startActivity 호출
+            val context = getContext()
+            context?.let { ChatListActivity.startActivity(it) }
+        }
+
     }
     private fun navigateToEntryActivity() {
         // EntryActivity로 이동하는 인텐트 생성
