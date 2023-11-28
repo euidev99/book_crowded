@@ -37,8 +37,8 @@
 
         <ImageView
             android:id="@+id/backButton"
-            android:layout_width="11dp"
-            android:layout_height="10dp"
+            android:layout_width="31dp"
+            android:layout_height="29dp"
             android:src="@drawable/left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
