@@ -30,10 +30,8 @@
         app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- 네비게이션 바 -->
-
         <ImageView
-            android:id="@+id/left_image"
+            android:id="@+id/backButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="12dp"
@@ -41,7 +39,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/tvSell"
@@ -55,58 +52,63 @@
             app:layout_constraintEnd_toEndOf="@id/header_container"
             app:layout_constraintStart_toStartOf="@id/header_container"
             app:layout_constraintTop_toTopOf="@id/header_container" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <!-- 사진 등록 버튼 -->
-
-    <LinearLayout
-
-        android:id="@+id/linearLayout"
-        android:layout_width="88dp"
-        android:layout_height="94dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/chat_card"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/camera_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11">
+        app:layout_constraintTop_toBottomOf="@id/header_container">
+
+        <ImageButton
+            android:id="@+id/AddPhotoButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/chat_card"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/AddPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="39dp"
+            android:id="@+id/CameraIcon"
+            android:layout_width="78dp"
+            android:layout_height="70dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.088"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
-            app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
-            app:layout_constraintTop_toBottomOf="@id/header_container"
-            app:layout_constraintVertical_chainStyle="packed"
+            android:backgroundTint="#FFFFFF"
+            android:foregroundTint="#FFFFFF"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@id/AddPhotoButton"
+            app:layout_constraintEnd_toEndOf="@id/AddPhotoButton"
+            app:layout_constraintStart_toStartOf="@id/AddPhotoButton"
+            app:layout_constraintTop_toTopOf="@id/AddPhotoButton"
+            app:layout_constraintVertical_bias="0.214"
             app:srcCompat="@android:drawable/ic_menu_camera" />
 
         <TextView
             android:id="@+id/title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="81dp"
+            android:layout_height="22dp"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="15dp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="사진 등록" />
+            android:text="사진 등록"
+            app:layout_constraintBottom_toBottomOf="@id/AddPhotoButton"
+            app:layout_constraintEnd_toEndOf="@id/AddPhotoButton"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="@id/AddPhotoButton"
+            app:layout_constraintTop_toTopOf="@id/AddPhotoButton"
+            app:layout_constraintVertical_bias="0.804" />
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/enrollment_container"
@@ -118,7 +120,7 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="@id/vertical_guideline1"
         app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@id/camera_container">
 
         <!-- title -->
         <LinearLayout
@@ -158,13 +160,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:hint="가격" />
-
-
         </LinearLayout>
 
 
         <!-- description -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -189,17 +188,24 @@
             android:orientation="horizontal">
 
             <Switch
-                android:id="@+id/sellSwitch"
+                android:id="@+id/edit_Switch"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:checked="false"
                 android:text="판매 여부" />
-
-
         </LinearLayout>
-
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/enrollmentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:text="게시물 등록"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enrollment_container" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

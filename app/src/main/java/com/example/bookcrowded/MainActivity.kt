@@ -3,11 +3,11 @@ package com.example.bookcrowded
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bookcrowded.databinding.ActivityMainBinding
 import com.example.bookcrowded.ui.common.BaseActivity
+import com.example.bookcrowded.ui.enroll.EnrollActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
@@ -73,7 +73,8 @@ class MainActivity : BaseActivity() {
 
     private fun setFloatingView() {
         binding.fab.setOnClickListener {
-            Toast.makeText(this, "히히 상상부기", Toast.LENGTH_SHORT).show()
+            // EnrollActivity로 이동
+            EnrollActivity.startActivity(this)
         }
     }
 

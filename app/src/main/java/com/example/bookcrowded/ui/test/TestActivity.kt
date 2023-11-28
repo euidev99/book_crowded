@@ -3,16 +3,11 @@ package com.example.bookcrowded.ui.test
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.viewModels
-import com.example.bookcrowded.MainActivity
 import com.example.bookcrowded.common.AuthManager
-import com.example.bookcrowded.databinding.ActivityLoginBinding
 import com.example.bookcrowded.databinding.ActivityTestBinding
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.dto.SellItem
-import com.example.bookcrowded.ui.regist.RegisterActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -60,6 +55,7 @@ class TestActivity : BaseActivity() {
                         true))
             }
         }
+
 //        binding.addSampleItemFavorite.setOnClickListener {
 //            CoroutineScope(Dispatchers.IO).launch {
 //                itemRepository.addDocument(

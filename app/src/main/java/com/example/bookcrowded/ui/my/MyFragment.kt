@@ -1,22 +1,14 @@
 package com.example.bookcrowded.ui.my
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import com.example.bookcrowded.R
 import com.example.bookcrowded.common.AuthManager
-import com.example.bookcrowded.databinding.FragmentHomeBinding
 import com.example.bookcrowded.databinding.FragmentMyBinding
-import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.chatlist.ChatListActivity
 import com.example.bookcrowded.ui.common.BaseFragment
-import com.example.bookcrowded.ui.detail.DetailActivity
 import com.example.bookcrowded.ui.entry.EntryActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -65,8 +57,6 @@ class MyFragment : BaseFragment() {
             context?.let { ChatListActivity.startActivity(it) }
         }
 
-
-
     }
     private fun navigateToEntryActivity() {
         // EntryActivity로 이동하는 인텐트 생성
@@ -82,5 +72,4 @@ class MyFragment : BaseFragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

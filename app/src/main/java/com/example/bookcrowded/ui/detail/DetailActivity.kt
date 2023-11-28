@@ -8,16 +8,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ListPopupWindow
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.bookcrowded.R
-import com.example.bookcrowded.common.AppConst.KEY.Companion.ITEM_ID
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityItemDetailBinding
 import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.dto.SellItem
-import com.example.bookcrowded.ui.home.HomeFragment
-import com.example.bookcrowded.ui.search.SearchFragment
 import com.laundrycrew.delivery.order.common.CustomPopupListAdapter
 
 class DetailActivity: BaseActivity() {
@@ -43,10 +39,9 @@ class DetailActivity: BaseActivity() {
 
     private fun setData(data: SellItem) {
         if (AuthManager.userId != "" && AuthManager.userEmail == data.sellerEmail) {
-            //내가 올린 아이템일 경우
-            //binding.editButton.visibility = View.VISIBLE
+            binding.moreButton.visibility = View.VISIBLE //내가 올린 아이템일 경우 옵션 활성화
         } else {
-            //binding.editButton.visibility = View.GONE
+            binding.moreButton.visibility = View.GONE
         }
 
         if (data.sold) {
@@ -56,13 +51,13 @@ class DetailActivity: BaseActivity() {
         }
 
         binding.itemNameText.text = data.title
+        binding.itemSellerText.text = data.sellerEmail
         binding.itemUpdateDateText.text = data.upLoadDate
         binding.itemDescriptionText.text = data.description
         binding.itemPriceText.text = "₩ " + data.price
     }
 
     private fun setView() {
-
         binding.moreButton.setOnClickListener {
             showCustomPopupListView(it)
         }
@@ -81,14 +76,16 @@ class DetailActivity: BaseActivity() {
         val itemId = intent.getStringExtra(ITEM_ID)
 
         binding.favButton.setOnClickListener {
-            itemId?.let { mViewModel.toggleFavorite(it) }
-
-            if (mViewModel.itemResult.value?.favorite == true) {
-                binding.favButton.setImageResource(R.drawable.favorite_selected)
-
-            } else {
+            val isFavorite = mViewModel.itemResult.value?.favorite ?: false
+            if (isFavorite) {
                 binding.favButton.setImageResource(R.drawable.favorite)
+                // ViewModel을 통해 좋아요 상태를 해제하는 로직
+            } else {
+                binding.favButton.setImageResource(R.drawable.favorite_selected)
+                // ViewModel을 통해 좋아요 상태로 만드는 로직
             }
+            // 아이콘 업데이트 후 ViewModel에서 좋아요 상태 토글
+            itemId?.let { mViewModel.toggleFavorite(it) }
         }
     }
 
@@ -110,9 +107,11 @@ class DetailActivity: BaseActivity() {
             when (position) {
                 0 -> {
                     //수정하기
+                    //ModificationActivity.startActivity(this)
                 }
                 1 -> {
-                    //삭제하기
+//                    //삭제하기
+//                    ModificationActivity.startActivity(this)
                 }
             }
 
@@ -141,4 +140,5 @@ class DetailActivity: BaseActivity() {
             context.startActivity(intent)
         }
     }
+
 }

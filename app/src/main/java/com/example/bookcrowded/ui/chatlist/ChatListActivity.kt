@@ -37,11 +37,12 @@ class ChatListActivity: BaseActivity() {
 
         chatListViewModel.chatIdList.observe(this) {
             setAdapter(it)
-            for (item in it) {
-                Log.d("asd", item)
-            }
         }
         chatListViewModel.progressListener = this
+
+        chatListViewModel.addChatList("testChat", AuthManager.userId)
+
+        setView()
         chatListViewModel.addChatList("test_id3", "atest_seller_id_4")
     }
 
@@ -61,6 +62,13 @@ class ChatListActivity: BaseActivity() {
         }
     }
 
+    private fun setView(){
+        //뒤로가기 버튼 클릭 이벤트
+        binding.backButton.setOnClickListener {
+            // 현재 ChatActivity를 종료하고 이전 화면으로 돌아감
+            finish()
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         this._binding = null
