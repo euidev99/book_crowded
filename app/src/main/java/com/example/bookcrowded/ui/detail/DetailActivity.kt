@@ -81,14 +81,16 @@ class DetailActivity: BaseActivity() {
         val itemId = intent.getStringExtra(ITEM_ID)
 
         binding.favButton.setOnClickListener {
-            itemId?.let { mViewModel.toggleFavorite(it) }
-
-            if (mViewModel.itemResult.value?.favorite == true) {
-                binding.favButton.setImageResource(R.drawable.favorite_selected)
-
-            } else {
+            val isFavorite = mViewModel.itemResult.value?.favorite ?: false
+            if (isFavorite) {
                 binding.favButton.setImageResource(R.drawable.favorite)
+                // ViewModel을 통해 좋아요 상태를 해제
+            } else {
+                binding.favButton.setImageResource(R.drawable.favorite_selected)
+                // ViewModel을 통해 좋아요 상태로 만듦
             }
+            // 아이콘 업데이트 후 ViewModel에서 좋아요 상태 토글
+            itemId?.let { mViewModel.toggleFavorite(it) }
         }
     }
 
