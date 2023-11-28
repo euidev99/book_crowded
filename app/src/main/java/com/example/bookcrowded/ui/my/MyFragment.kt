@@ -9,6 +9,7 @@ import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.FragmentMyBinding
 import com.example.bookcrowded.ui.chatlist.ChatListActivity
 import com.example.bookcrowded.ui.common.BaseFragment
+import com.example.bookcrowded.ui.image.ImageUpActivity
 import com.example.bookcrowded.ui.entry.EntryActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -55,6 +56,12 @@ class MyFragment : BaseFragment() {
             // 현재 Context를 가져와서 startActivity 호출
             val context = getContext()
             context?.let { ChatListActivity.startActivity(it) }
+        }
+
+        binding.ImageLayout.setOnClickListener {
+            // 현재 Context를 가져와서 startActivity 호출
+            val context = getContext()
+            context?.let { ImageUpActivity.startActivity(it) }
         }
 
     }
