@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookcrowded.common.AppConst
+import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityChatListBinding
 import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.common.BaseActivity
@@ -35,7 +36,7 @@ class ChatListActivity: BaseActivity() {
         }
         chatListViewModel.progressListener = this
 
-        chatListViewModel.addChatList("testChat")
+        chatListViewModel.addChatList("testChat", AuthManager.userId)
     }
 
     private fun setAdapter(data: List<ChatListItem>) {

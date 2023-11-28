@@ -27,6 +27,40 @@ class BaseRealTimeRepository<T : Any>(
         }
     }
 
+    suspend fun getAllWithSubId(firstId: String): List<T> {
+        return try {
+            val userReference = databaseReference.child(firstId)
+            val dataSnapshot = userReference.get().await()
+            dataSnapshot.children.mapNotNull { it.getValue(documentClass) }
+        } catch (e: Exception) {
+            // 예외 처리
+            emptyList()
+        }
+    }
+
+    suspend fun getAllWithTwoDepthSubId(firstId: String, secondId: String): List<T> {
+        return try {
+            val subIdReference = databaseReference.child(firstId).child(secondId)
+            val dataSnapshot = subIdReference.get().await()
+            dataSnapshot.children.mapNotNull { it.getValue(documentClass) }
+        } catch (e: Exception) {
+            // 예외 처리
+            emptyList()
+        }
+    }
+
+    suspend fun getDocumentsWithId(): List<T> {
+        return try {
+            val dataSnapshot = databaseReference.get().await()
+            dataSnapshot.children
+                .filter { it.key?.startsWith(AuthManager.userId) == true }
+                .mapNotNull { it.getValue(documentClass) }
+        } catch (e: Exception) {
+            // 예외 처리
+            emptyList()
+        }
+    }
+
     fun addMessageListener(callback: (List<T>) -> Unit) {
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -40,10 +74,23 @@ class BaseRealTimeRepository<T : Any>(
         })
     }
 
-
     suspend fun add(item: T): RepoResult<Boolean> = withContext(Dispatchers.IO)  {
         return@withContext try {
             databaseReference.push().setValue(item).await()
+            RepoResult.Success(true)
+        } catch (e: Exception) {
+            // 예외 처리
+            RepoResult.Success(false)
+        }
+    }
+
+    suspend fun addWithId(item: T, subId: String, itemId: String): RepoResult<Boolean> = withContext(Dispatchers.IO)  {
+        return@withContext try {
+//            databaseReference.child(subId).child(itemId).setValue(item).await()
+
+            val userReference = databaseReference.child(subId).child(itemId).push()
+            userReference.setValue(item).await()
+
             RepoResult.Success(true)
         } catch (e: Exception) {
             // 예외 처리
