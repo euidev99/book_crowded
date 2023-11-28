@@ -2,7 +2,10 @@ package com.example.bookcrowded.ui.enroll
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
+import androidx.core.content.ContextCompat
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityEnrollmentBinding
 import com.example.bookcrowded.ui.common.BaseActivity
@@ -70,6 +73,7 @@ class EnrollActivity : BaseActivity() {
 //            }
 //        }
     }
+
 
     private fun setView() {
         //backButton으로 디테일 화면 종료
