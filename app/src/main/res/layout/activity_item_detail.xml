@@ -156,7 +156,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <TextView
-            android:id="@+id/₩"
+            android:id="@+id/won"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -176,7 +176,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/₩"
+            app:layout_constraintStart_toEndOf="@id/won"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="오천만원" />
 
