@@ -56,13 +56,13 @@ class DetailActivity: BaseActivity() {
         }
 
         binding.itemNameText.text = data.title
+        binding.itemSellerText.text = data.sellerEmail
         binding.itemUpdateDateText.text = data.upLoadDate
         binding.itemDescriptionText.text = data.description
         binding.itemPriceText.text = "₩ " + data.price
     }
 
     private fun setView() {
-
         binding.moreButton.setOnClickListener {
             showCustomPopupListView(it)
         }

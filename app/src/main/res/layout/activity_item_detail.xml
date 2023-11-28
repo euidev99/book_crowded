@@ -120,10 +120,18 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/item_seller_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="판매자"
+                    android:textSize="12sp" />
+
+                <TextView
                     android:id="@+id/item_update_date_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="2dp"
                     android:text="업데이트 날짜"
                     android:textSize="12sp" />
 
@@ -131,8 +139,8 @@
                     android:id="@+id/item_description_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textSize="16sp"
+                    android:layout_marginTop="12dp"
+                    android:textSize="18sp"
                     tools:text="아이템 샘플 설명 설명 설명" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -148,7 +156,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <TextView
-            android:id="@+id/item_price_text"
+            android:id="@+id/₩"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -157,6 +165,18 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="₩ " />
+
+        <TextView
+            android:id="@+id/item_price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/₩"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="오천만원" />
 
