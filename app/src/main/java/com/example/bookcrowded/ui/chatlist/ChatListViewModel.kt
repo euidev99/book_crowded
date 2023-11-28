@@ -26,15 +26,16 @@ class ChatListViewModel : BaseViewModel() {
 
     private val chatRepository = BaseRealTimeRepository("Chat", ChatListItem::class.java)
 
-    fun addChatList(text: String, seller: String) {
+    private val chatListIdRepository = BaseRealTimeRepository("Chat_Id", String::class.java)
+    //채팅 id 목록
+    private val _chatIdList = MutableLiveData<List<String>>()
+    val chatIdList: LiveData<List<String>> get() = _chatIdList
+
+    fun addChatList(itemId: String, seller: String) {
         progressListener?.showProgressUI()
 
-        //실제로는 내 위치
-        val chatList = ChatListItem("testForSubChat", "관심사_1", "구매자", "전공책")
-
         viewModelScope.launch {
-
-            when (val result = chatRepository.addWithId(chatList, seller, AuthManager.userId )) {
+            when (val result = chatListIdRepository.addWithId(itemId, seller + "_" + itemId)) {
                 is RepoResult.Success -> {
                     _chatUploadResult.postValue(result.data)
                     progressListener?.hideProgressUI()
@@ -52,71 +53,20 @@ class ChatListViewModel : BaseViewModel() {
         // 초기에 데이터를 가져와서 UI 초기화
         viewModelScope.launch {
 //            _chatMessages.value = chatRepository.getAll()
-            _chatMessages.value = chatRepository.getAllWithSubId(AuthManager.userId)
+//            _chatMessages.value = chatRepository.getAllWithSubId(AuthManager.userId)
+            _chatIdList.value = chatListIdRepository.getAllStartWithId("atest")
         }
 
         // 새로운 메시지 감지 시 UI 갱신
-        chatRepository.addMessageListener { messages ->
-            _chatMessages.value = messages
-            progressListener?.hideProgressUI()
-        }
+//        chatListIdRepository.addMessageListener { messages ->
+//            _chatIdList.value = messages
+//
+//            progressListener?.hideProgressUI()
+//        }
     }
 
     fun getChatIdByPosition(position: Int): String {
         return _chatMessages.value?.get(position)?.id.toString()
     }
-
-//    fun addUserAdListWithAdUrl(receiveUsedId: String, url: String) {
-//        progressListener?.showProgressUI()
-//        val adListRepository = BaseRealTimeRepository(receiveUsedId, String::class.java)
-//
-//        viewModelScope.launch {
-//            adListRepository.addWithId(url, receiveUsedId + "_" + AuthManager.userId)
-//            progressListener?.hideProgressUI()
-//        }
-//    }
-
-//    fun getChatList(email: String, passwd: String) {
-//        progressListener?.showProgressUI()
-//
-//        val chatListRepository = BaseRepository("UserInfo", ChatListItem::class.java)
-//        viewModelScope.launch {
-//            when (val result = chatListRepository.getAllDocuments()) {
-//                is RepoResult.Success -> {
-//
-//                }
-//
-//                is RepoResult.Error -> {
-//
-//                }
-//            }
-
-//            when (val result = userRepository.getDocumentsByField("email", email)) {
-//                is RepoResult.Success -> {
-//                    val dataList = result.data
-//                    if (dataList.isEmpty()) {
-//                        _loginResult.postValue(false)
-//                        progressListener?.hideProgressUI()
-//                        return@launch
-//                    }
-//
-//                    if (dataList[0].password == passwd) {
-//                        //Login Success
-//                        _loginResult.postValue(true)
-//                        progressListener?.hideProgressUI()
-//                    } else {
-//                        _loginResult.postValue(false)
-//                        progressListener?.hideProgressUI()
-//                    }
-//                }
-//                is RepoResult.Error -> {
-//                    //Error
-//                    _loginResult.postValue(false)
-//                    progressListener?.hideProgressUI()
-//                }
-//            }
-//        }
-//    }
-
 
 }

@@ -38,6 +38,25 @@ class BaseRealTimeRepository<T : Any>(
         }
     }
 
+    suspend fun getSubIds(firstId: String): List<String> {
+        return try {
+            val userIdReference = databaseReference.child(firstId)
+            val dataSnapshot = userIdReference.get().await()
+
+            val subIds = mutableListOf<String>()
+
+            dataSnapshot.children.forEach { randomIdSnapshot ->
+                subIds.add(randomIdSnapshot.key ?: "")
+            }
+
+            subIds
+        } catch (e: Exception) {
+            // 예외 처리
+            emptyList()
+        }
+    }
+
+
     suspend fun getAllWithTwoDepthSubId(firstId: String, secondId: String): List<T> {
         return try {
             val subIdReference = databaseReference.child(firstId).child(secondId)
@@ -49,11 +68,11 @@ class BaseRealTimeRepository<T : Any>(
         }
     }
 
-    suspend fun getDocumentsWithId(): List<T> {
+    suspend fun getAllStartWithId(id: String): List<T> {
         return try {
             val dataSnapshot = databaseReference.get().await()
             dataSnapshot.children
-                .filter { it.key?.startsWith(AuthManager.userId) == true }
+                .filter { it.key?.startsWith(id) == true }
                 .mapNotNull { it.getValue(documentClass) }
         } catch (e: Exception) {
             // 예외 처리
@@ -84,11 +103,11 @@ class BaseRealTimeRepository<T : Any>(
         }
     }
 
-    suspend fun addWithId(item: T, subId: String, itemId: String): RepoResult<Boolean> = withContext(Dispatchers.IO)  {
+    suspend fun addWithId(item: T, itemId: String): RepoResult<Boolean> = withContext(Dispatchers.IO)  {
         return@withContext try {
 //            databaseReference.child(subId).child(itemId).setValue(item).await()
 
-            val userReference = databaseReference.child(subId).child(itemId).push()
+            val userReference = databaseReference.child(itemId)
             userReference.setValue(item).await()
 
             RepoResult.Success(true)

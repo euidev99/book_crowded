@@ -32,14 +32,20 @@ class ChatListActivity: BaseActivity() {
         //챗 목록 옵저빙
         chatListViewModel.chatMessages.observe(this) {
             //완료 시 리사이클러 뷰 셋
+//            setAdapter(it)
+        }
+
+        chatListViewModel.chatIdList.observe(this) {
             setAdapter(it)
+            for (item in it) {
+                Log.d("asd", item)
+            }
         }
         chatListViewModel.progressListener = this
-
-        chatListViewModel.addChatList("testChat", AuthManager.userId)
+        chatListViewModel.addChatList("test_id3", "atest_seller_id_4")
     }
 
-    private fun setAdapter(data: List<ChatListItem>) {
+    private fun setAdapter(data: List<String>) {
         binding.recyclerView.apply {
             adapter = VerticalChatListAdapter(object: VerticalChatListAdapter.OnItemClickListener {
                 override fun onClick(v: View, position: Int) {

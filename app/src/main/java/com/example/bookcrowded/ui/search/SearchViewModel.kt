@@ -51,6 +51,7 @@ class SearchViewModel : BaseViewModel() {
                 }
 
                 is RepoResult.Error -> {
+                    Log.d("asda", result.exception.toString())
                     progressListener?.hideProgressUI()
                 }
             }
