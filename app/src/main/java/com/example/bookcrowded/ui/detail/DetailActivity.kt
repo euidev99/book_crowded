@@ -39,10 +39,9 @@ class DetailActivity: BaseActivity() {
 
     private fun setData(data: SellItem) {
         if (AuthManager.userId != "" && AuthManager.userEmail == data.sellerEmail) {
-            //내가 올린 아이템일 경우
-            //binding.editButton.visibility = View.VISIBLE
+            binding.moreButton.visibility = View.VISIBLE //내가 올린 아이템일 경우 옵션 활성화
         } else {
-            //binding.editButton.visibility = View.GONE
+            binding.moreButton.visibility = View.GONE
         }
 
         if (data.sold) {
