@@ -8,16 +8,13 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ListPopupWindow
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.bookcrowded.R
-import com.example.bookcrowded.common.AppConst.KEY.Companion.ITEM_ID
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityItemDetailBinding
 import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.dto.SellItem
-import com.example.bookcrowded.ui.home.HomeFragment
-import com.example.bookcrowded.ui.search.SearchFragment
+import com.example.bookcrowded.ui.modi.ModificationActivity
 import com.laundrycrew.delivery.order.common.CustomPopupListAdapter
 
 class DetailActivity: BaseActivity() {
@@ -112,9 +109,11 @@ class DetailActivity: BaseActivity() {
             when (position) {
                 0 -> {
                     //수정하기
+                    ModificationActivity.startActivity(this)
                 }
                 1 -> {
-                    //삭제하기
+//                    //삭제하기
+//                    ModificationActivity.startActivity(this)
                 }
             }
 
@@ -143,4 +142,5 @@ class DetailActivity: BaseActivity() {
             context.startActivity(intent)
         }
     }
+
 }

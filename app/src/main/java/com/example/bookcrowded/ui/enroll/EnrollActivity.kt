@@ -1,10 +1,10 @@
-package com.example.bookcrowded.ui.test
+package com.example.bookcrowded.ui.enroll
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.example.bookcrowded.common.AuthManager
-import com.example.bookcrowded.databinding.ActivityTestBinding
+import com.example.bookcrowded.databinding.ActivityEnrollmentBinding
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.dto.SellItem
@@ -12,21 +12,18 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/**
- * 테스트 화면
- */
-class TestActivity : BaseActivity() {
+class EnrollActivity : BaseActivity() {
     //기본 공통 세팅
-    private var _binding: ActivityTestBinding? = null
+    private var _binding: ActivityEnrollmentBinding? = null
     private val binding get() = _binding!!
 
     private val itemRepository = BaseRepository("SellItem" , SellItem::class.java)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityTestBinding.inflate(layoutInflater)
+        _binding = ActivityEnrollmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.addSampleItemButton.setOnClickListener {
+        binding.enrollmentButton.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 itemRepository.addDocument(
                     SellItem(AuthManager.userId,
@@ -41,7 +38,7 @@ class TestActivity : BaseActivity() {
             }
         }
 
-        binding.addSampleItemSold.setOnClickListener {
+        /*binding.addSampleItemSold.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 itemRepository.addDocument(
                     SellItem(AuthManager.userId,
@@ -54,7 +51,9 @@ class TestActivity : BaseActivity() {
                         "2023-11-11",
                         true))
             }
-        }
+        }*/
+
+        setView()
 
 //        binding.addSampleItemFavorite.setOnClickListener {
 //            CoroutineScope(Dispatchers.IO).launch {
@@ -72,6 +71,13 @@ class TestActivity : BaseActivity() {
 //        }
     }
 
+    private fun setView() {
+        //backButton으로 디테일 화면 종료
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+
+    }
     override fun onDestroy() {
         super.onDestroy()
         this._binding = null
@@ -80,7 +86,7 @@ class TestActivity : BaseActivity() {
     companion object {
         // 액티비티를 시작하는 함수 정의
         fun startActivity(context: Context) {
-            val intent = Intent(context, TestActivity::class.java)
+            val intent = Intent(context, EnrollActivity::class.java)
             context.startActivity(intent)
         }
     }

@@ -44,6 +44,10 @@
             android:name=".ui.regist.RegisterActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.enroll.EnrollActivity"
+            android:exported="true" />
+
         <activity android:name=".ui.detail.DetailActivity"
             android:exported="true" />
 
