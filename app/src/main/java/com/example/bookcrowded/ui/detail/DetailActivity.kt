@@ -38,10 +38,13 @@ class DetailActivity: BaseActivity() {
 
 
     private fun setData(data: SellItem) {
+        //내가 올린 아이템일 경우 옵션 활성화
         if (AuthManager.userId != "" && AuthManager.userEmail == data.sellerEmail) {
-            binding.moreButton.visibility = View.VISIBLE //내가 올린 아이템일 경우 옵션 활성화
+            binding.moreButton.visibility = View.VISIBLE
+            binding.logoImage.visibility = View.GONE
         } else {
             binding.moreButton.visibility = View.GONE
+            binding.logoImage.visibility = View.VISIBLE
         }
 
         if (data.sold) {

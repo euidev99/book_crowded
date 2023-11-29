@@ -6,80 +6,62 @@
     android:layout_height="match_parent"
     android:background="@color/secondary">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vertical_guideline3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="367dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vertical_guideline4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="44dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontal_guideline5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="483dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontal_guideline6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="672dp" />
-
-
     <ImageView
-        android:id="@+id/boogi_image"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:src="@drawable/boogi"
+        android:id="@+id/logo_image"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.368" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
         android:id="@+id/title_image"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="90dp"
         android:src="@drawable/title"
-        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boogi_image" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_image" />
 
     <ImageView
         android:id="@+id/entry_loginButton"
         android:layout_width="250dp"
-        android:layout_height="62dp"
-        android:src="@drawable/login_btn"
+        android:layout_height="60dp"
+        android:src="@drawable/round_button_blue"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_image"
-        app:layout_constraintVertical_bias="0.353" />
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:id="@+id/entry_loginButton_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOG IN"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/entry_loginButton"
+        app:layout_constraintEnd_toEndOf="@id/entry_loginButton"
+        app:layout_constraintStart_toStartOf="@id/entry_loginButton"
+        app:layout_constraintTop_toTopOf="@id/entry_loginButton" />
 
     <TextView
         android:id="@+id/entry_registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="회원가입"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/entry_loginButton"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintVertical_bias="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

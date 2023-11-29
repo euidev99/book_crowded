@@ -6,49 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00FFFFFF">
-    <!--  양쪽 가이드 라인  -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vertical_guideline1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="24dp"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vertical_guideline2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="24dp" />
-
-
+    <!--  상단바 컨테이너  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_container"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
-        android:background="#00FFFFFF"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
         android:minHeight="48dp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="@id/vertical_guideline1"
-        app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--  뒤로가기 이미지 버튼  -->
         <ImageView
             android:id="@+id/backButton"
-            android:layout_width="31dp"
-            android:layout_height="29dp"
-            android:src="@drawable/left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/before"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <ImageView
             android:id="@+id/moreButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -56,29 +41,33 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <LinearLayout
-        android:id="@+id/title_layout"
-        android:layout_width="365dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/chat_card"
+        android:id="@+id/title_container"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/title_bg"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
-        app:layout_constraintStart_toStartOf="@id/vertical_guideline1"
+        android:paddingStart="15dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_container">
 
         <TextView
             android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
             android:text="@string/chat_title"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
@@ -88,77 +77,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/vertical_guideline1"
-        app:layout_constraintRight_toRightOf="@id/vertical_guideline2"
-        app:layout_constraintTop_toBottomOf="@id/title_layout"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@id/title_container"
         tools:listitem="@layout/item_chat_list" />
 
-<!--    &lt;!&ndash; Menu Container &ndash;&gt;-->
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/menu_container"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="664dp"-->
-<!--        android:minHeight="48dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/home_button"-->
-<!--            android:layout_width="48dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_marginLeft="48dp"-->
-<!--            android:src="@drawable/home"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0.0" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/catalog_button"-->
-<!--            android:layout_width="48dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_marginStart="40dp"-->
-<!--            android:src="@drawable/catalog"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/home_button"-->
-<!--            app:layout_constraintStart_toEndOf="@id/home_button"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0.0" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/favorite_button"-->
-<!--            android:layout_width="48dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_marginStart="40dp"-->
-<!--            android:src="@drawable/like"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/catalog_button"-->
-<!--            app:layout_constraintStart_toEndOf="@id/catalog_button"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="1.0" />-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/shoppingcart_button"-->
-<!--            android:layout_width="48dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_marginEnd="28dp"-->
-<!--            android:src="@drawable/shopping_cart"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.659"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/favorite_button"-->
-<!--            app:layout_constraintStart_toEndOf="@id/favorite_button"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0.0" />-->
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
+</androidx.constraintlayout.widget.ConstraintLayout>

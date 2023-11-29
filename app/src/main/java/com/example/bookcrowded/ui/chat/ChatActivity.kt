@@ -77,15 +77,16 @@ class ChatActivity: BaseActivity() {
     private fun setView() {
         //로그인 버튼 클릭 이벤트
         binding.sendButton.setOnClickListener {
-            val text: String = binding.inputEditText.text.toString()
+            val text: String = binding.chatText.text.toString()
             if (text.isNotEmpty()) {
                 chatViewModel.sendChat(text)
-                binding.inputEditText.setText("") //전송 후 공백
+                binding.chatText.setText("") //전송 후 공백
                 //binding.inputEditText.text.clear()
             }
         }
+
         //뒤로가기 버튼 클릭 이벤트
-        binding.chatBackButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             // 현재 ChatActivity를 종료하고 이전 화면으로 돌아감
             finish()
         }

@@ -7,36 +7,33 @@
     android:layout_height="match_parent"
     >
 
+    <!--  상단바 컨테이너  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_container"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="#F8F8F8"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <!--  뒤로가기 이미지 버튼  -->
+        <ImageView
             android:id="@+id/backButton"
-            android:layout_width="31dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="15dp"
-            android:background="#00FFFFFF"
-            android:scaleType="fitCenter"
-            android:src="@drawable/left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/before"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.526" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/moreButton"
-            android:layout_width="57dp"
-            android:layout_height="48dp"
-            android:layout_marginRight="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:background="#00FFFFFF"
             android:scaleType="fitCenter"
             android:src="@drawable/more"
@@ -44,17 +41,25 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/info_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_container">
 
@@ -67,9 +72,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp"
+                android:layout_margin="10dp"
                 android:background="@color/black"
                 app:layout_constraintDimensionRatio="4:3"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -78,8 +81,8 @@
 
             <ImageButton
                 android:id="@+id/favButton"
-                android:layout_width="42dp"
-                android:layout_height="44dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:background="#00FFFFFF"
@@ -91,8 +94,8 @@
             <LinearLayout
                 android:layout_width="349dp"
                 android:layout_height="229dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -116,7 +119,7 @@
                     android:layout_marginTop="2dp"
                     android:text="@string/common_item_name"
                     android:textColor="#000000"
-                    android:textSize="30sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -125,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="판매자"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/item_update_date_text"
@@ -139,8 +142,8 @@
                     android:id="@+id/item_description_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:textSize="18sp"
+                    android:layout_marginTop="30dp"
+                    android:textSize="14sp"
                     tools:text="아이템 샘플 설명 설명 설명" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
