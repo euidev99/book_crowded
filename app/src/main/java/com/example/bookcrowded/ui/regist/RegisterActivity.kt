@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.example.bookcrowded.MainActivity
+import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityRegisterBinding
 import com.example.bookcrowded.ui.common.BaseActivity
 
@@ -39,6 +41,9 @@ class RegisterActivity : BaseActivity() {
             if (success) {
                 // 가입 성공 시의 처리
                 Toast.makeText(this, "가입 성공!", Toast.LENGTH_SHORT).show()
+                AuthManager.userEmail = binding.emailEditText.text.toString()
+                AuthManager.userPassword = binding.passwdEditText.text.toString()
+                MainActivity.startActivity(this)
             } else {
                 // 가입 실패 시의 처리
                 Toast.makeText(this, "가입 실패", Toast.LENGTH_SHORT).show()
@@ -70,13 +75,12 @@ class RegisterActivity : BaseActivity() {
 
         //회원가입하기
         binding.registerButton.setOnClickListener {
-            val id: String = binding.idEditText.text.toString()
             val email: String = binding.emailEditText.text.toString()
             val passwd: String = binding.passwdEditText.text.toString()
             val name: String = binding.nameEditText.text.toString()
-            val birth: Int = (binding.birthEditText.text.toString()).toInt() //예외처리 필요함 근데 귀찮음
+            val birth: String = (binding.birthEditText.text.toString())
 
-            registerViewModel.register(id, email, passwd, name, birth)
+            registerViewModel.register(email, passwd, name, birth)
         }
 
         binding.checkDuplicateButton.setOnClickListener {

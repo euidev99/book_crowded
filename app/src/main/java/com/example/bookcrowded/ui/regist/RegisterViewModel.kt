@@ -47,13 +47,13 @@ class RegisterViewModel : BaseViewModel() {
         }
     }
 
-    fun register(id: String, email: String, passwd: String, name: String, birth: Int) {
+    fun register(email: String, passwd: String, name: String, birth: String) {
         progressListener?.showProgressUI()
 
         val userRepository = BaseRepository("UserInfo", UserInfo::class.java)
         viewModelScope.launch {
 
-            when (val result = userRepository.addDocument(UserInfo(birth, email, id, name, passwd))) {
+            when (val result = userRepository.addDocument(UserInfo(birth, email, name, passwd))) {
                 is RepoResult.Success -> {
                     _registerResult.postValue(result.data)
                     progressListener?.hideProgressUI()

@@ -31,8 +31,8 @@
             android:id="@+id/id_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아이디"
-            android:textColor="@color/primary"
+            android:text="@string/common_email"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,9 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="아이디를 입력하세요"
+            android:backgroundTint="@color/secondary_deep"
+            android:textColorHint="@color/secondary_deep"
+            android:hint="@string/login_email_hint"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="비밀번호"
-            android:textColor="@color/primary"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +68,9 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="비밀번호를 입력하세요"
+            android:backgroundTint="@color/secondary_deep"
+            android:hint="@string/login_passwd_hint"
+            android:textColorHint="@color/secondary_deep"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +100,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로그인"
+            android:text="@string/login_execute"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -105,8 +109,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

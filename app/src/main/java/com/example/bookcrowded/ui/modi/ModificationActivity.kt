@@ -1,6 +1,9 @@
 package com.example.bookcrowded.ui.modi
 
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import com.example.bookcrowded.databinding.ActivityModificationBinding
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.common.BaseRepository
@@ -14,7 +17,7 @@ class ModificationActivity : BaseActivity() {
     private var _binding: ActivityModificationBinding? = null
     private val binding get() = _binding!!
 
-    private val itemRepository = BaseRepository("SellItem" , SellItem::class.java)
+    private val itemRepository = BaseRepository("SellItem", SellItem::class.java)
     private var itemId: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,64 +35,27 @@ class ModificationActivity : BaseActivity() {
             itemId?.let { updateItem(it) }
         }
 
+        binding.root.setOnTouchListener { _, _ ->
+            hideKeyboard()
+            false
+        }
+
         setView()
     }
 
-//        binding.modificationButton.setOnClickListener {
-//            CoroutineScope(Dispatchers.IO).launch {
-//                when (val result = itemRepository.addDocument(
-//                    SellItem(AuthManager.userId,
-//                        "상품명_테스트",
-//                        "9999",
-//                        AuthManager.userEmail,
-//                        "상품 설명",
-//                        "",
-//                        false,
-//                        "2023-11-11",
-//                        false))
-//                ) {
-//                    is RepoResult.Success -> {
-//                        finish()
-//                    }
-//                    is RepoResult.Error -> {
-//
-//                    }
-//                }
-//            }
+    private fun hideKeyboard() {
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val focusedView = currentFocus
+        if (focusedView != null) {
+            inputManager.hideSoftInputFromWindow(
+                focusedView.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
         }
+    }
 
-        /*binding.addSampleItemSold.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                itemRepository.addDocument(
-                    SellItem(AuthManager.userId,
-                        "팔린 상품",
-                        "1111",
-                        AuthManager.userEmail,
-                        "팔렸지롱",
-                        "",
-                        false,
-                        "2023-11-11",
-                        true))
-            }
-        }*/
-
-
-//        binding.addSampleItemFavorite.setOnClickListener {
-//            CoroutineScope(Dispatchers.IO).launch {
-//                itemRepository.addDocument(
-//                    SellItem(AuthManager.userId,
-//                        "찜 상품",
-//                        "1111",
-//                        AuthManager.userEmail,
-//                        "찜이지롱",
-//                        "",
-//                        false,
-//                        "2023-11-11",
-//                        true))
-//            }
-//        }
     private fun getItemDetails(itemId: String) {
-    CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO).launch {
 //        when (val result = itemRepository.getDocument(itemId)) {
 //            is RepoResult.Success -> {
 //                val sellItem = result.data
@@ -133,8 +99,6 @@ class ModificationActivity : BaseActivity() {
 //}
 
 
-
-
     private fun setView() {
         //backButton으로 디테일 화면 종료
 //        binding.backButton.setOnClickListener {
@@ -142,6 +106,7 @@ class ModificationActivity : BaseActivity() {
 //        }
 
     }
+}
 //    override fun onDestroy() {
 //        super.onDestroy()
 //        this._binding = null

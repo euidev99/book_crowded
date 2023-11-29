@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">bookcrowded</string>
 
-
     <!-- COMMON STRING STR -->
     <string name="common_confirm">확인</string>
     <string name="common_cancel">취소</string>
@@ -23,24 +22,18 @@
     <!-- SPLASH ACTIVITY END -->
 
     <!-- REGISTER ACTIVITY STR -->
-    <string name="register_title">회원 가입</string>
-    <string name="register_description">회원가입 설명</string>
-    <string name="register_name_hint">이름 예시 : 개발자</string>
-    <string name="register_email_hint">이메일 예시 : aaa@aaa.com</string>
-    <string name="register_passwd_hint">비밀번호를 입력해주세요.</string>
-    <string name="register_id_hint">아이디 예시 : id</string>
-    <string name="register_birth_hint">생년월일 예시 : 001122</string>
-    <string name="register_execute">회원 가입 하기</string>
-    <string name="register_confirm_description">회원가입 하시겠습니까?</string>
+    <string name="register_email_hint">ex. aaa@naver.com</string>
+    <string name="register_birth_hint">ex. 001122</string>
+    <string name="register_duplicate_check">중복 확인</string>
+    <string name="register_execute">가입하기</string>
     <!-- REGISTER ACTIVITY END -->
 
     <!-- LOGIN ACTIVITY STR -->
     <string name="login_email">이메일</string>
-    <string name="login_email_hint">이메일을 입력해주세요.</string>
+    <string name="login_email_hint">이메일을 입력하세요</string>
     <string name="login_passwd">비밀번호</string>
-    <string name="login_passwd_hint">비밀번호를 입력해주세요.</string>
-    <string name="login_login">로그인</string>
-    <string name="login_to_register">회원가입 하기</string>
+    <string name="login_passwd_hint">비밀번호를 입력하세요</string>
+    <string name="login_execute">로그인</string>
     <!-- LOGIN ACTIVITY END -->
 
     <!-- DETAIL ACTIVITY STR -->
