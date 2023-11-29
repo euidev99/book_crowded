@@ -35,7 +35,7 @@ class HomeFragment : BaseFragment() {
         val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         //데이터 옵저빙
         homeViewModel.publicHomeData.observe(viewLifecycleOwner) { setAdapter(it) }
-        homeViewModel.setSampleData()
+        homeViewModel.getItemList()
 //        homeViewModel.getAllCategory()
         //homeViewModel.getAllUsers()
     }
