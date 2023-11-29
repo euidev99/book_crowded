@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ListPopupWindow
 import androidx.activity.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.bookcrowded.R
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityItemDetailBinding
@@ -16,6 +18,7 @@ import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.dto.SellItem
 import com.example.bookcrowded.ui.modi.ModificationActivity
+import com.google.firebase.storage.FirebaseStorage
 import com.laundrycrew.delivery.order.common.CustomPopupListAdapter
 
 class DetailActivity: BaseActivity() {
@@ -87,6 +90,37 @@ class DetailActivity: BaseActivity() {
                 ChatActivity.startActivityWithArgument(this, modifiedRoomId, data.title, data.price + "원")
             } else {
                 //방 개설 실패
+            }
+        }
+
+        // 책 이미지 URL 구성
+        val imageUrl = if (data.image.isNullOrEmpty()) {
+            R.drawable.no_photo6 // 디폴트 이미지 리소스 ID
+        } else {
+            "gs://bookbookmarket-f6266.appspot.com/image/${data.image}"
+        }
+
+        // Firebase 스토리지 참조 또는 디폴트 이미지 로딩
+        if (data.image.isNullOrEmpty()) {
+            Glide.with(this)
+                .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .centerCrop()
+                .into(binding.mainImage)
+        } else {
+            val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl.toString())
+            storageReference.downloadUrl.addOnSuccessListener { uri ->
+                Glide.with(this)
+                    .load(uri)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .centerCrop()
+                    .into(binding.mainImage)
+            }.addOnFailureListener {
+                Glide.with(this)
+                    .load(R.drawable.no_photo6)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .centerCrop()
+                    .into(binding.mainImage)
             }
         }
     }
