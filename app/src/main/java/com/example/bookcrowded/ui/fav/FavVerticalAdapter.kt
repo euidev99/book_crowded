@@ -1,5 +1,6 @@
 package com.example.bookcrowded.ui.fav
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ class FavVerticalAdapter(
         fun onClick(v: View, position: Int)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun submitChatMessages(items: List<SellItem>) {
         this.items = items
         this.notifyDataSetChanged()
@@ -36,7 +38,7 @@ class FavVerticalAdapter(
         ), this.itemClickListener)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as FavVerticalAdapter.VerticalViewHolder).bind(items[position])
+        (holder as VerticalViewHolder).bind(items[position])
     }
 
     override fun getItemCount(): Int = items.size

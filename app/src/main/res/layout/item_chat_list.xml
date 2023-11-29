@@ -9,59 +9,47 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:background="@drawable/background_white_round"
+        android:layout_height="150dp"
+        android:background="@drawable/parts"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/book_image"
-                android:layout_width="115dp"
-                android:layout_height="115dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_width="90dp"
+                android:layout_height="120dp"
                 android:background="@color/black"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_width="180dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="이름 : " />
-
-                <TextView
-                    android:id="@+id/category_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    tools:text="관심분야 : " />
+                    tools:text="@string/common_user_name" />
 
                 <TextView
                     android:id="@+id/consumer_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/black"
-                    tools:text="안녕하세요 네고가능?" />
+                    tools:text="@string/chat_left_message" />
 
             </LinearLayout>
         </LinearLayout>

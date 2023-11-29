@@ -13,7 +13,6 @@ import com.example.bookcrowded.ui.dto.UserInfo
 import kotlinx.coroutines.launch
 
 class SearchViewModel : BaseViewModel() {
-
     private val TAG = "SearchViewModel"
 
     //DTO 타입 가능

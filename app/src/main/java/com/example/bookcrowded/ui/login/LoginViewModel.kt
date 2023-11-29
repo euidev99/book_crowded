@@ -14,9 +14,6 @@ import com.example.bookcrowded.ui.home.viewdata.HomeViewData
 import kotlinx.coroutines.launch
 
 class LoginViewModel : BaseViewModel() {
-
-    private val TAG = "LoginViewModel"
-
     private val _loginResult = MutableLiveData<Boolean>()
     val loginResult: LiveData<Boolean> get() = _loginResult
 

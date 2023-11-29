@@ -107,20 +107,11 @@ class EnrollActivity : BaseActivity() {
                 }
             }
         }
-        /*binding.addSampleItemSold.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                itemRepository.addDocument(
-                    SellItem(AuthManager.userId,
-                        "팔린 상품",
-                        "1111",
-                        AuthManager.userEmail,
-                        "팔렸지롱",
-                        "",
-                        false,
-                        "2023-11-11",
-                        true))
-            }
-        }*/
+
+        binding.root.setOnTouchListener { _, _ ->
+            hideKeyboard()
+            false
+        }
 
         binding.root.setOnTouchListener { _, _ ->
             hideKeyboard()
@@ -128,21 +119,14 @@ class EnrollActivity : BaseActivity() {
         }
 
         setView()
+    }
 
-//        binding.addSampleItemFavorite.setOnClickListener {
-//            CoroutineScope(Dispatchers.IO).launch {
-//                itemRepository.addDocument(
-//                    SellItem(AuthManager.userId,
-//                        "찜 상품",
-//                        "1111",
-//                        AuthManager.userEmail,
-//                        "찜이지롱",
-//                        "",
-//                        false,
-//                        "2023-11-11",
-//                        true))
-//            }
-//        }
+    private fun hideKeyboard() {
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val focusedView = currentFocus
+        if (focusedView != null) {
+            inputManager.hideSoftInputFromWindow(focusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
     }
 
     private fun hideKeyboard() {

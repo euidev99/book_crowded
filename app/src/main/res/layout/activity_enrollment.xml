@@ -32,7 +32,7 @@
             android:id="@+id/sell_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내 물건 팔기"
+            android:text="@string/posting_title"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -84,7 +84,7 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:text="사진 등록"
+            android:text="@string/posting_addPhoto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -110,7 +110,7 @@
             android:id="@+id/editTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="제목을 입력하세요" />
+            android:hint="@string/posting_title_hint" />
 
 
         <!-- 가격 price -->
@@ -134,7 +134,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:hint="가격" />
+                android:hint="@string/posting_price_hint" />
 
             <Switch
                 android:id="@+id/editSwitch"
@@ -142,7 +142,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="30dp"
                 android:checked="false"
-                android:text="판매 중" />
+                android:text="posting_sold" />
         </LinearLayout>
 
         <!-- description -->
@@ -150,7 +150,7 @@
             android:id="@+id/editDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="설명을 입력하세요"
+            android:hint="@string/posting_description_hint"
             android:inputType="textMultiLine"
             android:lines="7" />
     </LinearLayout>
@@ -170,7 +170,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="게시물 등록"
+        android:text="@string/posting_enroll_execute"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@id/enrollmentButton"
         app:layout_constraintEnd_toEndOf="@id/enrollmentButton"
