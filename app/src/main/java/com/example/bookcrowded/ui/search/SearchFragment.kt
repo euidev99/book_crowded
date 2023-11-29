@@ -34,7 +34,6 @@ class SearchFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d("aaa", "when Create View?")
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         mViewModel = ViewModelProvider(this)[SearchViewModel::class.java]
         mViewModel.progressListener = this
@@ -47,7 +46,6 @@ class SearchFragment : BaseFragment() {
     }
 
     private fun setView() {
-
         binding.optionButton.setOnClickListener {
             showCustomPopupListView(it)
             //검색 필터 적용할 때 쓰면 되는 코드

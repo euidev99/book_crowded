@@ -15,6 +15,16 @@ class FavViewModel : BaseViewModel() {
     val favoriteItemList: LiveData<List<SellItem>> get() = _favoriteItemList
     private val itemRepository: BaseRepository<SellItem> = BaseRepository("SellItem", SellItem::class.java)
 
+    fun getItemIdByPosition(position: Int): String {
+        var id = ""
+
+        if (_favoriteItemList.isInitialized) {
+            id = favoriteItemList.value?.get(position)?.id.toString()
+        }
+
+        return id
+    }
+
     fun getFavoriteItemList() {
         progressListener?.showProgressUI()
 

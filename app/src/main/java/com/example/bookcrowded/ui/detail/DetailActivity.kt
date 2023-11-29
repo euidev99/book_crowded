@@ -131,7 +131,7 @@ class DetailActivity: BaseActivity() {
 
     companion object {
         // 액티비티를 시작하는 함수 정의
-        private const val ITEM_ID = "Item_id"
+        private const val ITEM_ID = "id"
         fun startActivity(context: Context) {
             val intent = Intent(context, DetailActivity::class.java)
             context.startActivity(intent)
@@ -143,5 +143,4 @@ class DetailActivity: BaseActivity() {
             context.startActivity(intent)
         }
     }
-
 }
