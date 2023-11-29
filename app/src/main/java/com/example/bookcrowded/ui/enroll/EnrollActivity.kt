@@ -6,11 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.bookcrowded.common.AuthManager
@@ -36,7 +38,9 @@ class EnrollActivity : BaseActivity() {
     private val itemRepository = BaseRepository("SellItem" , SellItem::class.java)
 
     private val firestore = FirebaseFirestore.getInstance()
-    private val itemsCollection = firestore.collection("SellItem") //
+    private val itemsCollection = firestore.collection("SellItem")
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityEnrollmentBinding.inflate(layoutInflater)
@@ -210,5 +214,4 @@ class EnrollActivity : BaseActivity() {
             }
         }
     }
-
 }
