@@ -113,20 +113,7 @@ class EnrollActivity : BaseActivity() {
             false
         }
 
-        binding.root.setOnTouchListener { _, _ ->
-            hideKeyboard()
-            false
-        }
-
         setView()
-    }
-
-    private fun hideKeyboard() {
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        val focusedView = currentFocus
-        if (focusedView != null) {
-            inputManager.hideSoftInputFromWindow(focusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-        }
     }
 
     private fun hideKeyboard() {
