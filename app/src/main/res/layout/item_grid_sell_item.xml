@@ -35,6 +35,8 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:maxLines="1"
+        android:ellipsize="none"
             tools:text="판매 상품 이름" />
 
         <TextView
