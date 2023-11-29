@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,6 +23,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.time.LocalDate
+import java.util.UUID
 
 class EnrollActivity : BaseActivity() {
 
@@ -71,15 +74,20 @@ class EnrollActivity : BaseActivity() {
             // 이미지를 업로드하지 않았다면 빈 문자열로 설정
             val imageUrl = ""
 
+            // UUID를 사용하여 충돌 가능성 최소화
+            val itemId = UUID.randomUUID().toString()
+
+            val currentDate = LocalDate.now().toString()
+
             val sellItem = SellItem(
-                id = "12", //아이템 아이디는 고정값인지, 랜덤값으로 생성할지 등에 따라 변경 가능
+                id = itemId,
                 title = itemName,
                 price = itemPrice,
                 sellerEmail = userEmail,
                 description = itemDescription,
                 image = imageUrl,
                 favorite = false,
-                upLoadDate = "2023-09-12", // 날짜 형식을 어떻게 지정할지에 따라 변경 가능
+                upLoadDate = currentDate,
                 sold = isSold
             )
 
@@ -114,6 +122,11 @@ class EnrollActivity : BaseActivity() {
             }
         }*/
 
+        binding.root.setOnTouchListener { _, _ ->
+            hideKeyboard()
+            false
+        }
+
         setView()
 
 //        binding.addSampleItemFavorite.setOnClickListener {
@@ -130,6 +143,14 @@ class EnrollActivity : BaseActivity() {
 //                        true))
 //            }
 //        }
+    }
+
+    private fun hideKeyboard() {
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val focusedView = currentFocus
+        if (focusedView != null) {
+            inputManager.hideSoftInputFromWindow(focusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
     }
 
     private fun checkAndRequestPermissions() {

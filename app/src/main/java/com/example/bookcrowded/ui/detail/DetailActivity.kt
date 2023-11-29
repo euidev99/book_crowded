@@ -39,7 +39,7 @@ class DetailActivity: BaseActivity() {
 
     private fun setData(data: SellItem) {
         //내가 올린 아이템일 경우 옵션 활성화
-        if (AuthManager.userId != "" && AuthManager.userEmail == data.sellerEmail) {
+        if (AuthManager.userEmail != "" && AuthManager.userEmail == data.sellerEmail) {
             binding.moreButton.visibility = View.VISIBLE
             binding.logoImage.visibility = View.GONE
         } else {
@@ -131,7 +131,7 @@ class DetailActivity: BaseActivity() {
 
     companion object {
         // 액티비티를 시작하는 함수 정의
-        private const val ITEM_ID = "Item_id"
+        private const val ITEM_ID = "id"
         fun startActivity(context: Context) {
             val intent = Intent(context, DetailActivity::class.java)
             context.startActivity(intent)
@@ -143,5 +143,4 @@ class DetailActivity: BaseActivity() {
             context.startActivity(intent)
         }
     }
-
 }
