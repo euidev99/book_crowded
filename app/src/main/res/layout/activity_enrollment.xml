@@ -142,7 +142,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="30dp"
                 android:checked="false"
-                android:text="posting_sold" />
+                android:text="@string/posting_sold" />
         </LinearLayout>
 
         <!-- description -->

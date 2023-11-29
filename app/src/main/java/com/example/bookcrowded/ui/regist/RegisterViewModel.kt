@@ -1,6 +1,7 @@
 package com.example.bookcrowded.ui.regist
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -48,6 +49,11 @@ class RegisterViewModel : BaseViewModel() {
     }
 
     fun register(email: String, passwd: String, name: String, birth: String) {
+        if (!isEmailValid(email)) {
+            _registerResult.postValue(false)
+            return
+        }
+
         progressListener?.showProgressUI()
 
         val userRepository = BaseRepository("UserInfo", UserInfo::class.java)
@@ -65,5 +71,10 @@ class RegisterViewModel : BaseViewModel() {
                 }
             }
         }
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        val emailPattern = Regex("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
+        return email.matches(emailPattern)
     }
 }
