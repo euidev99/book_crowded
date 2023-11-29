@@ -64,5 +64,10 @@
         <activity
             android:name=".ui.image.ImageUpActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".ui.modi.ModificationActivity"
+            android:exported="true">
+        </activity>
     </application>
 </manifest>
