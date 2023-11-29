@@ -34,6 +34,9 @@ class PagingItemAdapter(
     )
 
     override fun getItemCount(): Int {
+        if (items.size >= 5) {
+            return 5
+        }
         return items.size
     }
 
