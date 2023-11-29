@@ -45,8 +45,8 @@ class MyFragment : BaseFragment() {
             FirebaseAuth.getInstance().signOut()
 
             // AuthManager의 사용자 정보 초기화
-            AuthManager.userId = ""
             AuthManager.userEmail = ""
+            AuthManager.userPassword = ""
 
             // 로그아웃 후 EntryActivity로 이동
             navigateToEntryActivity()

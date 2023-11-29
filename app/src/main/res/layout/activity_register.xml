@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:text="@string/common_email" />
+                android:text="@string/common_user_email" />
 
             <EditText
                 android:id="@+id/email_edit_text"
@@ -98,7 +98,7 @@
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:text="@string/common_passwd" />
+                android:text="@string/common_user_passwd" />
 
             <EditText
                 android:id="@+id/passwd_edit_text"
@@ -118,7 +118,7 @@
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:text="@string/common_name" />
+                android:text="@string/common_user_name" />
 
             <EditText
                 android:id="@+id/name_edit_text"
@@ -139,7 +139,7 @@
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:text="@string/common_birth" />
+                android:text="@string/common_user_birth" />
 
             <EditText
                 android:id="@+id/birth_edit_text"

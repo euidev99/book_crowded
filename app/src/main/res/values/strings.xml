@@ -60,14 +60,18 @@
     <string name="search_show_all">전체 보기</string>
     <!-- SEARCH ACTIVITY END -->
 
-    <!-- MODIFICATION ACTIVITY STR -->
-    <string name="modification_title">내 물건 팔기</string>
-    <string name="modification_addPhoto">사진 업로드</string>
-    <string name="modification_title_hint">제목을 입력하세요</string>
-    <string name="modification_price_hint">가격을 입력하세요</string>
-    <string name="modification_description_hint">내용을 입력하세요</string>
-    <string name="modification_execute">수정하기</string>
-    <!-- MODIFICATION ACTIVITY END -->
+
+    <!-- ENROLL/MODIFICATION ACTIVITY STR -->
+    <string name="posting_title">내 물건 팔기</string>
+    <string name="posting_addPhoto">사진 업로드</string>
+    <string name="posting_title_hint">제목을 입력하세요</string>
+    <string name="posting_price_hint">가격을 입력하세요</string>
+    <string name="posting_description_hint">내용을 입력하세요</string>
+    <string name="posting_sold">판매 중</string>
+    <string name="posting_enroll_execute">등록하기</string>
+    <string name="posting_modification_execute">수정하기</string>
+    <!-- ENROLL/MODIFICATION ACTIVITY END -->
+
 
 
     <!-- MY PAGE STR -->
@@ -75,16 +79,11 @@
     <string name="mypage_name">나는 감자</string>
     <string name="mypage_email">123455@nvaer.com</string>
     <string name="mypage_sell">판매 목록</string>
-    <string name="mypage_sell_email">123455@nvaer.com</string>
     <string name="mypage_buy">구매 목록</string>
-    <string name="mypage_buy_email">123455@nvaer.com</string>
     <string name="mypage_chat">채팅 목록</string>
-    <string name="mypage_chat_email">123455@nvaer.com</string>
-    <string name="mypage_information">이미지 업로드 테스트</string>
-    <string name="mypage_information_email">123455@nvaer.com</string>
-    <string name="mypage_cancel">탈퇴하기</string>
-    <string name="mypage_cancel_email">123455@nvaer.com</string>
-    <string name="mypage_logout_button">logout</string>
+    <string name="mypage_test">이미지 업로드 테스트</string>
+    <string name="mypage_quit">탈퇴하기</string>
+    <string name="mypage_logout_execute">LOG OUT</string>
     <!-- MY PAGE END -->
 
 
@@ -93,6 +92,11 @@
     <string name="chat_item_price">10000원</string>
     <string name="chat_message">메세지 입력</string>
     <!-- CHAT END -->
+
+    <!-- CHAT LEFT STR -->
+    <string name="chat_left_message">메시지 내용이 여기에 표시됩니다</string>
+    <string name="chat_left_time">시간</string>
+    <!-- CHAT LEFT END -->
 
     <!-- CHAT LIST STR -->
     <string name="chatlist_title">판매글 제목</string>

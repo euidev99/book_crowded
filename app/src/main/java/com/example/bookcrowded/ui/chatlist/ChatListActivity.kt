@@ -40,7 +40,7 @@ class ChatListActivity: BaseActivity() {
         }
         chatListViewModel.progressListener = this
 
-        chatListViewModel.addChatList("testChat", AuthManager.userId)
+        chatListViewModel.addChatList("testChat", AuthManager.userEmail)
 
         setView()
         chatListViewModel.addChatList("test_id3", "atest_seller_id_4")

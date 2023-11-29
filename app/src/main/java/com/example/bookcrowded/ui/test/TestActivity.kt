@@ -29,7 +29,7 @@ class TestActivity : BaseActivity() {
         binding.addSampleItemButton.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 itemRepository.addDocument(
-                    SellItem(AuthManager.userId,
+                    SellItem(AuthManager.userEmail,
                         "상품명_테스트",
                         "9999",
                         AuthManager.userEmail,
@@ -44,7 +44,7 @@ class TestActivity : BaseActivity() {
         binding.addSampleItemSold.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 itemRepository.addDocument(
-                    SellItem(AuthManager.userId,
+                    SellItem(AuthManager.userEmail,
                         "팔린 상품",
                         "1111",
                         AuthManager.userEmail,
