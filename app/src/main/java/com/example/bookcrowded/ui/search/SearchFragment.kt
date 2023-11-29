@@ -96,7 +96,6 @@ class SearchFragment : BaseFragment() {
     private fun setAdapter(itemList: List<SellItem>) {
         if (isSet) {
             (binding.recycler.adapter as SearchGridAdapter).submitChatMessages(itemList)
-            binding.recycler.smoothScrollToPosition(itemList.size - 1)
         } else {
             isSet = true
             binding.recycler.apply {

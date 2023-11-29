@@ -1,122 +1,122 @@
 package com.example.bookcrowded.ui.modi
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.bookcrowded.databinding.ActivityModificationBinding
-import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.common.BaseRepository
+import com.example.bookcrowded.ui.common.RepoResult
 import com.example.bookcrowded.ui.dto.SellItem
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
-class ModificationActivity : BaseActivity() {
-    //기본 공통 세팅
-    private var _binding: ActivityModificationBinding? = null
-    private val binding get() = _binding!!
+class ModificationActivity : AppCompatActivity() {
 
-    private val itemRepository = BaseRepository("SellItem", SellItem::class.java)
-    private var itemId: String? = null
+    private lateinit var itemId: String
+    private lateinit var sellItem: SellItem
+    private lateinit var binding: ActivityModificationBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityModificationBinding.inflate(layoutInflater)
+        binding = ActivityModificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 수정하려는 상품의 아이템 ID를 받아옴
-        itemId = intent.getStringExtra("ITEM_ID")
+        // Intent로 전달된 ITEM_ID를 받아옴
+        itemId = intent.getStringExtra("ITEM_ID") ?: ""
 
-        // 가져오기(수정하기 전에 기존 데이터를 표시하기 위해)
-        itemId?.let { getItemDetails(it) }
 
-        // 수정 버튼 클릭 시
+        // Firestore에서 해당 판매글 정보를 가져와 화면에 표시
+        val firestore = FirebaseFirestore.getInstance()
+        val itemsCollection = firestore.collection("SellItem")
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val document = itemsCollection.document(itemId).get().await()
+                sellItem = document.toObject(SellItem::class.java)!!
+
+                // UI에 판매글 정보 표시
+                runOnUiThread {
+                    binding.editTitle.setText(sellItem.title)
+                    binding.editPrice.setText(sellItem.price)
+                    binding.editDescription.setText(sellItem.description)
+                    binding.editSwitch.isChecked = sellItem.sold
+                }
+            } catch (e: Exception) {
+                Log.e("ModificationActivity", "판매글 정보 가져오기 오류: ${e.message}")
+            }
+        }
+
+        // 수정 완료 버튼 리스너 설정
         binding.modificationButton.setOnClickListener {
-            itemId?.let { updateItem(it) }
-        }
+            // 수정된 정보를 사용하여 Firestore 업데이트
+            if (binding.editTitle.text != null) {
 
-        binding.root.setOnTouchListener { _, _ ->
-            hideKeyboard()
-            false
-        }
+            }
+            sellItem.title = binding.editTitle.text.toString()
+            sellItem.price = binding.editPrice.text.toString()
+            sellItem.description = binding.editDescription.text.toString()
+            sellItem.sold = binding.editSwitch.isChecked
 
-        setView()
-    }
 
-    private fun hideKeyboard() {
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        val focusedView = currentFocus
-        if (focusedView != null) {
-            inputManager.hideSoftInputFromWindow(
-                focusedView.windowToken,
-                InputMethodManager.HIDE_NOT_ALWAYS
-            )
-        }
-    }
-
-    private fun getItemDetails(itemId: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-//        when (val result = itemRepository.getDocument(itemId)) {
-//            is RepoResult.Success -> {
-//                val sellItem = result.data
-//                // 여기에서 가져온 데이터를 사용하여 화면에 표시하도록 처리
-//                // 예: binding.titleEditText.setText(sellItem.title)
-//                //     binding.descriptionEditText.setText(sellItem.description)
-//                //     등등
-//            }
-//            is RepoResult.Error -> {
-//                // 에러 처리
-//            }
-        }
-    }
-//}
-
-    private fun updateItem(itemId: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-//        when (val result = itemRepository.getDocument(itemId)) {
-//            is RepoResult.Success -> {
-//                val sellItem = result.data
-//                // 여기에서 수정할 내용을 sellItem에 적용
-//                // 예: sellItem.title = binding.titleEditText.text.toString()
-//                //     sellItem.description = binding.descriptionEditText.text.toString()
-//                //     등등
+            finish()
+//            CoroutineScope(Dispatchers.IO).launch {
+//                try {
+//                    itemsCollection.document(itemId).set(sellItem).await()
 //
-//                // 수정된 내용을 업데이트
-//                when (val updateResult = itemRepository.updateDocument(itemId, sellItem)) {
-//                    is RepoResult.Success -> {
-//                        finish()
-//                    }
-//                    is RepoResult.Error -> {
-//                        // 업데이트 에러 처리
-//                    }
+//                    showToast("게시물 수정 성공")
+//                    finish()
+//                } catch (e: Exception) {
+//                    showToast("게시물 수정 실패")
+//                    Log.e("ModificationActivity", "판매글 수정 오류: ${e.message}")
 //                }
 //            }
-//            is RepoResult.Error -> {
-//                // 가져오기 에러 처리
-//            }
         }
     }
-//}
 
+    private fun getItemInfo(itemId: String) {
+        var itemRepository: BaseRepository<SellItem> = BaseRepository("SellItem", SellItem::class.java)
 
-    private fun setView() {
-        //backButton으로 디테일 화면 종료
-//        binding.backButton.setOnClickListener {
-//            finish()
-//        }
+        lifecycleScope.launch {
+            when (val result = itemRepository.getDocumentsByField("id", itemId)) {
+                is RepoResult.Success -> {
+                    val dataList = result.data
+                    if (dataList.isNotEmpty()) { //아이템이 있을 경우에 하나만
+//                        _itemResult.postValue(dataList[0])
+                        dataList[0]
 
+                    }
+                }
+                is RepoResult.Error -> {
+                    //error or retry
+                }
+            }
+        }
+    }
+
+//    private fun
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        // 액티비티를 시작하는 함수 정의
+        private const val ITEM_ID = "id"
+        fun startActivity(context: Context) {
+            val intent = Intent(context, ModificationActivity::class.java)
+            context.startActivity(intent)
+        }
+
+        fun startActivityWithItemId(context: Context, itemId: String) {
+            val intent = Intent(context, ModificationActivity::class.java)
+            intent.putExtra(ITEM_ID, itemId)
+            context.startActivity(intent)
+        }
     }
 }
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        this._binding = null
-//    }
-
-//    companion object {
-//        // 액티비티를 시작하는 함수 정의
-//        fun startActivity(context: Context) {
-//            val intent = Intent(context, ModificationActivity::class.java)
-//            context.startActivity(intent)
-//        }
-//    }
-//}
