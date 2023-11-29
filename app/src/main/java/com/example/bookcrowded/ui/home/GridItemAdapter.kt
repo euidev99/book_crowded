@@ -58,7 +58,7 @@ class GridItemAdapter (
 
         val imageUrl = if (item.image.isNullOrEmpty()) {
             // 디폴트 이미지 URL 또는 리소스 ID
-            R.drawable.boogi
+            R.drawable.no_photo6
         } else {
             "gs://bookbookmarket-f6266.appspot.com/image/${item.image}"
         }
@@ -83,7 +83,7 @@ class GridItemAdapter (
             }.addOnFailureListener {
                 // 이미지 로드 실패 시 디폴트 이미지로 대체
                 Glide.with(holder.itemView.context)
-                    .load(R.drawable.boogi)
+                    .load(R.drawable.no_photo6)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerCrop()
                     .into(holder.binding.sellItemImage)

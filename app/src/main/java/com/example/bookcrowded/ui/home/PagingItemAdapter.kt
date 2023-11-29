@@ -55,7 +55,7 @@ class PagingItemAdapter(
 
             val imageUrl = if (item.image.isNullOrEmpty()) {
                 // 디폴트 이미지 URL 또는 리소스 ID
-                R.drawable.boogi
+                R.drawable.no_photo6
             } else {
                 "gs://bookbookmarket-f6266.appspot.com/image/${item.image}"
             }
@@ -79,7 +79,7 @@ class PagingItemAdapter(
                         .into(binding.mainImage)
                 }.addOnFailureListener {
                     Glide.with(binding.root.context)
-                        .load(R.drawable.boogi)
+                        .load(R.drawable.no_photo6)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .centerCrop()
                         .into(binding.mainImage)
