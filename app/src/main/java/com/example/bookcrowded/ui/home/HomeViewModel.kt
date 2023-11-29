@@ -96,25 +96,45 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
+
     //set Sample Data
-    fun setSampleData() {
-        val sellItemArrayList = ArrayList<SellItem>(10)
-        val soldSellItem = SellItem("aa","not sold","1000",
-            "email","description","adad",false,"2023",false)
+        fun getItemList() {
+            progressListener?.showProgressUI()
 
-        val aaaaaellItem = SellItem("aa","not sold","1000",
-            "email","description","adad",false,"2023",false)
-        for (i: Int in 1..10) {
-            sellItemArrayList.add(soldSellItem)
-        }
+            viewModelScope.launch {
+                val itemRepository = BaseRepository("SellItem", SellItem::class.java)
+                when (val result = itemRepository.getAllDocuments()) {
+                    is RepoResult.Success -> {
+                        val dataList = result.data
+                        if (dataList.isNotEmpty()) {
 
-        val pagingCategoryData = HomeItemCategory.PagingCategoryData("NEW", sellItemArrayList)
-        val gridCategoryData = HomeItemCategory.GridCategoryData("On Sale", sellItemArrayList)
+                            val pagingCategoryData = HomeItemCategory.PagingCategoryData("NEW", dataList)
+                            val gridCategoryData = HomeItemCategory.GridCategoryData("On Sale", dataList)
 
-        val viewData = HomeViewData(ArrayList())
-        viewData.itemData.add(pagingCategoryData)
-        viewData.itemData.add(gridCategoryData)
+                            val viewData = HomeViewData(ArrayList())
+                            viewData.itemData.add(pagingCategoryData)
+                            viewData.itemData.add(gridCategoryData)
 
-        this._homeViewData.postValue(viewData)
+                            _homeViewData.postValue(viewData)
+                        }
+                        progressListener?.hideProgressUI()
+                    }
+                    is RepoResult.Error -> {
+                        Log.e("HomeViewModel", "Error fetching items", result.exception)
+                        progressListener?.hideProgressUI()
+                    }
+                }
+            }
+
+
+
+//        val pagingCategoryData = HomeItemCategory.PagingCategoryData("NEW", sellItemArrayList)
+//        val gridCategoryData = HomeItemCategory.GridCategoryData("On Sale", sellItemArrayList)
+//
+//        val viewData = HomeViewData(ArrayList())
+//        viewData.itemData.add(pagingCategoryData)
+//        viewData.itemData.add(gridCategoryData)
+//
+//        this._homeViewData.postValue(viewData)
     }
 }

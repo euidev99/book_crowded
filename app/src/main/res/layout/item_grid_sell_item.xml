@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/sellItemImage"
             android:layout_width="120dp"
             android:layout_height="160dp"
             android:background="@color/black"

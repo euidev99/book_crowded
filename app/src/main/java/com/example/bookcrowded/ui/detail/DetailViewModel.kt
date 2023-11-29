@@ -14,7 +14,6 @@ import com.example.bookcrowded.ui.dto.SellItem
 import kotlinx.coroutines.launch
 
 class DetailViewModel : BaseViewModel() {
-    private val TAG = "DetailViewModel"
     private val _itemResult = MutableLiveData<SellItem>()
     val itemResult: LiveData<SellItem> get() = _itemResult
     private var detailRepository: BaseRepository<SellItem> = BaseRepository("SellItem", SellItem::class.java)
@@ -36,6 +35,7 @@ class DetailViewModel : BaseViewModel() {
                         _itemResult.value?.favorite = dataList[0].favorite
                     }
                 }
+
                 is RepoResult.Error -> {
                     //error or retry
                 }

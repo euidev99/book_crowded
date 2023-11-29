@@ -69,7 +69,7 @@
     <string name="posting_title_hint">제목을 입력하세요</string>
     <string name="posting_price_hint">가격을 입력하세요</string>
     <string name="posting_description_hint">내용을 입력하세요</string>
-    <string name="posting_sold">판매 중</string>
+    <string name="posting_sold">판매 완료</string>
     <string name="posting_enroll_execute">등록하기</string>
     <string name="posting_modification_execute">수정하기</string>
     <!-- ENROLL/MODIFICATION ACTIVITY END -->
