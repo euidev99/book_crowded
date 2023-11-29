@@ -26,23 +26,23 @@
     <!-- 메시지 시간 -->
 
     <TextView
-        android:id="@+id/sender"
+        android:id="@+id/me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/common_opponent"
-        android:layout_marginStart="8dp"
+        android:text="@string/common_me"
+        android:layout_marginEnd="8dp"
         android:textSize="16sp"
         android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="@id/main_text"
         app:layout_constraintBottom_toBottomOf="@id/main_text"
-        app:layout_constraintLeft_toRightOf="@id/main_text" />
+        app:layout_constraintRight_toLeftOf="@id/main_text" />
 
     <TextView
         android:id="@+id/main_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="12dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
         android:background="@drawable/chat_bubble"
         android:text="@string/chat_left_message"
         android:textColor="@android:color/white"

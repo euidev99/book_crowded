@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.bookcrowded.common.AppConst
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.common.BaseRealTimeRepository
 import com.example.bookcrowded.ui.common.BaseRepository
@@ -11,6 +12,8 @@ import com.example.bookcrowded.ui.common.BaseViewModel
 import com.example.bookcrowded.ui.common.RepoResult
 import com.example.bookcrowded.ui.dto.ChatListItem
 import com.example.bookcrowded.ui.dto.ChatMessage
+import com.example.bookcrowded.ui.dto.ChatRoomDto
+import com.example.bookcrowded.ui.dto.SellItem
 import kotlinx.coroutines.launch
 
 class ChatListViewModel : BaseViewModel() {
@@ -20,41 +23,54 @@ class ChatListViewModel : BaseViewModel() {
     private val _chatUploadResult = MutableLiveData<Boolean>()
     val chatUploadResult: LiveData<Boolean> get() = _chatUploadResult
 
-    //채팅 리스트
-    private val _chatMessages = MutableLiveData<List<ChatListItem>>()
-    val chatMessages: LiveData<List<ChatListItem>> get() = _chatMessages
+//    //채팅 리스트
+//    private val _chatMessages = MutableLiveData<List<ChatListItem>>()
+//    val chatMessages: LiveData<List<ChatListItem>> get() = _chatMessages
 
-    private val chatRepository = BaseRealTimeRepository("Chat", ChatListItem::class.java)
-
-    private val chatListIdRepository = BaseRealTimeRepository("Chat_Id", String::class.java)
+    private val chatListIdRepository = BaseRealTimeRepository(AppConst.FIREBASE.CHAT_LIST, ChatRoomDto::class.java)
     //채팅 id 목록
-    private val _chatIdList = MutableLiveData<List<String>>()
-    val chatIdList: LiveData<List<String>> get() = _chatIdList
+    private val _chatIdList = MutableLiveData<List<ChatRoomDto>>()
+    val chatIdList: LiveData<List<ChatRoomDto>> get() = _chatIdList
 
-    fun addChatList(itemId: String, seller: String) {
-        progressListener?.showProgressUI()
+    private val itemRepository = BaseRepository(AppConst.FIREBASE.SELL_ITEM, SellItem::class.java)
 
-        viewModelScope.launch {
-            when (val result = chatListIdRepository.addWithId(itemId, seller + "_" + itemId)) {
-                is RepoResult.Success -> {
-                    _chatUploadResult.postValue(result.data)
-                    progressListener?.hideProgressUI()
-                }
-
-                else -> {
-                    _chatUploadResult.postValue(false)
-                    progressListener?.hideProgressUI()
-                }
-            }
-        }
-    }
+    private val _viewDataList = MutableLiveData<List<ReceivedChatItemViewData>>()
+    val viewDataList: LiveData<List<ReceivedChatItemViewData>> get() = _viewDataList
 
     init {
         // 초기에 데이터를 가져와서 UI 초기화
         viewModelScope.launch {
-//            _chatMessages.value = chatRepository.getAll()
-//            _chatMessages.value = chatRepository.getAllWithSubId(AuthManager.userId)
-            _chatIdList.value = chatListIdRepository.getAllStartWithId("atest")
+            val receivedChatList = arrayListOf<ReceivedChatItemViewData>()
+
+            val totalChatRoomIdList = chatListIdRepository.getAll()
+            val myChatRoomIdList = arrayListOf<ChatRoomDto>()
+            for (item in totalChatRoomIdList) {
+                if (item.receiver == AuthManager.userEmail) { //내가 받은 채팅이름일 경우
+                    myChatRoomIdList.add(item)
+                }
+            }
+
+            for (myChatItem in myChatRoomIdList) {
+                when (val result = itemRepository.getDocumentsByField("id", myChatItem.itemId)) {
+                    is RepoResult.Success -> {
+                        if (result.data.isNotEmpty()) {
+                            val sellItemData = result.data[0]
+                            val viewData = ReceivedChatItemViewData(myChatItem.sender,
+                                sellItemData.title,
+                                "메세지를 받았습니다.",
+                                sellItemData.image,
+                                myChatItem.roomId,
+                                sellItemData.price)
+
+                            receivedChatList.add(viewData)
+                        }
+                    }
+                    is RepoResult.Error -> {
+                        //x
+                    }
+                }
+            }
+            _viewDataList.postValue(receivedChatList)
         }
 
         // 새로운 메시지 감지 시 UI 갱신
@@ -65,8 +81,15 @@ class ChatListViewModel : BaseViewModel() {
 //        }
     }
 
-    fun getChatIdByPosition(position: Int): String {
-        return _chatMessages.value?.get(position)?.id.toString()
+    companion object {
+        data class ReceivedChatItemViewData(
+            val senderId: String = "",
+            val bookTitle: String = "",
+            val description: String = "",
+            val image: String = "",
+            val chatRoomId: String = "",
+            val price: String = ""
+        )
     }
 
 }

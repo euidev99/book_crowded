@@ -30,23 +30,17 @@ class ChatListActivity: BaseActivity() {
         setContentView(binding.root)
 
         //챗 목록 옵저빙
-        chatListViewModel.chatMessages.observe(this) {
+        chatListViewModel.viewDataList.observe(this) {
             //완료 시 리사이클러 뷰 셋
-//            setAdapter(it)
-        }
-
-        chatListViewModel.chatIdList.observe(this) {
             setAdapter(it)
         }
+
         chatListViewModel.progressListener = this
 
-        chatListViewModel.addChatList("testChat", AuthManager.userEmail)
-
         setView()
-        chatListViewModel.addChatList("test_id3", "atest_seller_id_4")
     }
 
-    private fun setAdapter(data: List<String>) {
+    private fun setAdapter(data: List<ChatListViewModel.Companion.ReceivedChatItemViewData>) {
         binding.recyclerView.apply {
             adapter = VerticalChatListAdapter(object: VerticalChatListAdapter.OnItemClickListener {
                 override fun onClick(v: View, position: Int) {
@@ -54,9 +48,9 @@ class ChatListActivity: BaseActivity() {
                      * 버튼 클릭 시 이벤트
                      */
                     Log.d("Seki", "MainClick $position View: ${v.tag}")
-                    ChatActivity.startActivityWithChatId(context, "testChat") //chatListViewModel.getChatIdByPosition(position))
+                    val chatData = data[position]
+                    ChatActivity.startActivityWithArgument(context, chatData.chatRoomId, chatData.bookTitle, chatData.price + "원")
                 }
-
             }).build(data)
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         }

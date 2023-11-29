@@ -27,6 +27,19 @@ class BaseRealTimeRepository<T : Any>(
         }
     }
 
+    suspend fun getDocumentsByField(fieldName: String, value: Any): List<T> {
+        return try {
+            val query = databaseReference.orderByChild(fieldName).equalTo(value.toString())
+            val dataSnapshot = query.get().await()
+
+            dataSnapshot.children.mapNotNull { it.getValue(documentClass) }
+        } catch (e: Exception) {
+            // 예외 처리
+            emptyList()
+        }
+    }
+
+
     suspend fun getAllWithSubId(firstId: String): List<T> {
         return try {
             val userReference = databaseReference.child(firstId)

@@ -45,7 +45,16 @@
                     tools:text="@string/common_user_name" />
 
                 <TextView
-                    android:id="@+id/consumer_text"
+                    android:id="@+id/sender_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="보낸사람"/>
+
+                <TextView
+                    android:id="@+id/description_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

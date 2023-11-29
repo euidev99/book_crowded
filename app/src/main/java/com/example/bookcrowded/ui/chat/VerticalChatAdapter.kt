@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ItemChatLeftBinding
+import com.example.bookcrowded.databinding.ItemChatRightBinding
 import com.example.bookcrowded.ui.dto.ChatMessage
 
 /**
@@ -32,7 +35,7 @@ class VerticalChatAdapter (
         this.notifyDataSetChanged()
     }
 
-    class VerticalChatViewHolder(private val binding: ItemChatLeftBinding, private val listener: OnItemClickListener?) : RecyclerView.ViewHolder(binding.root) {
+    class VerticalChatLeftViewHolder(private val binding: ItemChatLeftBinding, private val listener: OnItemClickListener?) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ChatMessage) {
             binding.root.tag = "ChatItem"
             binding.mainText.text = item.message
@@ -40,14 +43,45 @@ class VerticalChatAdapter (
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            VerticalChatViewHolder = VerticalChatViewHolder(
-        ItemChatLeftBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            ), this.itemClickListener)
+    class VerticalChatRightViewHolder(private val binding: ItemChatRightBinding, private val listener: OnItemClickListener?) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: ChatMessage) {
+            binding.root.tag = "ChatItem"
+            binding.mainText.text = item.message
+            binding.root.setOnClickListener { listener?.onClick(binding.root, adapterPosition) }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (items.get(position).name == AuthManager.userEmail) {
+            //내가 보낸 메세지
+            return VIEW_TYPE_RIGHT
+        } else {
+            return VIEW_TYPE_LEFT
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        if (viewType == VIEW_TYPE_LEFT) {
+            return VerticalChatLeftViewHolder(
+                ItemChatLeftBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                ), itemClickListener
+            )
+        } else {
+            return VerticalChatRightViewHolder(
+                ItemChatRightBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                ), itemClickListener
+            )
+        }
+    }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as VerticalChatViewHolder).bind(items[position])
+        if (holder.itemViewType == VIEW_TYPE_LEFT) {
+            (holder as VerticalChatLeftViewHolder).bind(items[position])
+        } else {
+            (holder as VerticalChatRightViewHolder).bind(items[position])
+        }
     }
 
     override fun getItemCount(): Int = items.size

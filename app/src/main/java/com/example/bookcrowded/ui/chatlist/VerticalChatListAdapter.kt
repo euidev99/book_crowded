@@ -20,17 +20,19 @@ class VerticalChatListAdapter (
     }
 
     //메인 데이터 셋
-    private lateinit var items: List<String>
+    private lateinit var items: List<ChatListViewModel.Companion.ReceivedChatItemViewData>
 
-    fun build(i: List<String>): VerticalChatListAdapter {
+    fun build(i: List<ChatListViewModel.Companion.ReceivedChatItemViewData>): VerticalChatListAdapter {
         items = i
         return this
     }
 
     class VerticalChatListViewHolder(private val binding: ItemChatListBinding, private val listener: OnItemClickListener?) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: String) {
+        fun bind(item: ChatListViewModel.Companion.ReceivedChatItemViewData) {
             binding.root.tag = "ChatItem"
-            binding.nameText.text = item
+            binding.nameText.text = item.bookTitle
+            binding.descriptionText.text = item.description
+            binding.senderText.text = item.senderId
 //            binding.nameText.text = item.id
 //            binding.categoryText.text = item.category
 

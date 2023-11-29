@@ -29,7 +29,10 @@ class ChatActivity: BaseActivity() {
         setContentView(binding.root)
 
         chatViewModel.progressListener = this
-        intent.getStringExtra(AppConst.KEY.USER_ID)?.let { chatViewModel.setRepo(it) }
+        intent.getStringExtra(AppConst.KEY.CHAT_ID)?.let { chatViewModel.setRepo(it) }
+        intent.getStringExtra(AppConst.KEY.PRICE)?.let { binding.priceText.text = it }
+        intent.getStringExtra(AppConst.KEY.TITLE)?.let { binding.booktitleText.text = it }
+
         chatViewModel.chatResult.observe(this) { success ->
             if (success) {
                 // 전송 성공 시의 처리
@@ -71,8 +74,6 @@ class ChatActivity: BaseActivity() {
         }
     }
 
-
-
     //버튼 이벤트나 초기 이벤트 처리
     private fun setView() {
         //로그인 버튼 클릭 이벤트
@@ -104,10 +105,20 @@ class ChatActivity: BaseActivity() {
             context.startActivity(intent)
         }
 
-        fun startActivityWithChatId(context: Context, chatId: String) {
+        fun startActivityWithRoomId(context: Context, roomId: String,) {
             val intent = Intent(context, ChatActivity::class.java)
-            intent.putExtra(AppConst.KEY.SHOW_ID, chatId)
+            intent.putExtra(AppConst.KEY.CHAT_ID, roomId)
             context.startActivity(intent)
         }
+
+        fun startActivityWithArgument(context: Context, roomId: String, title: String, price: String) {
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra(AppConst.KEY.CHAT_ID, roomId)
+            intent.putExtra(AppConst.KEY.TITLE, title)
+            intent.putExtra(AppConst.KEY.PRICE, price)
+
+            context.startActivity(intent)
+        }
+
     }
 }

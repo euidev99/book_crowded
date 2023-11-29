@@ -97,18 +97,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_container"
-        app:layout_constraintBottom_toTopOf="@+id/chat_container"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" >
+        app:layout_constraintBottom_toTopOf="@+id/chat_container" />
 
-        <!-- 채팅 내용 -->
-        <LinearLayout
-            android:id="@+id/chat_list_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <!-- 채팅 아이템들이 여기에 -->
-        </LinearLayout>
-    </androidx.recyclerview.widget.RecyclerView>
+<!--        &lt;!&ndash; 채팅 내용 &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/chat_list_layout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+<!--            &lt;!&ndash; 채팅 아이템들이 여기에 &ndash;&gt;-->
+<!--        </LinearLayout>-->
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
 
     <!--  채팅 보내는 곳 -->
     <androidx.constraintlayout.widget.ConstraintLayout
