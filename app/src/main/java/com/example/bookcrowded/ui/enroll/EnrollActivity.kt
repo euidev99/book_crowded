@@ -27,8 +27,6 @@ import java.time.LocalDate
 import java.util.UUID
 
 class EnrollActivity : BaseActivity() {
-
-
     private var selectedImage: Bitmap? = null
 
     //기본 공통 세팅

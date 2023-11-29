@@ -24,6 +24,7 @@ class DetailViewModel : BaseViewModel() {
                     val dataList = result.data
                     if (dataList.isNotEmpty()) { //아이템이 있을 경우에 하나만
                         _itemResult.postValue(dataList[0])
+                        _itemResult.value?.favorite = dataList[0].favorite
                     }
                 }
                 is RepoResult.Error -> {
