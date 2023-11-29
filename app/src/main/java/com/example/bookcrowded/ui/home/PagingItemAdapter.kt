@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.bookcrowded.R
 import com.example.bookcrowded.databinding.ItemPagingBinding
 import com.example.bookcrowded.ui.dto.SellItem
 import com.example.bookcrowded.ui.search.SearchGridAdapter
@@ -52,23 +53,39 @@ class PagingItemAdapter(
             binding.mainText.text = item.title
             binding.root.setOnClickListener { listener?.onClick(binding.root, adapterPosition) }
 
-            // Firebase 스토리지의 이미지 경로 빌드
-            val imageUrl = "gs://bookbookmarket-f6266.appspot.com/image/${item.image}" // 예시 경로, 'item.adImageUrl'을 아이템의 실제 이미지 파일 이름으로 교체
+            val imageUrl = if (item.image.isNullOrEmpty()) {
+                // 디폴트 이미지 URL 또는 리소스 ID
+                R.drawable.boogi
+            } else {
+                "gs://bookbookmarket-f6266.appspot.com/image/${item.image}"
+            }
 
-            // Firebase 스토리지 참조 가져오기
-            val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl)
-
-            // 이미지 URL 가져오기 및 Glide 사용하여 로드
-            storageReference.downloadUrl.addOnSuccessListener { uri ->
+            // Firebase 스토리지 참조 또는 디폴트 이미지 로딩
+            if (item.image.isNullOrEmpty()) {
+                // 디폴트 이미지 로딩
                 Glide.with(binding.root.context)
-                    .load(uri)
+                    .load(imageUrl)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerCrop()
                     .into(binding.mainImage)
-            }.addOnFailureListener {
-                // 이미지 로드 실패 처리
-                Log.e("FirebaseImageLoad", "Error loading image", it)
+            } else {
+                // Firebase 스토리지의 이미지 로딩
+                val storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl.toString())
+                storageReference.downloadUrl.addOnSuccessListener { uri ->
+                    Glide.with(binding.root.context)
+                        .load(uri)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .centerCrop()
+                        .into(binding.mainImage)
+                }.addOnFailureListener {
+                    Glide.with(binding.root.context)
+                        .load(R.drawable.boogi)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .centerCrop()
+                        .into(binding.mainImage)
+                }
             }
         }
     }
+
 }
