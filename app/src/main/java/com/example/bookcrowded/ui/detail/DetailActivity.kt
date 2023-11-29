@@ -31,11 +31,18 @@ class DetailActivity: BaseActivity() {
             setData(it)
         }
 
+//        //아이템 로드
+//        intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
+//        setView();
+    }
+
+    override fun onResume() {
+        super.onResume()
         //아이템 로드
         intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
         setView();
-    }
 
+    }
 
     private fun setData(data: SellItem) {
         //내가 올린 아이템일 경우 옵션 활성화

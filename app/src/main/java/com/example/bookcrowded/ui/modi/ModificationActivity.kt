@@ -19,6 +19,7 @@ class ModificationActivity : BaseActivity() {
 
     private val itemRepository = BaseRepository("SellItem", SellItem::class.java)
     private var itemId: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityModificationBinding.inflate(layoutInflater)
