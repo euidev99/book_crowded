@@ -14,6 +14,7 @@ import com.example.bookcrowded.databinding.ActivityItemDetailBinding
 import com.example.bookcrowded.ui.chat.ChatActivity
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.dto.SellItem
+import com.example.bookcrowded.ui.modi.ModificationActivity
 import com.laundrycrew.delivery.order.common.CustomPopupListAdapter
 
 class DetailActivity: BaseActivity() {
@@ -31,9 +32,7 @@ class DetailActivity: BaseActivity() {
             setData(it)
         }
 
-//        //아이템 로드
-//        intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
-//        setView();
+
     }
 
     override fun onResume() {
@@ -41,7 +40,6 @@ class DetailActivity: BaseActivity() {
         //아이템 로드
         intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
         setView();
-
     }
 
     private fun setData(data: SellItem) {
@@ -116,8 +114,12 @@ class DetailActivity: BaseActivity() {
         listPopupWindow.setOnItemClickListener(AdapterView.OnItemClickListener { parent, view, position, id ->
             when (position) {
                 0 -> {
-                    //수정하기
-                    //ModificationActivity.startActivity(this)
+                    // "글 수정하기" 클릭 시
+                    val itemId = intent.getStringExtra(ITEM_ID)
+                    itemId?.let {
+                        // ModificationActivity 시작
+                        ModificationActivity.startActivityWithItemId(this, it)
+                    }
                 }
                 1 -> {
 //                    //삭제하기
