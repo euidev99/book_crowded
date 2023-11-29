@@ -107,7 +107,7 @@
         app:layout_constraintTop_toBottomOf="@id/camera_container">
 
         <EditText
-            android:id="@+id/edit_title"
+            android:id="@+id/editTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="제목을 입력하세요" />
@@ -130,14 +130,14 @@
 
 
             <EditText
-                android:id="@+id/edit_price"
+                android:id="@+id/editPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:hint="가격" />
 
             <Switch
-                android:id="@+id/edit_Switch"
+                android:id="@+id/editSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="30dp"
@@ -147,7 +147,7 @@
 
         <!-- description -->
         <EditText
-            android:id="@+id/edit_description"
+            android:id="@+id/editDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="설명을 입력하세요"
