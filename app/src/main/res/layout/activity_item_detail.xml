@@ -110,7 +110,7 @@
                     android:layout_marginTop="15dp"
                     android:textColor="@color/primary"
                     android:textSize="16sp"
-                    tools:text="판매 여부" />
+                    tools:text="@string/common_item_sold" />
 
                 <TextView
                     android:id="@+id/item_name_text"
@@ -127,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="판매자"
+                    android:text="@string/common_item_seller"
                     android:textSize="13sp" />
 
                 <TextView
@@ -135,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="업데이트 날짜"
+                    android:text="@string/common_item_upload"
                     android:textSize="12sp" />
 
                 <TextView
@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:textSize="14sp"
-                    tools:text="아이템 샘플 설명 설명 설명" />
+                    tools:text="@string/common_item_description" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -181,7 +181,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/won"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="오천만원" />
+            tools:text="@string/common_item_price" />
 
         <ImageButton
             android:id="@+id/chatButton"
@@ -190,9 +190,22 @@
             android:layout_marginRight="20dp"
             android:background="#00FFFFFF"
             android:scaleType="fitCenter"
-            android:src="@drawable/chat"
+            android:src="@drawable/round_button_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail_chat"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/chatButton"
+            app:layout_constraintEnd_toEndOf="@id/chatButton"
+            app:layout_constraintStart_toStartOf="@id/chatButton"
+            app:layout_constraintTop_toTopOf="@id/chatButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

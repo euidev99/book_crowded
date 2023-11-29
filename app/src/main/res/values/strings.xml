@@ -6,20 +6,28 @@
     <string name="common_cancel">취소</string>
     <string name="common_exit">종료</string>
     <string name="common_save">저장</string>
-    <string name="common_email">이메일</string>
-    <string name="common_name">이름</string>
-    <string name="common_passwd">비밀번호</string>
-    <string name="common_birth">생년월일</string>
-    <string name="common_id">아이디</string>
+
+    <!-- user Info -->
+    <string name="common_user_email">이메일</string>
+    <string name="common_user_name">이름</string>
+    <string name="common_user_passwd">비밀번호</string>
+    <string name="common_user_birth">생년월일</string>
+
+    <!-- item Info -->
     <string name="common_item_name">상품명</string>
-    <string name="common_seller">판매자</string>
-    <string name="common_price">가격</string>
+    <string name="common_item_description">상품 설명</string>
+    <string name="common_item_price">가격</string>
+    <string name="common_item_upload">업데이트 날짜</string>
+    <string name="common_item_seller">판매자</string>
+    <string name="common_item_sold">판매 상태</string>
     <!-- COMMON STRING END -->
+
 
     <!-- SPLASH ACTIVITY STR -->
     <string name="splash_title">북적북적 마켓</string>
     <string name="splash_loading">로딩중</string>
     <!-- SPLASH ACTIVITY END -->
+
 
     <!-- REGISTER ACTIVITY STR -->
     <string name="register_email_hint">ex. aaa@naver.com</string>
@@ -27,6 +35,7 @@
     <string name="register_duplicate_check">중복 확인</string>
     <string name="register_execute">가입하기</string>
     <!-- REGISTER ACTIVITY END -->
+
 
     <!-- LOGIN ACTIVITY STR -->
     <string name="login_email">이메일</string>
@@ -36,29 +45,30 @@
     <string name="login_execute">로그인</string>
     <!-- LOGIN ACTIVITY END -->
 
+
     <!-- DETAIL ACTIVITY STR -->
-    <string name="detail_title">아이템 상세보기</string>
-    <string name="detail_main_image">메인 이미지</string>
     <string name="detail_chat">채팅하기</string>
     <string name="detail_edit">수정하기</string>
-    <string name="detail_send_message">메세지 보내기</string>
-    <string name="detail_item_description">아이템 설명</string>
+    <string name="detail_delete">삭제하기</string>
     <!-- DETAIL ACTIVITY END -->
+
 
     <!-- SEARCH ACTIVITY STR -->
     <string name="search_title">아이템 목록</string>
-    <string name="search_sold_list">판매완료 상품 보기</string>
-    <string name="search_unsold_list">판매 안된 상품 보기</string>
+    <string name="search_sold_list">판매 완료 상품</string>
+    <string name="search_unsold_list">판매 안된 상품</string>
     <string name="search_show_all">전체 보기</string>
-    <string name="search_add_item">글 쓰기</string>
     <!-- SEARCH ACTIVITY END -->
 
-    <!-- MAIN NAV STR -->
-    <string name="main_title">메인</string>
-    <string name="main_search">검색</string>
-    <string name="main_love">찜</string>
-    <string name="main_my">마이 페이지</string>
-    <!-- MAIN NAV END -->
+    <!-- MODIFICATION ACTIVITY STR -->
+    <string name="modification_title">내 물건 팔기</string>
+    <string name="modification_addPhoto">사진 업로드</string>
+    <string name="modification_title_hint">제목을 입력하세요</string>
+    <string name="modification_price_hint">가격을 입력하세요</string>
+    <string name="modification_description_hint">내용을 입력하세요</string>
+    <string name="modification_execute">수정하기</string>
+    <!-- MODIFICATION ACTIVITY END -->
+
 
     <!-- MY PAGE STR -->
     <string name="mypage_profile">Profile</string>
@@ -77,14 +87,22 @@
     <string name="mypage_logout_button">logout</string>
     <!-- MY PAGE END -->
 
+
     <!-- CHAT STR -->
-    <string name="mypage_chatting">채팅</string>
-    <string name="mypage_bookname">명품자바 프로그래밍</string>
-    <string name="mypage_price">10000원</string>
-    <string name="mypage_message">메세지 입력</string>
-    <string name="mypage_send">보내기</string>
+    <string name="chat_item_title">명품 자바 프로그래밍</string>
+    <string name="chat_item_price">10000원</string>
+    <string name="chat_message">메세지 입력</string>
     <!-- CHAT END -->
 
-    <!-- CHAT LIST -->
-    <string name="chat_title">판매글 제목</string>
+    <!-- CHAT LIST STR -->
+    <string name="chatlist_title">판매글 제목</string>
+    <!-- CHAT LIST END -->
+
+
+    <!-- MAIN NAV STR -->
+    <string name="main_title">메인</string>
+    <string name="main_search">검색</string>
+    <string name="main_love">찜</string>
+    <string name="main_my">마이 페이지</string>
+    <!-- MAIN NAV END -->
 </resources>
