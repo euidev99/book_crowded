@@ -67,22 +67,24 @@ class DetailActivity: BaseActivity() {
         binding.itemPriceText.text = "₩ " + data.price
 
 
-
         //채팅 화면으로 이동하기 전에, 방 정보 생성
         binding.chatButton.setOnClickListener {
-            val roomId = data.id + "_chat"
+
+            val modifiedRoomId = AuthManager.userEmail.replace(".", "_") + data.id + "_chat"
             val itemId = data.id
             val sender = AuthManager.userEmail
             val receiver = data.sellerEmail
 
-            mViewModel.addChatListWithInfo(roomId, itemId, sender, receiver)
+            mViewModel.addChatListWithInfo(modifiedRoomId, itemId, sender, receiver)
         }
 
         //채팅방 정보 생성 이후에, 채팅방을 실제로 생성
         mViewModel.adChatRoomResult.observe(this) {
             //개설된 채팅방으로 이동
             if (it) {
-                ChatActivity.startActivityWithArgument(this, data.id + "_chat", data.title, data.price + "원")
+
+                val modifiedRoomId = AuthManager.userEmail.replace(".", "_") + data.id + "_chat"
+                ChatActivity.startActivityWithArgument(this, modifiedRoomId, data.title, data.price + "원")
             } else {
                 //방 개설 실패
             }
