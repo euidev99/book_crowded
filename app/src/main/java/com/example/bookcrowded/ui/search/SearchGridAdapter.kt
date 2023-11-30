@@ -1,7 +1,6 @@
 package com.example.bookcrowded.ui.search
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,7 @@ class SearchGridAdapter (
         fun bind(item: SellItem) {
             binding.titleText.text = item.title
             binding.titleText.isSelected = true;
-            binding.priceText.text = item.price
+            binding.priceText.text = formatPrice(item.price)
 
             if (item.sold) {
                 binding.soldoutText.text = "판매 완료"
@@ -45,6 +44,16 @@ class SearchGridAdapter (
             }
 
             binding.root.setOnClickListener { listener?.onClick(binding.root, adapterPosition) }
+        }
+
+        // 새로운 가격 포맷팅 함수
+        private fun formatPrice(price: String): String {
+            val priceInt = price.toIntOrNull()
+            return if (priceInt != null) {
+                "₩${String.format("%,d", priceInt)}"
+            } else {
+                price // 가격이 숫자가 아닌 경우 그대로 반환
+            }
         }
     }
 

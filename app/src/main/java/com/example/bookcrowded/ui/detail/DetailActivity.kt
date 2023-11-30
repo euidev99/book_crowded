@@ -1,13 +1,14 @@
 package com.example.bookcrowded.ui.detail
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListPopupWindow
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -175,8 +176,12 @@ class DetailActivity: BaseActivity() {
                     }
                 }
                 1 -> {
-//                    //삭제하기
-//                    ModificationActivity.startActivity(this)
+                    // "글 삭제하기" 클릭 시
+                    val itemId = intent.getStringExtra(ITEM_ID)
+                    itemId?.let {
+                        // 확인 대화상자 표시
+                        showDeleteConfirmationDialog(it)
+                    }
                 }
             }
 
@@ -184,6 +189,25 @@ class DetailActivity: BaseActivity() {
         })
 
         listPopupWindow.show()
+    }
+    private fun showDeleteConfirmationDialog(itemId: String) {
+        AlertDialog.Builder(this@DetailActivity)
+            .setTitle("삭제 확인")
+            .setMessage("이 게시물을 삭제하시겠습니까?")
+            .setPositiveButton("예") { dialog, which ->
+                // 삭제 함수 호출 후 성공 여부 확인
+                val deletionSuccessful = mViewModel.deleteSellItem(itemId)
+                if (deletionSuccessful) {
+                    finish() // 성공 시 현재 화면 종료
+                } else {
+                    // 실패 시 사용자에게 피드백 제공
+                    Toast.makeText(this@DetailActivity, "게시물 삭제에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("아니오") { dialog, which ->
+                // 아무 작업도 수행하지 않거나 필요한 경우 피드백을 제공
+            }
+            .show()
     }
 
     override fun onDestroy() {

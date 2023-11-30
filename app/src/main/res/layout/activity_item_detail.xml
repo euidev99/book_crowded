@@ -88,6 +88,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:background="#00FFFFFF"
+                android:elevation="20dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/favorite"
                 app:layout_constraintEnd_toEndOf="@+id/mainImage"
