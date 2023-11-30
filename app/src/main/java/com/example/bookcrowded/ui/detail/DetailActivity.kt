@@ -36,8 +36,6 @@ class DetailActivity: BaseActivity() {
             setData(it)
         }
 
-
-
         //아이템 로드
         intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
         setView();
@@ -95,7 +93,7 @@ class DetailActivity: BaseActivity() {
 
         // 책 이미지 URL 구성
         val imageUrl = if (data.image.isNullOrEmpty()) {
-            R.drawable.no_photo6 // 디폴트 이미지 리소스 ID
+            R.drawable.no_photo8 // 디폴트 이미지 리소스 ID
         } else {
             "gs://bookbookmarket-f6266.appspot.com/image/${data.image}"
         }
@@ -117,7 +115,7 @@ class DetailActivity: BaseActivity() {
                     .into(binding.mainImage)
             }.addOnFailureListener {
                 Glide.with(this)
-                    .load(R.drawable.no_photo6)
+                    .load(R.drawable.no_photo8)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerCrop()
                     .into(binding.mainImage)

@@ -12,7 +12,6 @@ import android.widget.AdapterView
 import android.widget.ListPopupWindow
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookcrowded.databinding.FragmentSearchBinding
 import com.example.bookcrowded.ui.common.BaseFragment
 import com.example.bookcrowded.ui.detail.DetailActivity
@@ -62,7 +61,12 @@ class SearchFragment : BaseFragment() {
         popupList.add("판매 완료 보기")
         popupList.add("안팔린 상품 보기")
         val adapter = CustomPopupListAdapter(requireContext(), popupList)
-        val listPopupWindow = ListPopupWindow(requireContext(), null, 0, com.example.bookcrowded.R.style.CustomListPopupWindowStyle)
+        val listPopupWindow = ListPopupWindow(
+            requireContext(),
+            null,
+            0,
+            com.example.bookcrowded.R.style.CustomListPopupWindowStyle
+        )
 
         listPopupWindow.setAdapter(adapter)
         listPopupWindow.anchorView = anchorView
@@ -74,9 +78,11 @@ class SearchFragment : BaseFragment() {
                 0 -> {
                     mViewModel.getItemList()
                 }
+
                 1 -> {
                     mViewModel.getSoldItemList(true)
                 }
+
                 2 -> {
                     mViewModel.getSoldItemList(false)
                 }
@@ -103,7 +109,6 @@ class SearchFragment : BaseFragment() {
                     items = itemList,
                     itemClickListener = object : SearchGridAdapter.OnItemClickListener {
                         override fun onClick(v: View, position: Int) {
-                            //ItemClick
                             DetailActivity.startActivityWithItemId(
                                 context,
                                 mViewModel.getItemIdByPosition(position)

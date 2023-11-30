@@ -62,12 +62,12 @@ class DetailViewModel : BaseViewModel() {
             } else {
                 when (val result = chatRoomRepository.add(chatRoomDto)) {
                     is RepoResult.Success -> {
-                    _adChatRoomResult.postValue(result.data)
+                        _adChatRoomResult.postValue(result.data)
                         progressListener?.hideProgressUI()
                     }
 
                     else -> {
-                    _adChatRoomResult.postValue(false)
+                        _adChatRoomResult.postValue(false)
                         progressListener?.hideProgressUI()
                     }
                 }
