@@ -6,13 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.bookcrowded.common.AuthManager
@@ -38,9 +36,7 @@ class EnrollActivity : BaseActivity() {
     private val itemRepository = BaseRepository("SellItem" , SellItem::class.java)
 
     private val firestore = FirebaseFirestore.getInstance()
-    private val itemsCollection = firestore.collection("SellItem")
-
-    @RequiresApi(Build.VERSION_CODES.O)
+    private val itemsCollection = firestore.collection("SellItem") //
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityEnrollmentBinding.inflate(layoutInflater)
@@ -48,16 +44,14 @@ class EnrollActivity : BaseActivity() {
 
         // editSwitch 초기 상태를 true로 설정 (판매 중 상태)
         binding.editSwitch.isChecked = true
-        binding.editSwitch.text = "판매 중"
+        binding.editSwitch.text = "판매 완료"
 
         // 스위치 상태 변경 리스너 추가
         binding.editSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // 판매 중
-                binding.editSwitch.text = "판매 중"
-            } else {
-                // 판매 완료
                 binding.editSwitch.text = "판매 완료"
+            } else {
+                binding.editSwitch.text = "판매 중"
             }
         }
 
@@ -170,10 +164,8 @@ class EnrollActivity : BaseActivity() {
         // 스위치 상태 변경 리스너 추가
         binding.editSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // 판매 중
                 // 필요한 동작 수행
             } else {
-                // 판매 완료
                 // 필요한 동작 수행
             }
         }
@@ -214,4 +206,5 @@ class EnrollActivity : BaseActivity() {
             }
         }
     }
+
 }

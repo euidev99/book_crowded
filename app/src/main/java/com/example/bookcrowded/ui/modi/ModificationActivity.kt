@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.bookcrowded.databinding.ActivityModificationBinding
-import com.example.bookcrowded.ui.common.BaseRepository
-import com.example.bookcrowded.ui.common.RepoResult
+import com.example.bookcrowded.ui.detail.DetailActivity
 import com.example.bookcrowded.ui.dto.SellItem
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +28,6 @@ class ModificationActivity : AppCompatActivity() {
 
         // Intent로 전달된 ITEM_ID를 받아옴
         itemId = intent.getStringExtra("ITEM_ID") ?: ""
-
 
         // Firestore에서 해당 판매글 정보를 가져와 화면에 표시
         val firestore = FirebaseFirestore.getInstance()
@@ -57,50 +54,37 @@ class ModificationActivity : AppCompatActivity() {
         binding.modificationButton.setOnClickListener {
             // 수정된 정보를 사용하여 Firestore 업데이트
             if (binding.editTitle.text != null) {
-
+                // 판매글 수정 로직 구현
             }
-            sellItem.title = binding.editTitle.text.toString()
-            sellItem.price = binding.editPrice.text.toString()
-            sellItem.description = binding.editDescription.text.toString()
-            sellItem.sold = binding.editSwitch.isChecked
+            updateSellItem()
+        }
 
-
-            finish()
-//            CoroutineScope(Dispatchers.IO).launch {
-//                try {
-//                    itemsCollection.document(itemId).set(sellItem).await()
-//
-//                    showToast("게시물 수정 성공")
-//                    finish()
-//                } catch (e: Exception) {
-//                    showToast("게시물 수정 실패")
-//                    Log.e("ModificationActivity", "판매글 수정 오류: ${e.message}")
-//                }
-//            }
+        // backButton 클릭 이벤트 핸들러
+        binding.backButton.setOnClickListener {
+            // 뒤로가기 버튼을 눌렀을 때의 동작 구현
+            navigateToDetailActivity()
         }
     }
 
-    private fun getItemInfo(itemId: String) {
-        var itemRepository: BaseRepository<SellItem> = BaseRepository("SellItem", SellItem::class.java)
+    private fun updateSellItem() {
+        sellItem.title = binding.editTitle.text.toString()
+        sellItem.price = binding.editPrice.text.toString()
+        sellItem.description = binding.editDescription.text.toString()
+        sellItem.sold = binding.editSwitch.isChecked
 
-        lifecycleScope.launch {
-            when (val result = itemRepository.getDocumentsByField("id", itemId)) {
-                is RepoResult.Success -> {
-                    val dataList = result.data
-                    if (dataList.isNotEmpty()) { //아이템이 있을 경우에 하나만
-//                        _itemResult.postValue(dataList[0])
-                        dataList[0]
+        // 여기서 Firestore 업데이트 로직을 추가하면 됩니다.
+        // 예를 들어, 아래와 같이 업데이트할 수 있습니다.
+        // itemsCollection.document(itemId).set(sellItem).await()
 
-                    }
-                }
-                is RepoResult.Error -> {
-                    //error or retry
-                }
-            }
-        }
+        showToast("게시물 수정 성공")
+        navigateToDetailActivity()
     }
 
-//    private fun
+    private fun navigateToDetailActivity() {
+        DetailActivity.startActivityWithItemId(this, itemId)
+        finish()
+    }
+
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

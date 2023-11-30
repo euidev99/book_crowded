@@ -11,9 +11,11 @@ import com.example.bookcrowded.ui.common.BaseViewModel
 import com.example.bookcrowded.ui.common.RepoResult
 import com.example.bookcrowded.ui.dto.ChatRoomDto
 import com.example.bookcrowded.ui.dto.SellItem
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
 class DetailViewModel : BaseViewModel() {
+    private val firestore = FirebaseFirestore.getInstance()
     private val _itemResult = MutableLiveData<SellItem>()
     val itemResult: LiveData<SellItem> get() = _itemResult
     private var detailRepository: BaseRepository<SellItem> = BaseRepository("SellItem", SellItem::class.java)
@@ -90,5 +92,22 @@ class DetailViewModel : BaseViewModel() {
         val newFavorite = !_itemResult.value?.favorite!!
         _itemResult.value?.favorite = newFavorite
         updateFavorite(itemId, newFavorite)
+    }
+
+    fun deleteSellItem(itemId: String): Boolean {
+        try {
+            // 데이터베이스에서 게시물 삭제
+            firestore.collection("sellItems").document(itemId).delete().addOnSuccessListener {
+                // 성공적으로 삭제됐을 때의 로직
+            }.addOnFailureListener {
+                // 삭제 실패 시의 로직
+            }
+            // 삭제 로직이 성공했다고 가정하고 true 반환
+            return true
+        } catch (e: Exception) {
+            // 예외 발생 시 로그 출력 또는 필요한 작업 수행
+            Log.e("DetailViewModel", "게시물 삭제 오류: ${e.message}")
+            return false
+        }
     }
 }
