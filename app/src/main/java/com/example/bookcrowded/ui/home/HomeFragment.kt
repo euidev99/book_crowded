@@ -33,10 +33,9 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        //데이터 옵저빙
-        homeViewModel.publicHomeData.observe(viewLifecycleOwner) { setAdapter(it) }
+        homeViewModel.publicHomeData.observe(viewLifecycleOwner) { setAdapter(it) } //데이터 옵저빙
         homeViewModel.getItemList()
-//        homeViewModel.getAllCategory()
+        //homeViewModel.getAllCategory()
         //homeViewModel.getAllUsers()
     }
 
@@ -44,18 +43,16 @@ class HomeFragment : BaseFragment() {
         binding.recycler.apply {
             adapter = HomeMainAdapter(object: OnRecyclerViewItemClickListener {
                 override fun onClick(v: View, position: Int) {
-                    /**
-                     * 클릭 시 이벤트
-                     */
                     Log.d("Seki", "MainClick $position View: ${v.tag}")
                 }
 
                 override fun onSubItemClick(v: View, position: Int) {
                     Log.d("Seki", "SubListClick $position View: ${v.tag}")
-                    TestActivity.startActivity(context)
+                    //TestActivity.startActivity(context)
                 }
 
             }).build(data.itemData)
+
             layoutManager = LinearLayoutManager(this@HomeFragment.context, LinearLayoutManager.VERTICAL, false)
         }
     }

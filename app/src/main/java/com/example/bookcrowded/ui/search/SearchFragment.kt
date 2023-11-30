@@ -12,7 +12,6 @@ import android.widget.AdapterView
 import android.widget.ListPopupWindow
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookcrowded.databinding.FragmentSearchBinding
 import com.example.bookcrowded.ui.common.BaseFragment
 import com.example.bookcrowded.ui.detail.DetailActivity
@@ -103,7 +102,6 @@ class SearchFragment : BaseFragment() {
                     items = itemList,
                     itemClickListener = object : SearchGridAdapter.OnItemClickListener {
                         override fun onClick(v: View, position: Int) {
-                            //ItemClick
                             DetailActivity.startActivityWithItemId(
                                 context,
                                 mViewModel.getItemIdByPosition(position)

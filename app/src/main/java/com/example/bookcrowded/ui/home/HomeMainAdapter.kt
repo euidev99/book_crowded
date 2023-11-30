@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewpager2.widget.ViewPager2
@@ -27,7 +26,7 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
     companion object {
         const val INVALIDATE = -1
         const val COMMON_PAGING_SECTION = 0 // 최상단 페이징 섹션
-        const val COMMON_GRID_SECTION = 1 // 미사용
+        const val COMMON_GRID_SECTION = 1 // 그리드 아이템 섹션
     }
 
     //메인 데이터 셋
@@ -62,6 +61,7 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
                     this.itemClickListener
                 )
             }
+
             COMMON_GRID_SECTION -> {
                 GridViewHolder(
                     ItemGridSectionHolderBinding.inflate(
@@ -102,7 +102,6 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
 
         fun bind(item: HomeItemCategory.PagingCategoryData) {
             with(binding) {
-                this.root.tag = "Trending"
                 titleText.text = item.title
                 //어댑터 혹은 셀 세팅
                 holderPager.apply {
@@ -112,14 +111,14 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
                             listener.onSubItemClick(v, position)
                         }
                     })
+
                     orientation = ViewPager2.ORIENTATION_HORIZONTAL
                 }
 
                 TabLayoutMediator(
                     pagingTab,
                     holderPager
-                )
-                { tab, position ->
+                ) { tab, position ->
                     holderPager.currentItem = tab.position
                 }.attach()
             }
@@ -137,7 +136,6 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
     ) : ViewHolder(binding.root) {
         fun bind(item: HomeItemCategory.GridCategoryData) {
             with(binding) {
-                binding.root.tag = "grid"
                 recyclerGrid.apply {
                     adapter = GridItemAdapter(
                         items = item.itemArrayList,
@@ -147,6 +145,7 @@ class HomeMainAdapter(private var itemClickListener: OnRecyclerViewItemClickList
                             }
                         }
                     )
+
                     layoutManager = GridLayoutManager(context, 3) // 3개의 열을 가진 그리드 레이아웃을 사용
                 }
             }

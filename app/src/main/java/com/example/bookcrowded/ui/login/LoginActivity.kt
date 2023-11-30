@@ -68,6 +68,10 @@ class LoginActivity : BaseActivity() {
             loginViewModel.logIn(email, passwd)
         }
 
+        binding.loginBackButton.setOnClickListener {
+            finish()
+        }
+
     }
 
     override fun onDestroy() {
