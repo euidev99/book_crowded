@@ -42,18 +42,21 @@ class EnrollActivity : BaseActivity() {
         _binding = ActivityEnrollmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // editSwitch 초기 상태를 true로 설정 (판매 중 상태)
-        binding.editSwitch.isChecked = false
-        binding.editSwitch.text = "판매 완료"
+        // 항상 "판매 중"으로 설정
+        val isSold = false
 
-        // 스위치 상태 변경 리스너 추가
-        binding.editSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                binding.editSwitch.text = "판매 완료"
-            } else {
-                binding.editSwitch.text = "판매 중"
-            }
-        }
+//        // editSwitch 초기 상태를 false로 설정 (판매 중 상태)
+//        binding.editSwitch.isChecked = false
+//        binding.editSwitch.text = "판매 완료"
+//
+//        // 스위치 상태 변경 리스너 추가
+//        binding.editSwitch.setOnCheckedChangeListener { _, isChecked ->
+//            if (isChecked) {
+//                binding.editSwitch.text = "판매 완료"
+//            } else {
+//                binding.editSwitch.text = "판매 중"
+//            }
+//        }
 
         binding.enrollmentButton.setOnClickListener {
 
@@ -65,7 +68,7 @@ class EnrollActivity : BaseActivity() {
             val itemPrice = binding.editPrice.text.toString()
             val userEmail = AuthManager.userEmail // 사용자 이메일은 로그인 정보에서 가져온다고 가정
             val itemDescription = binding.editDescription.text.toString()
-            val isSold = binding.editSwitch.isChecked
+//            val isSold = binding.editSwitch.isChecked
 
             // 이미지를 업로드하지 않았다면 빈 문자열로 설정
             val imageUrl = ""
@@ -161,14 +164,14 @@ class EnrollActivity : BaseActivity() {
             finish()
         }
 
-        // 스위치 상태 변경 리스너 추가
-        binding.editSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                // 필요한 동작 수행
-            } else {
-                // 필요한 동작 수행
-            }
-        }
+//        // 스위치 상태 변경 리스너 추가
+//        binding.editSwitch.setOnCheckedChangeListener { _, isChecked ->
+//            if (isChecked) {
+//                // 필요한 동작 수행
+//            } else {
+//                // 필요한 동작 수행
+//            }
+//        }
 
 
     }

@@ -3,30 +3,22 @@ package com.example.bookcrowded.ui.image
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.databinding.DataBindingUtil.setContentView
 import com.bumptech.glide.Glide
-import com.example.bookcrowded.R
 import com.example.bookcrowded.common.AppConst
 import com.example.bookcrowded.common.AuthManager
-import com.example.bookcrowded.common.AuthManager.userEmail
-import com.example.bookcrowded.databinding.ActivityEnrollmentBinding
 import com.example.bookcrowded.databinding.ActivityImageUpBinding
-import com.example.bookcrowded.ui.chatlist.ChatListActivity
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.dto.SellItem
 import com.google.firebase.Firebase
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import java.time.LocalDate
 import java.util.UUID
 
@@ -66,6 +58,12 @@ class ImageUpActivity : BaseActivity() {
     }
 
     private fun setView() {
+
+        //backButton으로 디테일 화면 종료
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+
         binding.AddPhotoButton.setOnClickListener {
             getContent.launch("image/*")
         }
