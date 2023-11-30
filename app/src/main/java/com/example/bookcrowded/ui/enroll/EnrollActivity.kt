@@ -43,7 +43,7 @@ class EnrollActivity : BaseActivity() {
         setContentView(binding.root)
 
         // editSwitch 초기 상태를 true로 설정 (판매 중 상태)
-        binding.editSwitch.isChecked = true
+        binding.editSwitch.isChecked = false
         binding.editSwitch.text = "판매 완료"
 
         // 스위치 상태 변경 리스너 추가
