@@ -33,6 +33,7 @@ class BaseRepository<T: Any>(
 
     suspend fun getAllDocuments(): RepoResult<List<T>> = withContext(Dispatchers.IO) {
         try {
+            Log.d("Repository", "Fetching all documents from: $collectionName")
             val querySnapshot = db.collection(collectionName).get().await()
             val dataList = querySnapshot.toObjects(documentClass)
             RepoResult.Success(dataList)
@@ -89,6 +90,7 @@ class BaseRepository<T: Any>(
 
     suspend fun getDocumentsByField(fieldName: String, value: Any): RepoResult<List<T>> = withContext(Dispatchers.IO) {
         try {
+            Log.d("Repository", "Fetching documents by field: $fieldName = $value")
             val querySnapshot = collectionReference.whereEqualTo(fieldName, value).get().await()
             val dataList = querySnapshot.toObjects(documentClass)
             RepoResult.Success(dataList)
