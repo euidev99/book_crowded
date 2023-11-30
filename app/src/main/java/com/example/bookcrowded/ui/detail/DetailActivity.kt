@@ -38,12 +38,14 @@ class DetailActivity: BaseActivity() {
         }
 
         //아이템 로드
-        intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
+//        intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
         setView();
     }
 
     override fun onResume() {
         super.onResume()
+        //아이템 로드
+        intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
     }
 
     private fun setData(data: SellItem) {

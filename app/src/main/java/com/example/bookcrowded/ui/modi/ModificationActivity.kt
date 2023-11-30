@@ -4,30 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.bookcrowded.common.AppConst
-import com.example.bookcrowded.databinding.ActivityImageUpBinding
 import com.example.bookcrowded.databinding.ActivityModificationBinding
 import com.example.bookcrowded.ui.common.BaseActivity
-import com.example.bookcrowded.ui.common.BaseRepository
-import com.example.bookcrowded.ui.common.RepoResult
-import com.example.bookcrowded.ui.detail.DetailActivity
-import com.example.bookcrowded.ui.detail.DetailViewModel
 import com.example.bookcrowded.ui.dto.SellItem
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.storage
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 class ModificationActivity : BaseActivity() {
 
@@ -125,6 +109,12 @@ class ModificationActivity : BaseActivity() {
     }
 
     private fun setView() {
+
+        //backButton으로 디테일 화면 종료
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+
         binding.AddPhotoButton.setOnClickListener {
             getContent.launch("image/*")
         }
