@@ -31,6 +31,9 @@ class MyFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         //My 페이지 관련 세팅
         setView()
+
+        // 사용자 이메일 표시
+        displayUserEmail()
     }
 
 //    private fun setView() {
@@ -38,6 +41,10 @@ class MyFragment : BaseFragment() {
 //            context?.let { it1 -> ChatListActivity.startActivity(it1) }
 //        }
 //    }
+
+    private fun displayUserEmail() {
+        binding.emailText.text = AuthManager.userEmail
+    }
 
     private fun setView() {
         binding.logoutButton.setOnClickListener {
