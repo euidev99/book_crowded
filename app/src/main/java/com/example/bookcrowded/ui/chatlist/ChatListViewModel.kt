@@ -39,6 +39,7 @@ class ChatListViewModel : BaseViewModel() {
 
     init {
         // 초기에 데이터를 가져와서 UI 초기화
+        progressListener?.showProgressUI()
         viewModelScope.launch {
             val receivedChatList = arrayListOf<ReceivedChatItemViewData>()
 
@@ -64,9 +65,11 @@ class ChatListViewModel : BaseViewModel() {
 
                             receivedChatList.add(viewData)
                         }
+                        progressListener?.hideProgressUI()
                     }
                     is RepoResult.Error -> {
                         //x
+                        progressListener?.hideProgressUI()
                     }
                 }
             }

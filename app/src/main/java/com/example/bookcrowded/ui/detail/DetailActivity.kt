@@ -27,6 +27,13 @@ class DetailActivity: BaseActivity() {
     private val binding get() = _binding!!
     private val mViewModel: DetailViewModel by viewModels()
 
+    private var modifiedRoomId = "" //AuthManager.userEmail.replace(".", "_") + data.id + "_chat"
+    private var itemId = "" //data.id
+    private var sender = ""//AuthManager.userEmail
+    private var receiver = ""// data.sellerEmail
+    private var title = ""//
+    private var price = ""//
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityItemDetailBinding.inflate(layoutInflater)
@@ -39,12 +46,12 @@ class DetailActivity: BaseActivity() {
 
         //아이템 로드
 //        intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
+//        intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
         setView();
     }
 
     override fun onResume() {
         super.onResume()
-        //아이템 로드
         intent.getStringExtra(ITEM_ID)?.let { mViewModel.getSellItemById(it) }
     }
 
@@ -71,28 +78,13 @@ class DetailActivity: BaseActivity() {
         binding.itemPriceText.text = "₩ " + data.price
 
 
-        //채팅 화면으로 이동하기 전에, 방 정보 생성
-        binding.chatButton.setOnClickListener {
+        modifiedRoomId = AuthManager.userEmail.replace(".", "_") + data.id + "_chat"
+        itemId = data.id
+        sender = AuthManager.userEmail
+        receiver = data.sellerEmail
+        title = data.title
+        price = data.price
 
-            val modifiedRoomId = AuthManager.userEmail.replace(".", "_") + data.id + "_chat"
-            val itemId = data.id
-            val sender = AuthManager.userEmail
-            val receiver = data.sellerEmail
-
-            mViewModel.addChatListWithInfo(modifiedRoomId, itemId, sender, receiver)
-        }
-
-        //채팅방 정보 생성 이후에, 채팅방을 실제로 생성
-        mViewModel.adChatRoomResult.observe(this) {
-            //개설된 채팅방으로 이동
-            if (it) {
-
-                val modifiedRoomId = AuthManager.userEmail.replace(".", "_") + data.id + "_chat"
-                ChatActivity.startActivityWithArgument(this, modifiedRoomId, data.title, data.price + "원")
-            } else {
-                //방 개설 실패
-            }
-        }
 
         // 책 이미지 URL 구성
         val imageUrl = if (data.image.isNullOrEmpty()) {
@@ -127,6 +119,22 @@ class DetailActivity: BaseActivity() {
     }
 
     private fun setView() {
+        //채팅 화면으로 이동하기 전에, 방 정보 생성
+        binding.chatButton.setOnClickListener { //
+            mViewModel.addChatListWithInfo(modifiedRoomId, itemId, sender, receiver)
+        }
+
+        //채팅방 정보 생성 이후에, 채팅방을 실제로 생성
+        mViewModel.adChatRoomResult.observe(this) {
+            //개설된 채팅방으로 이동
+            if (it) {
+                val modifiedRoomId = AuthManager.userEmail.replace(".", "_") + itemId + "_chat"
+                ChatActivity.startActivityWithArgument(this, modifiedRoomId, title, price + "원")
+            } else {
+                //방 개설 실패
+            }
+        }
+
         binding.moreButton.setOnClickListener {
             showCustomPopupListView(it)
         }

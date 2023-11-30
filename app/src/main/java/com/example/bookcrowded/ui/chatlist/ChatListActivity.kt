@@ -41,6 +41,12 @@ class ChatListActivity: BaseActivity() {
     }
 
     private fun setAdapter(data: List<ChatListViewModel.Companion.ReceivedChatItemViewData>) {
+        if (data.isEmpty()) {
+            binding.noneText.visibility = View.VISIBLE
+        } else {
+            binding.noneText.visibility = View.GONE
+        }
+
         binding.recyclerView.apply {
             adapter = VerticalChatListAdapter(object: VerticalChatListAdapter.OnItemClickListener {
                 override fun onClick(v: View, position: Int) {
@@ -57,6 +63,8 @@ class ChatListActivity: BaseActivity() {
     }
 
     private fun setView(){
+
+        binding.noneText.visibility = View.VISIBLE
         //뒤로가기 버튼 클릭 이벤트
         binding.backButton.setOnClickListener {
             // 현재 ChatActivity를 종료하고 이전 화면으로 돌아감
