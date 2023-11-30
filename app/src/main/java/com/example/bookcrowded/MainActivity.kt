@@ -8,6 +8,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.bookcrowded.databinding.ActivityMainBinding
 import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.enroll.EnrollActivity
+import com.example.bookcrowded.ui.image.ImageUpActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
@@ -74,7 +75,9 @@ class MainActivity : BaseActivity() {
     private fun setFloatingView() {
         binding.fab.setOnClickListener {
             // EnrollActivity로 이동
-            EnrollActivity.startActivity(this)
+//            EnrollActivity.startActivity(this)
+            //imageUp
+            ImageUpActivity.startActivity(this)
         }
     }
 

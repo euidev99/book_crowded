@@ -25,6 +25,7 @@ class DetailViewModel : BaseViewModel() {
     val adChatRoomResult: LiveData<Boolean> get() = _adChatRoomResult
 
     fun getSellItemById(itemId: String) {
+        progressListener?.showProgressUI()
         viewModelScope.launch {
             //전체 데이터 가져오기
             when (val result = detailRepository.getDocumentsByField("id", itemId)) {
@@ -34,10 +35,13 @@ class DetailViewModel : BaseViewModel() {
                         _itemResult.postValue(dataList[0])
                         _itemResult.value?.favorite = dataList[0].favorite
                     }
+
+                    progressListener?.hideProgressUI()
                 }
 
                 is RepoResult.Error -> {
                     //error or retry
+                    progressListener?.hideProgressUI()
                 }
             }
         }

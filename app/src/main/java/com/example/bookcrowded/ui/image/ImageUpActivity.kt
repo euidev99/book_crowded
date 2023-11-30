@@ -11,12 +11,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil.setContentView
 import com.bumptech.glide.Glide
 import com.example.bookcrowded.R
+import com.example.bookcrowded.common.AppConst
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.common.AuthManager.userEmail
 import com.example.bookcrowded.databinding.ActivityEnrollmentBinding
 import com.example.bookcrowded.databinding.ActivityImageUpBinding
 import com.example.bookcrowded.ui.chatlist.ChatListActivity
 import com.example.bookcrowded.ui.common.BaseActivity
+import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.dto.SellItem
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
@@ -33,19 +35,26 @@ class ImageUpActivity : BaseActivity() {
     private var _binding: ActivityImageUpBinding? = null
     private val binding get() = _binding!!
 
+    //storage
     private val storage = Firebase.storage
     private val storageRef = storage.reference
-    private val itemsCollection = FirebaseFirestore.getInstance().collection("SellItem")
+//    private val itemsCollection = FirebaseFirestore.getInstance().collection("SellItem")
 
-    private var imageUrl: String ?= null
+    private val itemsRepository = BaseRepository(AppConst.FIREBASE.SELL_ITEM, SellItem::class.java)
+
+    private var imageUrl: String = ""
     private lateinit var selectedImageUri: Uri
+    private var imageSelected = false
 
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-            // 사용자가 갤러리에서 이미지를 선택한 경우
+            showProgressUI()
+            //이미지를 선택한 경우
             selectedImageUri = it
-            // 여기에 이미지 업로드 코드 추가
-            uploadImageToFirebase()
+            //뷰에 이미지 추가
+            imageSelected = true
+            loadAndDisplayImage(it)
+            hideProgressUI()
         }
     }
 
@@ -53,35 +62,21 @@ class ImageUpActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityImageUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setView()
+    }
 
+    private fun setView() {
         binding.AddPhotoButton.setOnClickListener {
             getContent.launch("image/*")
-            uploadImageToFirebase() // 이미지 업로드를 먼저 진행
         }
 
         binding.enrollmentButton.setOnClickListener {
-
+            enrollSellItem()
         }
-    }
-
-    private fun uploadImageToFirebase(){
-        val imagesRef = storageRef.child("image/${selectedImageUri.lastPathSegment}")
-
-        imagesRef.putFile(selectedImageUri)
-            .addOnSuccessListener {
-                imagesRef.downloadUrl.addOnSuccessListener { uri ->
-                    imageUrl = uri.toString()
-                    loadAndDisplayImage(uri)
-                }
-        }
-            .addOnFailureListener { exception ->
-                showToast("이미지 업로드 실패")
-            }
-
 
     }
 
-    private fun enrollSellItem(imageUrl: String){
+    private fun enrollSellItem(){
         val itemName = binding.editTitle.text.toString()
         val itemPrice = binding.editPrice.text.toString()
         val userEmail = AuthManager.userEmail // 사용자 이메일은 로그인 정보에서 가져온다고 가정
@@ -90,6 +85,11 @@ class ImageUpActivity : BaseActivity() {
 
         val itemId = UUID.randomUUID().toString()
         val currentDate = LocalDate.now().toString()
+
+        //내용 없으면 리턴
+        if (itemName == "" || itemPrice == "" || itemDescription == "") {
+            return
+        }
 
         val sellItem = SellItem(
             id = itemId,
@@ -103,9 +103,24 @@ class ImageUpActivity : BaseActivity() {
             sold = isSold
         )
 
+
+        if (imageSelected) {
+            val imagesRef = storageRef.child("image/${selectedImageUri.lastPathSegment}")
+
+            imagesRef.putFile(selectedImageUri)
+                .addOnSuccessListener {
+                    imagesRef.downloadUrl.addOnSuccessListener { uri ->
+                        showToast("이미지 등록 성공")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    showToast("이미지 업로드 실패")
+                }
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                itemsCollection.add(sellItem).await()
+                itemsRepository.addDocument(sellItem)
                 runOnUiThread {
                     showToast("게시물 등록 성공")
                     finish()
@@ -123,6 +138,8 @@ class ImageUpActivity : BaseActivity() {
         Glide.with(this)
             .load(imageUri)
             .into(binding.AddedPhoto)
+
+        imageUrl = selectedImageUri.lastPathSegment.toString()
     }
 
     private fun showToast(message: String) {

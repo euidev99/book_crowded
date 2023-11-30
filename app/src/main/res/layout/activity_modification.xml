@@ -192,26 +192,27 @@
             android:lines="7" />
     </LinearLayout>
 
-    <ImageButton
+    <Button
         android:id="@+id/modificationButton"
         android:layout_width="200dp"
-        android:layout_height="65dp"
-        android:backgroundTint="#00FFFFFF"
+        android:layout_height="48dp"
         android:scaleType="fitXY"
-        android:src="@drawable/button_black"
+        android:text="@string/posting_modification_execute"
+        android:textColor="@color/white"
+        android:background="@drawable/background_black_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/modification_container" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/posting_modification_execute"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@id/modificationButton"
-        app:layout_constraintEnd_toEndOf="@id/modificationButton"
-        app:layout_constraintTop_toTopOf="@id/modificationButton"
-        app:layout_constraintBottom_toBottomOf="@id/modificationButton" />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/posting_modification_execute"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintStart_toStartOf="@id/modificationButton"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/modificationButton"-->
+<!--        app:layout_constraintTop_toTopOf="@id/modificationButton"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/modificationButton" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

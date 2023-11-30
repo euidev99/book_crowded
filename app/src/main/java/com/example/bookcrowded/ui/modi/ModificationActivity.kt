@@ -2,105 +2,172 @@ package com.example.bookcrowded.ui.modi
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.bookcrowded.common.AppConst
+import com.example.bookcrowded.databinding.ActivityImageUpBinding
 import com.example.bookcrowded.databinding.ActivityModificationBinding
+import com.example.bookcrowded.ui.common.BaseActivity
 import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.common.RepoResult
+import com.example.bookcrowded.ui.detail.DetailActivity
+import com.example.bookcrowded.ui.detail.DetailViewModel
 import com.example.bookcrowded.ui.dto.SellItem
+import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class ModificationActivity : AppCompatActivity() {
+class ModificationActivity : BaseActivity() {
 
+    //기본 공통 세팅
+    private var _binding: ActivityModificationBinding? = null
+    private val binding get() = _binding!!
     private lateinit var itemId: String
     private lateinit var sellItem: SellItem
-    private lateinit var binding: ActivityModificationBinding
+
+    private val mViewModel: ModificationViewModel by viewModels()
+
+    private var imageUrl: String = ""
+    private lateinit var selectedImageUri: Uri
+
+    private var imageChanged = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityModificationBinding.inflate(layoutInflater)
+        _binding = ActivityModificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Intent로 전달된 ITEM_ID를 받아옴
-        itemId = intent.getStringExtra("ITEM_ID") ?: ""
+        itemId = intent.getStringExtra(ITEM_ID) ?: ""
 
+        mViewModel.progressListener = this
 
-        // Firestore에서 해당 판매글 정보를 가져와 화면에 표시
-        val firestore = FirebaseFirestore.getInstance()
-        val itemsCollection = firestore.collection("SellItem")
+        mViewModel.itemResult.observe(this) {
+            setViewDataFromData(it)
+            mViewModel.getImageFromStorageByImageUrl(it.image)
+        }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val document = itemsCollection.document(itemId).get().await()
-                sellItem = document.toObject(SellItem::class.java)!!
+        mViewModel.documentIdResult.observe(this) {
 
-                // UI에 판매글 정보 표시
-                runOnUiThread {
-                    binding.editTitle.setText(sellItem.title)
-                    binding.editPrice.setText(sellItem.price)
-                    binding.editDescription.setText(sellItem.description)
-                    binding.editSwitch.isChecked = sellItem.sold
-                }
-            } catch (e: Exception) {
-                Log.e("ModificationActivity", "판매글 정보 가져오기 오류: ${e.message}")
+            val title = binding.editTitle.text.toString()
+            val price = binding.editPrice.text.toString()
+            val description = binding.editDescription.text.toString()
+            val sold = binding.editSwitch.isChecked
+
+            //내용 없으면 리턴
+            if (title == "" || price == "" || description == "") {
+                //nothing
+            } else {
+
+                val updates = hashMapOf(
+                    "title" to title,
+                    "description" to description,
+                    "sold" to sold,
+                    "price" to price,
+                    "image" to this.imageUrl
+                )
+
+                mViewModel.updateItemByDocumentId(it, updates)
             }
         }
 
-        // 수정 완료 버튼 리스너 설정
+        mViewModel.uriResult.observe(this) {
+            selectedImageUri = it
+
+            Glide.with(this)
+                .load(it)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .centerCrop()
+                .into(binding.AddedPhoto)
+
+        }
+
+        mViewModel.updateResult.observe(this) {
+            if (it) {
+                showToast("수정에 성공했습니다.")
+                finish()
+            } else {
+                showToast("수정에 실패했습니다.")
+            }
+        }
+
+        mViewModel.enrollImageResult.observe(this) {
+            if (it) {
+                showToast("이미지 업로드에 성공했습니다.")
+                //아이템 로드
+                intent.getStringExtra(ITEM_ID)?.let {
+                    mViewModel.getDocumentIdById(it)
+                }
+            } else {
+                showToast("이미지 업로드에 실패했습니다.")
+            }
+        }
+
+        //아이템 로드
+        intent.getStringExtra(ITEM_ID)?.let {
+            mViewModel.getSellItemById(it)
+        }
+
+
+        setView()
+    }
+
+    private fun setView() {
+        binding.AddPhotoButton.setOnClickListener {
+            getContent.launch("image/*")
+        }
+
         binding.modificationButton.setOnClickListener {
-            // 수정된 정보를 사용하여 Firestore 업데이트
-            if (binding.editTitle.text != null) {
-
-            }
-            sellItem.title = binding.editTitle.text.toString()
-            sellItem.price = binding.editPrice.text.toString()
-            sellItem.description = binding.editDescription.text.toString()
-            sellItem.sold = binding.editSwitch.isChecked
-
-
-            finish()
-//            CoroutineScope(Dispatchers.IO).launch {
-//                try {
-//                    itemsCollection.document(itemId).set(sellItem).await()
-//
-//                    showToast("게시물 수정 성공")
-//                    finish()
-//                } catch (e: Exception) {
-//                    showToast("게시물 수정 실패")
-//                    Log.e("ModificationActivity", "판매글 수정 오류: ${e.message}")
-//                }
-//            }
-        }
-    }
-
-    private fun getItemInfo(itemId: String) {
-        var itemRepository: BaseRepository<SellItem> = BaseRepository("SellItem", SellItem::class.java)
-
-        lifecycleScope.launch {
-            when (val result = itemRepository.getDocumentsByField("id", itemId)) {
-                is RepoResult.Success -> {
-                    val dataList = result.data
-                    if (dataList.isNotEmpty()) { //아이템이 있을 경우에 하나만
-//                        _itemResult.postValue(dataList[0])
-                        dataList[0]
-
-                    }
-                }
-                is RepoResult.Error -> {
-                    //error or retry
+            if (imageChanged) {
+                mViewModel.enrollImageByUri(selectedImageUri)
+            } else {
+                intent.getStringExtra(ITEM_ID)?.let {
+                    mViewModel.getDocumentIdById(it)
                 }
             }
         }
     }
 
-//    private fun
+    private fun setViewDataFromData(data: SellItem) {
+        binding.editTitle.setText(data.title)
+        binding.editPrice.setText(data.price)
+        binding.editDescription.setText(data.description)
+        binding.editSwitch.isChecked = data.sold
+        this.imageUrl = data.image
+    }
+
+    private fun loadAndDisplayImageUri(imageUri: Uri){
+        Glide.with(this)
+            .load(imageUri)
+            .into(binding.AddedPhoto)
+
+        this.imageUrl = selectedImageUri.lastPathSegment.toString()
+    }
+
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let {
+            showProgressUI()
+            //이미지를 선택한 경우
+            selectedImageUri = it
+            //뷰에 이미지 추가
+            imageChanged = true
+            loadAndDisplayImageUri(it)
+            hideProgressUI()
+        }
+    }
+
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

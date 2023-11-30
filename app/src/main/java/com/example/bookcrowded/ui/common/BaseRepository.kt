@@ -97,6 +97,16 @@ class BaseRepository<T: Any>(
         }
     }
 
+    suspend fun getDocumentIdsByField(fieldName: String, value: Any): RepoResult<List<String>> = withContext(Dispatchers.IO) {
+        try {
+            val querySnapshot = collectionReference.whereEqualTo(fieldName, value).get().await()
+            val documentIds = querySnapshot.documents.map { it.id }
+            RepoResult.Success(documentIds)
+        } catch (e: Exception) {
+            RepoResult.Error(Exception("Error fetching documents by field: $fieldName, ${e.message}", e))
+        }
+    }
+
     suspend fun updateField(documentId: String, field: String, newValue: Any): RepoResult<Unit> = withContext(Dispatchers.IO) {
         try {
             collectionReference.document(documentId).update(field, newValue).await()
@@ -105,4 +115,14 @@ class BaseRepository<T: Any>(
             RepoResult.Error(Exception("Error updating field: $field in document: $documentId, ${e.message}", e))
         }
     }
+
+    suspend fun updateFields(documentId: String, updates: Map<String, Any>): RepoResult<Boolean> = withContext(Dispatchers.IO) {
+        try {
+            collectionReference.document(documentId).update(updates).await()
+            RepoResult.Success(true)
+        } catch (e: Exception) {
+            RepoResult.Error(Exception("Error updating fields in document: $documentId, ${e.message}", e))
+        }
+    }
+
 }

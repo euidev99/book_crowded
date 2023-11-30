@@ -20,6 +20,7 @@ interface AppConst {
         companion object {
             const val CHAT_LIST = "CHAT_LIST"
             const val SELL_ITEM = "SellItem"
+            const val IMAGE_URL = "gs://bookbookmarket-f6266.appspot.com"
         }
     }
 }
