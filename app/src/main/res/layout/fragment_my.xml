@@ -31,15 +31,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <ImageView
-                    android:id="@+id/logo_image"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/logo"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -47,7 +38,7 @@
             android:id="@+id/info_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="70dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_container">
@@ -65,7 +56,7 @@
                     android:id="@+id/name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:text="@string/mypage_name"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -133,28 +124,6 @@
                                             app:layout_constraintRight_toRightOf="parent"
                                             app:layout_constraintTop_toTopOf="parent"
                                             app:layout_constraintBottom_toBottomOf="parent" />
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                                <!--  구매 목록 레이아웃  -->
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:id="@+id/card_layout2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="40dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_margin="5dp">
-
-                                        <TextView
-                                            android:id="@+id/buy_text"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/mypage_buy"
-                                            android:textSize="16sp"
-                                            android:textStyle="bold"
-                                            app:layout_constraintLeft_toLeftOf="parent"
-                                            app:layout_constraintRight_toRightOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintBottom_toBottomOf="parent" />
-
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                                 <!--  채팅 기록 레이아웃  -->
@@ -244,7 +213,7 @@
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginBottom="75dp"
+            android:layout_marginBottom="90dp"
             android:src="@drawable/round_button_black"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

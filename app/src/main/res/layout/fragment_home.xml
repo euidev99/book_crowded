@@ -16,17 +16,25 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" >
 
-            <!-- 사이즈, 글자 크기 등등 설정! -->
-            <TextView
-                android:id="@+id/title_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
+            <ImageView
+                android:id="@+id/optionButton"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:background="#00FFFFFF"
+                android:scaleType="fitXY"
+                android:src="@drawable/title2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="TITLE TEXT" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/profile"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- 메인 리사이클러 뷰 -->

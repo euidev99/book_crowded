@@ -5,16 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
+        android:gravity="center_vertical"
         android:orientation="vertical"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -31,15 +28,16 @@
 
         <TextView
             android:id="@+id/title_text"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="@string/common_item_name"
-            android:maxLines="1"
-            android:ellipsize="none"/>
+            tools:text="@string/common_item_name" />
 
         <TextView
             android:id="@+id/price_text"
@@ -47,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:textSize="14sp"
-            tools:text="@string/common_item_price"/>
+            tools:text="@string/common_item_price" />
 
         <TextView
             android:id="@+id/soldout_text"

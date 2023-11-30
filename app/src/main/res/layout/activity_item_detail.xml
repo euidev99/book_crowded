@@ -55,13 +55,15 @@
         android:id="@+id/info_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/sell_button_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_container">
+        app:layout_constraintTop_toBottomOf="@+id/header_container"
+        app:layout_constraintVertical_bias="0.05">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,12 +71,12 @@
 
             <ImageView
                 android:id="@+id/mainImage"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="180dp"
+                android:layout_height="240dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:layout_marginBottom="30dp"
                 android:background="@color/black"
-                app:layout_constraintDimensionRatio="4:3"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -92,10 +94,11 @@
                 app:layout_constraintTop_toTopOf="@+id/mainImage" />
 
             <LinearLayout
-                android:layout_width="349dp"
-                android:layout_height="229dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -143,7 +146,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
+                    android:textColor="#CC000000"
                     tools:text="@string/common_item_description" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,7 +156,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/sell_button_container"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="120dp"
         android:background="@drawable/price_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -162,7 +166,7 @@
             android:id="@+id/won"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="35dp"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -185,9 +189,9 @@
 
         <ImageButton
             android:id="@+id/chatButton"
-            android:layout_width="159dp"
-            android:layout_height="69dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="155dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="25dp"
             android:background="#00FFFFFF"
             android:scaleType="fitCenter"
             android:src="@drawable/round_button_black"
