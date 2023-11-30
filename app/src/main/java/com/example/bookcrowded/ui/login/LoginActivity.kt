@@ -35,6 +35,7 @@ class LoginActivity : BaseActivity() {
                 AuthManager.userEmail = binding.emailEditText.text.toString()
                 AuthManager.userPassword = binding.passwdEditText.text.toString()
                 MainActivity.startActivity(this)
+                finish()
             } else {
                 // 로그인 실패 시의 처리
                 Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()

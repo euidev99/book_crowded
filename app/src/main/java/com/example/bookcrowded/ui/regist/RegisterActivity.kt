@@ -10,6 +10,8 @@ import com.example.bookcrowded.MainActivity
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.ActivityRegisterBinding
 import com.example.bookcrowded.ui.common.BaseActivity
+import com.example.bookcrowded.ui.entry.EntryActivity
+import com.example.bookcrowded.ui.login.LoginActivity
 
 /**
  * 계정 등록 화면
@@ -41,9 +43,11 @@ class RegisterActivity : BaseActivity() {
             if (success) {
                 // 가입 성공 시의 처리
                 Toast.makeText(this, "가입 성공!", Toast.LENGTH_SHORT).show()
-                AuthManager.userEmail = binding.emailEditText.text.toString()
-                AuthManager.userPassword = binding.passwdEditText.text.toString()
-                MainActivity.startActivity(this)
+//                AuthManager.userEmail = binding.emailEditText.text.toString()
+//                AuthManager.userPassword = binding.passwdEditText.text.toString()
+//                MainActivity.startActivity(this)
+                finish()
+
             } else {
                 // 가입 실패 시의 처리
                 Toast.makeText(this, "가입 실패", Toast.LENGTH_SHORT).show()
