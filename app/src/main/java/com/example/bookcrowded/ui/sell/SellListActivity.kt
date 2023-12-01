@@ -46,7 +46,7 @@ class SellListActivity : BaseActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val userEmail = AuthManager.userEmail // 현재 로그인한 사용자의 이메일
             val repository = BaseRepository<SellItem>("SellItem", SellItem::class.java)
-            val result = repository.getSellItemsByUserEmail(userEmail)
+            val result = repository.getDocumentsByField("sellerEmail", userEmail)
 
             if (result is RepoResult.Success) {
                 val userSellItems = result.data

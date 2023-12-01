@@ -146,16 +146,4 @@ class BaseRepository<T: Any>(
         }
     }
 
-    suspend fun getSellItemsByUserEmail(userEmail: String): RepoResult<List<T>> = withContext(Dispatchers.IO) {
-        try {
-            val querySnapshot = db.collection(collectionName)
-                .whereEqualTo("sellerEmail", userEmail)
-                .get()
-                .await()
-            val dataList = querySnapshot.toObjects(documentClass)
-            RepoResult.Success(dataList)
-        } catch (e: Exception) {
-            RepoResult.Error(e)
-        }
-    }
 }
