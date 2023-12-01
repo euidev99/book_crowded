@@ -58,7 +58,7 @@ class ChatListViewModel : BaseViewModel() {
                             val sellItemData = result.data[0]
                             val viewData = ReceivedChatItemViewData(myChatItem.sender,
                                 sellItemData.title,
-                                "메세지를 받았습니다.",
+                                "채팅방이 개설되었습니다.",
                                 sellItemData.image,
                                 myChatItem.roomId,
                                 sellItemData.price)
