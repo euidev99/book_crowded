@@ -164,7 +164,6 @@ class DetailActivity: BaseActivity() {
     private fun showCustomPopupListView(anchorView: View) {
         val popupList: MutableList<String> = ArrayList()
         popupList.add("글 수정하기")
-        popupList.add("글 삭제하기")
 
         val adapter = CustomPopupListAdapter(this, popupList)
         val listPopupWindow = ListPopupWindow(this, null, 0, R.style.CustomListPopupWindowStyle)
@@ -183,14 +182,6 @@ class DetailActivity: BaseActivity() {
                     itemId?.let {
                         // ModificationActivity 시작
                         ModificationActivity.startActivityWithItemId(this, it)
-                    }
-                }
-                1 -> {
-                    // "글 삭제하기" 클릭 시
-                    val itemId = intent.getStringExtra(ITEM_ID)
-                    itemId?.let {
-                        // 확인 대화상자 표시
-                        showDeleteConfirmationDialog(it)
                     }
                 }
             }
