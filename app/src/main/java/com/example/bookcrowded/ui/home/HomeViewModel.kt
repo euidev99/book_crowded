@@ -11,6 +11,7 @@ import com.example.bookcrowded.ui.dto.SellItem
 import com.example.bookcrowded.ui.dto.UserInfo
 import com.example.bookcrowded.ui.home.viewdata.HomeItemCategory
 import com.example.bookcrowded.ui.home.viewdata.HomeViewData
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.launch
 
 class HomeViewModel : BaseViewModel() {
@@ -98,33 +99,36 @@ class HomeViewModel : BaseViewModel() {
 
 
     //set Sample Data
-        fun getItemList() {
-            progressListener?.showProgressUI()
+    fun getItemList() {
+        progressListener?.showProgressUI()
 
-            viewModelScope.launch {
-                val itemRepository = BaseRepository("SellItem", SellItem::class.java)
-                when (val result = itemRepository.getAllDocuments()) {
-                    is RepoResult.Success -> {
-                        val dataList = result.data
-                        if (dataList.isNotEmpty()) {
+        viewModelScope.launch {
+            val itemRepository = BaseRepository("SellItem", SellItem::class.java)
+            val query = itemRepository.getQuery().orderBy("upLoadDate", Query.Direction.DESCENDING)
 
-                            val pagingCategoryData = HomeItemCategory.PagingCategoryData("NEW", dataList)
-                            val gridCategoryData = HomeItemCategory.GridCategoryData("On Sale", dataList)
+            when (val result = itemRepository.getDocumentsWithQuery(query)) {
+                is RepoResult.Success -> {
+                    val dataList = result.data
+                    if (dataList.isNotEmpty()) {
 
-                            val viewData = HomeViewData(ArrayList())
-                            viewData.itemData.add(pagingCategoryData)
-                            viewData.itemData.add(gridCategoryData)
+                        val pagingCategoryData = HomeItemCategory.PagingCategoryData("NEW", dataList)
+                        val gridCategoryData = HomeItemCategory.GridCategoryData("On Sale", dataList)
 
-                            _homeViewData.postValue(viewData)
-                        }
-                        progressListener?.hideProgressUI()
+                        val viewData = HomeViewData(ArrayList())
+                        viewData.itemData.add(pagingCategoryData)
+                        viewData.itemData.add(gridCategoryData)
+
+                        _homeViewData.postValue(viewData)
                     }
-                    is RepoResult.Error -> {
-                        Log.e("HomeViewModel", "Error fetching items", result.exception)
-                        progressListener?.hideProgressUI()
-                    }
+                    progressListener?.hideProgressUI()
+                }
+                is RepoResult.Error -> {
+                    Log.e("HomeViewModel", "Error fetching items", result.exception)
+                    progressListener?.hideProgressUI()
                 }
             }
+        }
+    }
 
 
 
@@ -136,5 +140,5 @@ class HomeViewModel : BaseViewModel() {
 //        viewData.itemData.add(gridCategoryData)
 //
 //        this._homeViewData.postValue(viewData)
-    }
+
 }

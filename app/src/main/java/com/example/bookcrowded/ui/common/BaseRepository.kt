@@ -3,6 +3,7 @@ package com.example.bookcrowded.ui.common
 import android.util.Log
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -127,4 +128,20 @@ class BaseRepository<T: Any>(
         }
     }
 
+    // 쿼리를 생성하는 메서드
+    fun getQuery(): Query {
+        return collectionReference
+    }
+
+
+    // 쿼리를 사용하여 문서 가져오는 메서드
+    suspend fun getDocumentsWithQuery(query: Query): RepoResult<List<T>> = withContext(Dispatchers.IO) {
+        try {
+            val querySnapshot = query.get().await()
+            val dataList = querySnapshot.toObjects(documentClass)
+            RepoResult.Success(dataList)
+        } catch (e: Exception) {
+            RepoResult.Error(Exception("Error fetching documents with query: ${e.message}", e))
+        }
+    }
 }
