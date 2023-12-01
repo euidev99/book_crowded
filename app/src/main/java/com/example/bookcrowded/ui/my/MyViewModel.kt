@@ -10,26 +10,34 @@ import androidx.lifecycle.viewModelScope
 import com.example.bookcrowded.ui.common.BaseRepository
 import com.example.bookcrowded.ui.common.BaseViewModel
 import com.example.bookcrowded.ui.common.RepoResult
+import com.example.bookcrowded.ui.dto.SellItem
+import com.example.bookcrowded.ui.dto.UserInfo
+import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.launch
 
 class MyViewModel(): BaseViewModel() {
-
-    private val TAG = "MyViewModel"
-
-    //DTO 타입 가능
-    private val _dataResult = MutableLiveData<RepoResult<Any>>()
-
-    // 뷰에서 접근할 때 사용되는 LiveData
-    val publicData: LiveData<RepoResult<Any>> get() = _dataResult
-
-//    private val repository: BaseRepository<String> = BaseRepository(context)
+    private val _userResult = MutableLiveData<UserInfo>()
+    val userResult: LiveData<UserInfo> get() = _userResult
+    private var userRepository: BaseRepository<UserInfo> = BaseRepository("UserInfo", UserInfo::class.java)
 
 
-    //그냥 연동해서 사용할 뷰모델 관련 샘플
-    val textSample = MutableLiveData<String>(TAG)
+    fun getUserInfoById(userEmail: String) {
+        viewModelScope.launch {
+            //전체 데이터 가져오기
+            when (val result = userRepository.getDocumentsByField("email", userEmail)) {
+                is RepoResult.Success -> {
+
+                }
+
+                is RepoResult.Error -> {
+                    //error or retry
+                }
+            }
+        }
+    }
 
     init {
-//        refreshData()
+        //refreshData()
     }
 
     //Context 를 뷰모델이 들고 있는건 안좋으니 보류
