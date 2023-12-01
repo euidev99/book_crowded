@@ -110,7 +110,6 @@ class HomeViewModel : BaseViewModel() {
                 is RepoResult.Success -> {
                     val dataList = result.data
                     if (dataList.isNotEmpty()) {
-
                         val pagingCategoryData = HomeItemCategory.PagingCategoryData("NEW", dataList)
                         val gridCategoryData = HomeItemCategory.GridCategoryData("On Sale", dataList)
 
@@ -129,8 +128,6 @@ class HomeViewModel : BaseViewModel() {
             }
         }
     }
-
-
 
 //        val pagingCategoryData = HomeItemCategory.PagingCategoryData("NEW", sellItemArrayList)
 //        val gridCategoryData = HomeItemCategory.GridCategoryData("On Sale", sellItemArrayList)

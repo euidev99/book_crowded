@@ -20,47 +20,20 @@ class MyViewModel(): BaseViewModel() {
     val userResult: LiveData<UserInfo> get() = _userResult
     private var userRepository: BaseRepository<UserInfo> = BaseRepository("UserInfo", UserInfo::class.java)
 
+    var loggedInUserName: String = ""
 
     fun getUserInfoById(userEmail: String) {
         viewModelScope.launch {
-            //전체 데이터 가져오기
             when (val result = userRepository.getDocumentsByField("email", userEmail)) {
                 is RepoResult.Success -> {
-
+                    _userResult.postValue(result.data.firstOrNull()) // 사용자 정보를 받아오면 _userResult 업데이트
+                    loggedInUserName = result.data.firstOrNull()?.name.orEmpty() // 현재 로그인한 사용자의 이름 업데이트
                 }
 
                 is RepoResult.Error -> {
-                    //error or retry
+                    // 에러 처리
                 }
             }
         }
     }
-
-    init {
-        //refreshData()
-    }
-
-    //Context 를 뷰모델이 들고 있는건 안좋으니 보류
-//    class Factory(val context: Context) : ViewModelProvider.Factory {
-//        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//            if (modelClass.isAssignableFrom(MyViewModel::class.java)) {
-//                @Suppress("UNCHECKED_CAST")
-//                return MyViewModel(context) as T
-//            }
-//            throw IllegalArgumentException("Unable to construct viewmodel")
-//        }
-//    }
-
-//    override fun refreshData() {
-//        Log.d(TAG, ">> refreshData")
-//
-//        viewModelScope.launch {
-//            try {
-//                textSample.postValue(TAG)
-////                _dataResult.value = repository.refreshData()
-//            } catch (e: Exception) {
-//                Log.e("ViewModel","Failed to load Data!")
-//            }
-//        }
-//    }
 }

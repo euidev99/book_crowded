@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.FragmentMyBinding
@@ -85,6 +86,9 @@ class MyFragment : BaseFragment() {
             startActivity(intent)
         }
 
+        binding.weMadeIt.setOnClickListener {
+            Toast.makeText(context, "심의석 김하은 배소연 박채영", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun navigateToEntryActivity() {
