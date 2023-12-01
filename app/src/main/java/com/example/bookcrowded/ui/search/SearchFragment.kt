@@ -43,6 +43,12 @@ class SearchFragment : BaseFragment() {
 
         return binding.root
     }
+    override fun onResume() {
+        super.onResume()
+        // onResume시 데이터를 새로고침
+        mViewModel.getItemList()
+    }
+
 
     private fun setView() {
         binding.optionButton.setOnClickListener {
