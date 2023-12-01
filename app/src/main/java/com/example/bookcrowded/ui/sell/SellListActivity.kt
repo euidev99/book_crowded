@@ -38,7 +38,7 @@ class SellListActivity : BaseActivity() {
     private fun setView() {
 
         binding.backButton.setOnClickListener{
-
+            finish()
         }
     }
 
