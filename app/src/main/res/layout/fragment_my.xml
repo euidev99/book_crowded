@@ -157,13 +157,22 @@
                                             android:id="@+id/team_text"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="개발자들✨"
+                                            android:text="개발자들"
                                             android:textSize="16sp"
                                             android:textStyle="bold"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintLeft_toLeftOf="parent"
                                             app:layout_constraintRight_toRightOf="parent"
                                             app:layout_constraintTop_toTopOf="parent" />
+
+                                        <TextView
+                                            android:id="@+id/emoji"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="✨"
+                                            app:layout_constraintLeft_toRightOf="@id/team_text"
+                                            app:layout_constraintTop_toTopOf="@id/team_text"
+                                            app:layout_constraintBottom_toBottomOf="@id/team_text" />
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -134,7 +134,6 @@ class BaseRepository<T: Any>(
         return collectionReference
     }
 
-
     // 쿼리를 사용하여 문서 가져오는 메서드
     suspend fun getDocumentsWithQuery(query: Query): RepoResult<List<T>> = withContext(Dispatchers.IO) {
         try {
