@@ -58,10 +58,10 @@ class DetailActivity: BaseActivity() {
     private fun setData(data: SellItem) {
         //내가 올린 아이템일 경우 옵션 활성화
         if (AuthManager.userEmail != "" && AuthManager.userEmail == data.sellerEmail) {
-            binding.moreButton.visibility = View.VISIBLE
+            binding.editContainer.visibility = View.VISIBLE
             binding.logoImage.visibility = View.GONE
         } else {
-            binding.moreButton.visibility = View.GONE
+            binding.editContainer.visibility = View.GONE
             binding.logoImage.visibility = View.VISIBLE
         }
 
@@ -135,8 +135,12 @@ class DetailActivity: BaseActivity() {
             }
         }
 
-        binding.moreButton.setOnClickListener {
-            showCustomPopupListView(it)
+        binding.editContainer.setOnClickListener {
+            val itemId = intent.getStringExtra(ITEM_ID)
+            itemId?.let {
+                // ModificationActivity 시작
+                ModificationActivity.startActivityWithItemId(this, it)
+            }
         }
 
         //backButton으로 디테일 화면 종료
@@ -145,8 +149,7 @@ class DetailActivity: BaseActivity() {
         }
 
         //좋아요 버튼
-        val itemId = intent.getStringExtra(ITEM_ID)
-
+        /*val itemId = intent.getStringExtra(ITEM_ID)
         binding.favButton.setOnClickListener {
             val isFavorite = mViewModel.itemResult.value?.favorite ?: false
             if (isFavorite) {
@@ -158,10 +161,10 @@ class DetailActivity: BaseActivity() {
             }
             // 아이콘 업데이트 후 ViewModel에서 좋아요 상태 토글
             itemId?.let { mViewModel.toggleFavorite(it) }
-        }
+        }*/
     }
 
-    private fun showCustomPopupListView(anchorView: View) {
+    /*private fun showCustomPopupListView(anchorView: View) {
         val popupList: MutableList<String> = ArrayList()
         popupList.add("글 수정하기")
 
@@ -209,7 +212,7 @@ class DetailActivity: BaseActivity() {
                 // 아무 작업도 수행하지 않거나 필요한 경우 피드백을 제공
             }
             .show()
-    }
+    }*/
 
     override fun onDestroy() {
         super.onDestroy()
