@@ -1,6 +1,7 @@
 package com.example.bookcrowded.ui.common
 
 import android.util.Log
+import com.example.bookcrowded.ui.dto.SellItem
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -142,6 +143,19 @@ class BaseRepository<T: Any>(
             RepoResult.Success(dataList)
         } catch (e: Exception) {
             RepoResult.Error(Exception("Error fetching documents with query: ${e.message}", e))
+        }
+    }
+
+    suspend fun getSellItemsByUserEmail(userEmail: String): RepoResult<List<T>> = withContext(Dispatchers.IO) {
+        try {
+            val querySnapshot = db.collection(collectionName)
+                .whereEqualTo("sellerEmail", userEmail)
+                .get()
+                .await()
+            val dataList = querySnapshot.toObjects(documentClass)
+            RepoResult.Success(dataList)
+        } catch (e: Exception) {
+            RepoResult.Error(e)
         }
     }
 }

@@ -45,17 +45,6 @@
             app:layout_constraintTop_toBottomOf="@+id/title_text"
             tools:text="가격" />
 
-        <TextView
-            android:id="@+id/seller_name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="15dp"
-            android:textSize="12sp"
-            android:textColor="@color/secondary_deep"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="판매자" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

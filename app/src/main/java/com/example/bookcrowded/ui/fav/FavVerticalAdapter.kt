@@ -31,7 +31,7 @@ class FavVerticalAdapter(
         fun bind(item: SellItem) {
             binding.titleText.text = item.title
             binding.priceText.text = item.price
-            binding.sellerNameText.text = item.sellerEmail
+//            binding.sellerNameText.text = item.sellerEmail
             binding.root.setOnClickListener { itemClickListener.onClick(binding.root, adapterPosition) }
         }
     }

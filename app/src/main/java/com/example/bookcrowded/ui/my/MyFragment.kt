@@ -9,11 +9,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.bookcrowded.common.AuthManager
 import com.example.bookcrowded.databinding.FragmentMyBinding
+import com.example.bookcrowded.ui.sell.SellListActivity
 import com.example.bookcrowded.ui.chatlist.ChatListActivity
 import com.example.bookcrowded.ui.common.BaseFragment
-import com.example.bookcrowded.ui.image.ImageUpActivity
 import com.example.bookcrowded.ui.entry.EntryActivity
-import com.example.bookcrowded.ui.fav.FavViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class MyFragment : BaseFragment() {
@@ -79,6 +78,12 @@ class MyFragment : BaseFragment() {
             val context = getContext()
             context?.let { ImageUpActivity.startActivity(it) }
         }*/
+
+        binding.sellLayout.setOnClickListener {
+            // SellListActivity로 이동
+            val intent = Intent(requireContext(), SellListActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
