@@ -43,9 +43,9 @@ class RegisterActivity : BaseActivity() {
             if (success) {
                 // 가입 성공 시의 처리
                 Toast.makeText(this, "가입 성공!", Toast.LENGTH_SHORT).show()
-//                AuthManager.userEmail = binding.emailEditText.text.toString()
-//                AuthManager.userPassword = binding.passwdEditText.text.toString()
-//                MainActivity.startActivity(this)
+                AuthManager.userEmail = binding.emailEditText.text.toString()
+                AuthManager.userPassword = binding.passwdEditText.text.toString()
+                MainActivity.startActivity(this)
                 finish()
 
             } else {
